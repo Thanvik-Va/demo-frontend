@@ -1,0 +1,112 @@
+ 
+.example-spacer{
+   flex: 1 1 auto;
+}
+form{
+   width: 400px;
+}
+.dark{
+   background-color: black;
+   width: 100%;
+   
+  
+}
+.text-color{
+   color: white;
+}
+.height{
+   height: 35px;
+   width: 100px;
+   cursor: pointer;
+   
+  
+ }
+/* .sidenav{
+  position:inherit;
+} */
+
+.img{
+  width: 30px;  
+  margin-top:5px;
+margin-right: 10px;
+cursor: pointer;
+}
+.menu1{
+   color:white;
+   margin-left: 10px;
+   padding-top: 5px;
+   padding-bottom: 10px;
+   width: 50px;
+    
+}
+.sidenav-wrapper{
+   position: inherit;
+   top: 0px;
+   bottom: 0px;
+   left: 0px;
+   right: 0px;
+   background:white;
+}
+mat-sidenav{
+   width: 210px;
+   top: 64px;
+   padding-top:20px;
+   padding-left: 10px;
+   left: 0px;
+  
+  }
+.menu-button{
+   margin-left: 0px;
+}
+.supergas{
+   margin-left:-7px;
+}
+mat-sidenav-content{
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 24px;
+align-items: start;
+
+ }
+button span{
+   margin: 10px;
+   margin-top: 50px
+}
+.button-icon{
+   margin-top: 10px;
+   margin-left: 20px;
+}
+.text-color1{
+ color: white;
+ margin-left: 3px;
+ }
+a mat-icon span{
+   margin: 10px;
+   font-weight: bold;
+}
+#nav{
+  list-style-type: none;
+margin: 0 auto 0 auto;
+margin-left: -15px;
+margin-left: px;
+padding: 0;
+position: fixed;
+top: 0;
+width: 100%;
+min-width: 100%;
+overflow: auto;
+
+}
+a mat-icon span{
+margin-left: 10px;
+
+}
+.img1{
+  width: 40px;  
+  margin-top:7px;
+margin-left: 30px;
+cursor: pointer;
+}
+ 
+

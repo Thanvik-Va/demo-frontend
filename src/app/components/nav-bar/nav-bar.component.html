@@ -1,0 +1,78 @@
+<div id="nav">
+  <mat-toolbar class="dark">
+
+
+    <button class="menu-button" mat-icon-button (click)="nav.toggle()">
+      <mat-icon class="menu1">menu</mat-icon></button>
+    <img class="img1" src="/assets/supergaslogo.png" alt="">
+    <span class="supergas"><a mat-icon-button routerLink="/layout/dashboard">
+        <span class="text-color">SUPERGAS</span></a></span>
+    <span class="example-spacer"></span>
+
+
+    <!-- <div class="height " *ngFor="let component of components">
+      <ng-container *ngIf="currentComponent === 'dashboard' && component.name !== 'dashboard'">
+
+        <span *ngIf="component.name !== ('dashboard'&& 'org-org')" [routerLink]="component.baseUrl" class="text-color">
+          {{component.name}}
+        </span>
+      </ng-container>
+      <ng-container *ngIf="currentComponent === 'org-org'">
+
+      </ng-container>
+    </div> -->
+
+
+
+    <img class="img" src="/assets/logout.jpg" alt="" [matMenuTriggerFor]="logoutMenu">
+
+    <mat-menu #logoutMenu="matMenu">
+      <button mat-menu-item>profile</button>
+      <button mat-menu-item data-bs-dismiss="alert" (click)="logout()" routerLink="/login">logout -
+        {{username}}</button>
+    </mat-menu>
+
+  </mat-toolbar>
+
+
+
+</div>
+
+<div class="mat-sidenav-container1">
+  <mat-sidenav-container class="sidenav-wrapper">
+    <mat-sidenav opened="open" #nav mode="side" style="background: black;">
+      <mat-nav-list style="color: black;">
+
+        <a mat-list-item style="color: white;" [matMenuTriggerFor]="organizationMenu">
+          <img class="img" src="/assets/orgimg1.png">
+          <span style="color: white  ;">Organization</span>
+        </a>
+
+        <a mat-list-item [matMenuTriggerFor]="taskMenu"><img class="img" src="/assets/taskicon1.png" alt=""><span
+            style="color: white ;">Employee-Data</span></a>
+        <a mat-list-item href="/layout/folder-cards"><mat-icon class="text-color1">folder</mat-icon><span
+            style="color: white ;">Folder</span> </a>
+
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <!-- <router-outlet></router-outlet>  -->
+    </mat-sidenav-content>
+
+
+  </mat-sidenav-container>
+
+
+  <mat-menu #organizationMenu="matMenu">
+    <button mat-menu-item routerLink="/layout/org-org">Add Organization</button>
+    <button mat-menu-item>Gas Connection</button>
+    <button mat-menu-item>Customer Care </button>
+    <button mat-menu-item>Details</button>
+  </mat-menu>
+  <mat-menu #taskMenu="matMenu">
+    <button mat-menu-item routerLink="/layout/employee-list">Create Employee</button>
+    <button mat-menu-item>Create Child Task</button>
+
+  </mat-menu>
+
+</div>

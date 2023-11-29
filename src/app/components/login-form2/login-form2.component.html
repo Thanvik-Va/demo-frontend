@@ -1,0 +1,60 @@
+ 
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moving Text Example</title>
+  <style>
+    @keyframes moveText {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(100px);
+      }
+    }
+  
+    .moving-text {
+      font-size: 24px;
+      animation: moveText 2s infinite alternate;
+    }
+  </style>
+  </head>
+  <body>
+    
+   
+  <!-- moving text -->
+  <div class="d-flex justify-content-center mt-5">
+    <img class="img-fluid" style="width: 140px;" src="/assets/loginLogo.jpg" alt="">
+   </div>           
+<!--  -->
+<h2 class="moving-text justify-content-center mt-1" >Login here !!</h2>
+
+<div class="container mt-1"> 
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="justify-content-center">
+   
+    <div class="form-group   mt-1 ml-1">
+      <label for="email"><h1>Email</h1> </label>
+      <input type="email" class="form-control" id="email" formControlName="email" style="width:300px; margin-top: 1px;"  ><br>
+      <span style="color: red;" *ngIf="email && email.invalid && email.touched">This field is required</span>
+      <br>
+      <p></p>
+    </div> 
+    <div class="form-group  mt-3 ml-2" >
+      <label for="password"><h1>Password</h1></label>
+      <input type="password" class="form-control" id="password" formControlName="password"   style="width: 300px;">
+      <br>
+      <span style="color: red;" *ngIf="password && password.invalid && password.touched">This field is required</span>
+
+      <br>
+      <p></p>
+    </div> 
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid" routerLink="/dashboard">Submit</button>
+    <button type="submit" class="btn btn-link ml-2" routerLink="/forgot-password">Forgot Password</button>
+  </form>
+</div>
+</body>
+ 
+            
+  

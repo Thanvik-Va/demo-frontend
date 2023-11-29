@@ -1,0 +1,11 @@
+button{
+    cursor: pointer;
+}
+.set-size{
+    margin-top: 100px;
+    width: 100%;
+    position: absolute;
+}
+.justify-content-between{
+    display: flex;
+ }
