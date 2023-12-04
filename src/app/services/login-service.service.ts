@@ -39,6 +39,7 @@ export class LoginServiceService {
   httpgetapi = 'http://localhost:8383/auth/get-user'
   httpregister='http://localhost:8383/auth/save'
 
+  //to register new user
   public register(data:any):Observable<any>{
     return this.http.post<any>(this.httpregister,data);
   }

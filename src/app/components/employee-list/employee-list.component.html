@@ -51,7 +51,7 @@
             <td>{{ employee.emp_type }}</td>
             <td>{{ employee.bp }}</td>
             <td>{{ employee.address}}</td>
-            <td><i type="button" (click)="edit (employee)" class="bi bi-pencil-square mx-2" data-bs-target="#login" data-bs-toggle="modal"></i></td>
+            <td><i type="button" (click)="edit (employee)" class="bi bi-pencil-square mx-2" data-target="#login" data-toggle="modal"></i></td>
             <td><i type="button" (click)="Delete(employee.emp_id)"   class="bi bi-trash mx-3"></i></td>
           </tr>
         </tbody>
@@ -62,8 +62,8 @@
     
       <div class="modal " id="login">
         <div class="modal-dialog ">
-           <div class="modal-content" style="width: 600px; height: 720px;">
-      <div class="modal-header">
+           <div class="modal-content" style="width: 600px; height: 520px;">
+      <div>
         <h4 class="modal-title">Edit Employee</h4>
       </div>
       <div class="modal-body">
@@ -123,10 +123,13 @@
             <div class="text-danger" *ngIf="Address.touched && Address.invalid">
               <div *ngIf="Address.errors?.['required']">Address Required</div>
           </div>
+          <br>
+          <br>
+          <div style="margin-bottom: 5px;margin-left: 50px;">
+            <button  data-dismiss="modal" class="btn btn-primary" type="submit" value="submit" (click)="submit()">Save Edit</button>
+          </div>
          </div>
-         <div class="modal-footer justify-content-center">
-          <button  data-bs-dismiss="modal" class="btn btn-primary" type="submit" value="submit" (click)="submit()">Save Edit</button>
-        </div>
+        
         </form>
       </div>
     </div>

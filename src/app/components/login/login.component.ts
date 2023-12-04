@@ -61,7 +61,6 @@ export class LoginComponent {
         if(response.statusCode==0){
           this.token = response.data.token
         }
-       
         this.errorCode = response.errorCode
         this.message = response.message
         this.statusCode = response.statusCode
