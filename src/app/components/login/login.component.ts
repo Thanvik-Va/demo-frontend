@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Credentails } from 'src/app/credentails';
 import { LoginServiceService } from 'src/app/services/login-service.service';
 import { OrgServiceService } from 'src/app/services/services/org-service.service';
-import { User } from 'src/app/user';
 
 
 @Component({
@@ -58,19 +57,27 @@ export class LoginComponent {
     this.service.login(data).subscribe(
       (response) => {
         console.log(response);
-        this.token = response.data.token
-        this.errorCode = response.errorCode
+        
+        if(response.statusCode==0){
+          this.token = response.data.token
+        }
+         this.errorCode = response.errorCode
         this.message = response.message
         this.statusCode = response.statusCode
 
         localStorage.setItem('token', this.token);
+        
         this.doNavigating();
       },
       (error) => {
         console.log("This is error block");
         console.log(error);
+       
+        
+
       }
     )
+   
 
   }
 
@@ -80,8 +87,18 @@ export class LoginComponent {
     if (this.statusCode == 0 && this.token != null) {
       localStorage.setItem('token', this.token)
       console.log(localStorage.getItem('token'));
-      this.orgService.updateTokenInOrg(this.token);
-      this.router.navigate(['/layout']);
+
+     //
+      //this.authServ.logIn();
+      this.service.isAuthenticated=true;
+
+      if(this.service.isAuthenticatedUser()){
+        this.router.navigate(['/layout']);
+      }
+      else{
+        this.router.navigate(['/login']);
+      }
+     
     }
     else {
       switch (this.errorCode) {

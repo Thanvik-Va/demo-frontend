@@ -1,14 +1,15 @@
 import { Organization } from './../classes/organization';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { OrgServiceService } from 'src/app/services/services/org-service.service';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { OrgServiceService } from 'src/app/services/services/org-service.service';
+
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,33 +17,24 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './organization.component.html',
   styleUrls: ['./organization.component.css'],
 })
-export class OrganizationComponent  implements OnInit{
-  bpDetails: any[] = [];
-
+export class OrganizationComponent {
   checkStatus!: boolean;
 
   states: string[] = [
-    'Kerala',
-    'Maharastra',
     'Delhi',
-    'Uttar Pradesh',
+    'Kerala',
     'Karnataka',
-    'Madhya Pradesh',
+    'Maharastra',
+    'Telanagana',
+    'Tamilanadu',
+    'West Bengal  ',
   ];
-  public countries: string[] = [
-    'India',
-    'Israel',
-    'Usa',
-    'Dubai',
-    'Uk',
-    'France',
-    'London',
-  ];
-
+  public countries: string[] = ['India'];
   bpRegister!: FormGroup;
   orgId: any;
-
-   organization: Organization = new Organization();
+  bpDetails: any[] = [];
+  orgDetails!: any[];
+  organization: Organization = new Organization();
 
   constructor(
     private fb: FormBuilder,
@@ -70,7 +62,9 @@ export class OrganizationComponent  implements OnInit{
     this.orgId = localStorage.getItem('id');
     console.log(this.orgId);
     this.getOrganization(this.orgId);
-    this.getBpDetails();
+    const token='eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2YW1zaGlAZ21haWwuY29tIiwiaWF0IjoxNzAxMjQ0NDAwLCJleHAiOjE3MDEyNjI0MDB9.d0kqblgChkL0bTlqZnvcSs1DHLiLW3UQJi1VNh9YonR3ezSb5g_q6glGy1zSf_ZX1FsBPHTAaaB8QgOqhnes6g';
+    localStorage.setItem("token",token);
+    //this.getBpDetails();
   }
 
   public orgRegister = this.fb.group({
@@ -99,7 +93,6 @@ export class OrganizationComponent  implements OnInit{
   get OrganizationName(): FormControl {
     return this.orgRegister.get('organizationName') as FormControl;
   }
-
   get Country(): FormControl {
     return this.orgRegister.get('countryName') as FormControl;
   }
@@ -118,137 +111,208 @@ export class OrganizationComponent  implements OnInit{
   get MobileNumber(): FormControl {
     return this.orgRegister.get('contact') as FormControl;
   }
-
   get businessPlaceLegalName(): FormControl {
     return this.bpRegister.get('businessPlaceLegalName') as FormControl;
   }
-
   get businessPlaceLocation(): FormControl {
     return this.bpRegister.get('businessPlaceLocation') as FormControl;
   }
-
   get stateName(): FormControl {
     return this.bpRegister.get('stateName') as FormControl;
   }
-
   get countryName(): FormControl {
     return this.bpRegister.get('countryName') as FormControl;
   }
-
   get businessPlaceContact(): FormControl {
     return this.bpRegister.get('businessPlaceContact') as FormControl;
   }
-
   get businessPlaceZipCode(): FormControl {
     return this.bpRegister.get('businessPlaceZipCode') as FormControl;
   }
 
-  
+  // openBusiness() {
+  //   const ref = this.dialog.open(BusinessPlaceComponent, {
+  //     width: '450px',
+  //     height: '450px',
+  //     data: {},
+  //   });
+
+  // }
 
   collectForm() {
     if (this.orgRegister.valid) {
       this.orgService
         .addOrganization(this.orgRegister.value)
-        .subscribe((response: { statusCode: number; }) => {
+        .subscribe((response) => {
           if (response.statusCode == 0) {
-
-            this.toastr.success('Saved Successfully','Sucess', {
-              positionClass: 'toast-top-right',
+            this.toastr.success(response.message, 'Sucess', {
+              positionClass: 'toast-top-left',
             });
           } else {
             this.toastr.error('Something went wrong..!!', 'Error', {
               positionClass: 'toast-top-right',
-              // progressBar:true,
-              // progressAnimation:'increasing',
-              // easing: 'ease-in',
-              // easeTime: 1000,
             });
           }
         });
     }
   }
 
+
+  editBusinessPlace(businessPlace:any) {
+    // Set the form values with the selected business place details
+    this.bpRegister.patchValue({
+      businessPlaceLegalName: businessPlace.businessPlaceLegalName,
+      businessPlaceLocation: businessPlace.businessPlaceLocation,
+      businessPlaceContact: businessPlace.businessPlaceContact,
+      businessPlaceZipCode: businessPlace.businessPlaceZipCode,
+      countryName: businessPlace.countryName,
+      stateName: businessPlace.stateName,
+    });
+  
+    
+    
+  }
+  
+
   // get organization
   getOrganization(id: any) {
-    this.orgService.getOrganization(id).subscribe((response: { response: { data: Organization; }; }) => {
+    this.orgService.getOrganization(id).subscribe((response) => {
       this.organization = response.response.data;
-
-      // if (res.status == 'OK') {
-      //   this.organization = res.data;
-      //   this.msg = res.message;
-      //   this.toastr.info(this.msg, 'Sucess', {
-      //     positionClass: 'toast-top-center',
-      //     progressBar: true,
-      //     progressAnimation: 'increasing',
-      //     easing: 'ease-in',
-      //     easeTime: 1000,
-      //     timeOut: 1500,
-      //   });
-      // } else {
-      //   this.msg = 'Something went wrong';
-      //   this.toastr.error(this.msg, 'Error', {
-      //     positionClass: 'toast-top-center',
-      //     easing: 'ease-in',
-      //     easeTime: 1000,
-      //     timeOut: 1500,
-      //   });
-      // }
+      //console.log(this.organization)
     });
   }
 
   getBpDetails() {
-    this.orgService.getBusinessPlace().subscribe((response: any[]) => {
+    this.orgService.getBusinessPlace().subscribe((response) => {
       this.bpDetails = response;
-      
-      
       //console.log(this.bpDetails);
     });
   }
 
-  onSubmit() {
-    if (this.bpRegister.valid) {
-      this.orgService
-        .addBusinessPlace(this.bpRegister.value, this.orgId)
-        .subscribe((response: { response: { data: any; }; statusCode: number; }) => {
-          
-   
-          if (response.statusCode == 0) {
-            console.log('hi-this is vamshi')
-            this.toastr.success('Saved Successfully','Sucess', {
-              positionClass: 'toast-top-left',
+
+
+
+    onSubmit() {
+      if (this.bpRegister.valid) {
+        const businessPlaceData = this.bpRegister.value;
+        // console.log(businessPlaceData)
+        // Check if business place exists in the organization
+        const existingBusinessPlace = this.organization.businessPlaces.find(
+          (bp: any) => bp.businessPlaceLegalName === businessPlaceData.businessPlaceLegalName);
+        console.log(existingBusinessPlace)
+        if (existingBusinessPlace) {
+          // Update existing business place
+          this.orgService.updateBusinessPlace(existingBusinessPlace.businessPlaceId, businessPlaceData)
+            .subscribe((response) => {
+              if (response.statusCode === 0) {
+                this.toastr.success(response.message, 'Success', {
+                  positionClass: 'toast-top-right',
+                });
+                this.bpRegister.reset();
+              } else {
+                this.toastr.error('Something went wrong..!!', 'Error', {
+                  positionClass: 'toast-top-right',
+                });
+              }
             });
-            this.bpRegister.reset();
-            this.getBpDetails();
-          } else {
-            this.toastr.error('Something went wrong..!!', 'Error', {
-              positionClass: 'toast-top-right',
-              // progressBar:true,
-              // progressAnimation:'increasing',
-              // easing: 'ease-in',
-              // easeTime: 1000,
-              // timeOut: 1800,
+        } else {
+          // Create new business place
+          this.orgService.addBusinessPlace(businessPlaceData, this.orgId)
+            .subscribe((response) => {
+            
+              if (response.statusCode === 0) {
+                this.toastr.success(response.message, 'Success', {
+                  positionClass: 'toast-top-right',
+                });
+                this.bpRegister.reset();
+              } else {
+                this.toastr.error('Something went wrong..!!', 'Error', {
+                  positionClass: 'toast-top-right',
+                });
+              }
             });
-            this.bpRegister.reset();
-          }
-        });
+        }
+      }
     }
+       
+      onCreateSubmit() {
+        if (this.bpRegister.valid) {
+          const businessPlaceData = this.bpRegister.value;
+          console.log(businessPlaceData)
+          // Check if business place exists in the organization
+          const existingBusinessPlace = this.organization.businessPlaces.find(
+            (bp: any) => bp.businessPlaceLegalName === businessPlaceData.businessPlaceLegalName);
+          console.log(existingBusinessPlace)
+          if (existingBusinessPlace) {
+           
+            this.toastr.error('Business Place already exits..!!', 'Error', {
+              positionClass: 'toast-top-right'})
+               
+            }
+          else {
+            // Create new business place
+            this.orgService.addBusinessPlace(businessPlaceData, this.orgId)
+              .subscribe((response:any) => {
+              
+                if (response.statusCode === 0) {
+                  this.toastr.success(response.message, 'Success', {
+                    positionClass: 'toast-top-right',
+                  });
+                  this.bpRegister.reset();
+                } else {
+                  this.toastr.error('Something went wrong..!!', 'Error', {
+                    positionClass: 'toast-top-right',
+                  });
+                }
+              });
+          }
+        }
+      }  
+
+
+       // Add this method to handle the delete action
+  deleteBusinessPlace(businessPlace: any) {
+    const confirmDelete = confirm('Are you sure you want to delete this business place?');
+    
+    if (confirmDelete) {
+      this.orgService.deleteBusinessPlace(businessPlace.businessPlaceId).subscribe(
+        (response) => {
+          if (response.statusCode === 0) {
+            this.toastr.success(response.message, 'Success', {
+              positionClass: 'toast-top-right',
+            });
+         
+          } else {
+            this.toastr.error('Something went wrong while deleting..!!', 'Error', {
+              positionClass: 'toast-top-right',
+            });
+          }
+        },
+      );
+    }
+  
   }
-
-  // this.orgService
-  // .addBusinessPlace(this.bpRegister.value, this.orgId)
-  // .subscribe({
-  //   next: (val: any) => {
-  //     alert('Business place added successfully');
-  //     this.bpRegister.reset();
-  //   },
-  //   error: (err: any) => {
-  //     console.log(err);
-  //   },
-  // });
-
+      
+    // if (this.bpRegister.valid) {
+    //   this.orgService
+    //     .addBusinessPlace(this.bpRegister.value, this.orgId)
+    //     .subscribe((response) => {
+    //       // console.log(response.response.data);
+    //       if (response.statusCode == 0) {
+    //         this.toastr.success(response.message, 'Sucess', {
+    //           positionClass: 'toast-top-right',
+    //         });
+    //         this.bpRegister.reset();
+    //       } else {
+    //         this.toastr.error('Something went wrong..!!', 'Error', {
+    //           positionClass: 'toast-top-right',
+    //         });
+    //         this.bpRegister.reset();
+    //       }
+    //     });
+    // }
+  
   close() {
     this.bpRegister.reset();
-   // location.reload();
-   this.getOrganization(this.orgId);
-  }
-}
+    location.reload();
+  }}

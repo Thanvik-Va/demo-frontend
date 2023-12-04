@@ -178,6 +178,11 @@ margin-left: 10px;
 margin-left: 30px;
 cursor: pointer;
 }
- 
+.cursor{
+   cursor: pointer;
+}
+ .mat-sidenav-container1{
+   margin-right: 10px;
+ }
 
 

@@ -1,0 +1,60 @@
+<!-- <body  style="background-color:whitesmoke; height: 800px;"> -->
+  <!-- <div class="setsize"> -->
+  <!-- <nav class="navbar  navbar-dark bg-primary text-white setsize">
+    <h2 class="ms-3">Manage Files</h2>
+  </nav> -->
+
+  <div class="container setsize bg-white">
+    <h2 class="justify-content-center d-flex font-bold">Manage Files</h2>
+    <div class="row p-4" >
+      <div class="p-3">
+        <form (ngSubmit)="onSubmit()" #fileUploadForm="ngForm" >
+          <div class="form-group ">
+            <label  for="fileInput" style="color:rgb(7, 126, 245);font-weight:bold;font-size: 25px;">Choose File(XLS or XLSX) :&nbsp;</label>
+            <input type="file" (change)="onFileSelect($event)" name="file"  id="fileInput" class="form-control-file" style="background-color: darkgrey;">
+            <div *ngIf="selectedFile && !isValidFileType " class="text-danger mt-2">
+              Invalid file type. Only XLS and XLSX files are allowed.
+            </div>
+          </div>
+          <button type="submit" [disabled]="!selectedFile || (selectedFile && !isValidFileType)" class="btn btn-primary">Upload</button>
+        </form>
+        
+    
+        <!-- <div class="mt-4">
+        <b><i style="color:green;  width:250px;" *ngIf="msg"> {{ msg }}</i>
+         <i style="color: red;" *ngIf="msgF">{{msgF}}</i></b>
+        </div> -->
+      </div><br>
+      </div></div><br><br>
+
+      <h2 style="color: rgb(250, 4, 4); margin-left: 130px;"><b>File List</b></h2>
+      <div class="container" style="box-shadow: 7px 7px 15px rgb(171, 182, 243),-3px -3px 10px rgb(171, 182, 243); margin-left: 130px;">
+        <div>{{listLoadFile}}</div>
+        
+      <div class="p-4">
+        <table class="table border border-3" >
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>File Name</th>
+              <th>Date Of Upload</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let file of files;let x=index ">
+              <td>{{x+1}}</td>
+              <td>{{ file.fileName }}</td>
+              <td>{{file.date}}</td>
+              <td>
+                <button class="btn btn-primary btn-sm" (click)="downloadFile(file.fileName)">Download</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <!-- </div> -->
+
+<!-- </div> -->
+<!-- </body> -->

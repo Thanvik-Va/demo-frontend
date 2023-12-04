@@ -9,6 +9,11 @@ import { User } from '../user';
 })
 export class LoginServiceService {
  
+  //checking authentication to activate routes
+ isAuthenticated=false;
+ isAuthenticatedUser():boolean{
+  return this.isAuthenticated;
+ }
 
   //private httpOptions={headers:HttpHeaders};
   token: string | null = null  /* holds the authentication token intially set to null  */
@@ -32,7 +37,11 @@ export class LoginServiceService {
 
   httpapi = 'http://localhost:8383/auth/login'
   httpgetapi = 'http://localhost:8383/auth/get-user'
+  httpregister='http://localhost:8383/auth/save'
 
+  public register(data:any):Observable<any>{
+    return this.http.post<any>(this.httpregister,data);
+  }
 
   // performs post request to the authentication api with user data
   public login(data: User): Observable<any> {
@@ -51,6 +60,5 @@ export class LoginServiceService {
     }
     return this.http.get<User>(this.httpgetapi, httpoptions);
   }
-
-   
+ 
 }
