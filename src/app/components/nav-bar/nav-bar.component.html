@@ -49,14 +49,21 @@
         </a>
 
         <a mat-list-item [matMenuTriggerFor]="taskMenu"><img class="img" src="/assets/taskicon1.png" alt=""><span
-            style="color: white ;">Employee-Data</span></a>
-        <a mat-list-item href="/layout/folder-cards"><mat-icon class="text-color1">folder</mat-icon><span
-            style="color: white ;">Folder</span> </a>
+            style="color: white ;">Employee-Data</span>
+        </a>
+
+        <!-- <a mat-list-item href="/layout/folder-cards"><mat-icon class="text-color1">folder</mat-icon><span
+            style="color: white ;">Folder</span>
+        </a> -->
+
+        <a mat-list-item routerLink="#"><img class="img" src="/assets/upload-image.png">
+          <span style="color: white;">Manage Files </span>
+        </a>
 
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <!-- <router-outlet></router-outlet>  -->
+       <router-outlet></router-outlet>  
     </mat-sidenav-content>
 
 
@@ -65,13 +72,13 @@
 
   <mat-menu #organizationMenu="matMenu">
     <button mat-menu-item routerLink="/layout/org-org">Add Organization</button>
-    <button mat-menu-item>Gas Connection</button>
+    <!-- <button mat-menu-item>Gas Connection</button>
     <button mat-menu-item>Customer Care </button>
-    <button mat-menu-item>Details</button>
+    <button mat-menu-item>Details</button> -->
   </mat-menu>
   <mat-menu #taskMenu="matMenu">
     <button mat-menu-item routerLink="/layout/employee-list">Create Employee</button>
-    <button mat-menu-item>Create Child Task</button>
+    <!-- <button mat-menu-item>Create Child Task</button> -->
 
   </mat-menu>
 
