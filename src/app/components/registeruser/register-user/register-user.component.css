@@ -30,3 +30,12 @@
    font-weight: bold;
    font-size:15px;
  }
+
+ .title{
+   margin-left: 180px;
+ }
+ .border{
+  margin-top: 100px;
+  border: 5px solid blue;
+   box-shadow:         3px 3px 5px 6px rgb(135, 135, 252); 
+ }

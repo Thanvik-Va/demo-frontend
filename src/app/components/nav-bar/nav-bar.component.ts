@@ -6,6 +6,7 @@ import { LoginComponent } from '../login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SlideBarComponent } from '../slide-bar/slide-bar.component';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -46,7 +47,7 @@ export class NavBarComponent {
  
 
 
-constructor(private loginService: LoginServiceService, private router: Router, private dailogRef:MatDialog) {
+constructor(private loginService: LoginServiceService, private router: Router, private dailogRef:MatDialog,private authServ:AuthService) {
   router.events.pipe(
     filter((event): event is NavigationEnd => event instanceof NavigationEnd)
   ).subscribe((event: NavigationEnd) => {
@@ -55,7 +56,17 @@ constructor(private loginService: LoginServiceService, private router: Router, p
 }
 
 logout(){
-  alert("Are you sure you want to logout?")
+  //alert("Are you sure you want to logout?")
+  if(confirm('Are you sure you want to logout?')){
+   // this.authServ.logOut();
+   this.loginService.isAuthenticated=true;
+    window.location.href='/login';
+  }
+  else{
+    this.router.navigate([]);
+    console.log("logout cancelled");
+  }
+
   }
 
   // toggleSidebar() {

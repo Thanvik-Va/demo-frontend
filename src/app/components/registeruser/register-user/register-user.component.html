@@ -1,0 +1,65 @@
+
+<div class="justify-content-center d-flex">
+    
+    <div class="border">
+        <div class="m-3">
+            <h2 class="text-primary title">Register user</h2>
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)">
+
+            <div class="container-fluid mt-5">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label><span class="bi bi-envelope"> Email Id </span></mat-label>
+                  <input name="email" formControlName="email" id="email" type="email" matInput name="email" value="">
+                </mat-form-field>
+    
+    
+                <small class="red-color-password">
+                  <div class="text-height" *ngIf="Email.errors?.['required']&&Email.touched && Email.invalid">
+                    Email is required.
+                  </div>
+                  <div class="text-height" *ngIf="Email.errors?.['pattern']">
+                    Please enter a valid email address like abc&#64;gmail.com
+                  </div>
+                </small>
+    
+                <br>
+    
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label> <span class="bi bi-person"> UserName</span> </mat-label>
+                    <input name="UserName" formControlName="userName" type="text" matInput name="UserName" value="">
+                  </mat-form-field>
+      
+                  <small class="red-color-password">
+                    <div class="text-height" *ngIf="UserName.errors?.['required'] && UserName.touched && UserName.invalid">
+                      Username is required.
+                    </div>
+                  </small>
+    
+                <br>
+    
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label> <span class="bi bi-lock"> Password</span> </mat-label>
+                  <input name="password" formControlName="password" type="password" matInput name="password" value="">
+                </mat-form-field>
+    
+                <small class="red-color-password">
+                  <div class="text-height" *ngIf="Password.errors?.['required'] && Password.touched && Password.invalid">
+                    Password is required.
+                  </div>
+                </small>
+    
+                <!-- <h3>
+                  <div *ngIf="loginError" class="error-block">{{ loginError }}</div>
+                </h3> -->
+    
+                <div class="container text-center">
+                  <button class="bi bi mt-1 mb-3" type="submit" mat-raised-button color="primary" 
+                    [disabled]="registerForm.invalid">Register</button>
+                </div>
+    
+              </div>
+        </form>    
+    </div>
+
+   </div>

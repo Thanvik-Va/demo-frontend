@@ -53,6 +53,10 @@
         <a mat-list-item href="/layout/folder-cards"><mat-icon class="text-color1">folder</mat-icon><span
             style="color: white ;">Folder</span> </a>
 
+            <a mat-list-item [matMenuTriggerFor]="filemenu"  ><mat-icon class="text-color1">folder</mat-icon><span
+              style="color: white ;">Manage Files</span> </a>
+  
+
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -72,7 +76,11 @@
   <mat-menu #taskMenu="matMenu">
     <button mat-menu-item routerLink="/layout/employee-list">Create Employee</button>
     <button mat-menu-item>Create Child Task</button>
-
   </mat-menu>
+
+<mat-menu #filemenu="matMenu">
+  <button  mat-menu-item routerLink="/layout/file-upload">Upload File</button>
+  <button mat-menu-item>Help</button>
+</mat-menu>
 
 </div>

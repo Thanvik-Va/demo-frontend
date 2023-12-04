@@ -14,6 +14,9 @@ import { OrganizationComponent } from './components/organization/organization.co
 import { LayoutComponent } from './layout/layout/layout.component';
 import { AddComponent } from './components/add/add.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
+import { FileUploadComponent } from './components/file-upload-list/file-upload.component';
+import { AuthGuard } from './services/auth.guard';
+import { RegisterUserComponent } from './components/registeruser/register-user/register-user.component';
 
 // import { AuthGuard } from './services/auth.guard';
 
@@ -23,6 +26,7 @@ const routes: Routes = [
   {path: '',component:LoginComponent,pathMatch:'full'},
   {path: 'login',component:LoginComponent,pathMatch:'full'},
   {path: 'forgot-password',component:ForgotPasswordComponent,pathMatch:'full'},
+  {path: 'register',component:RegisterUserComponent,pathMatch:'full'},
   {
   path:"layout",
   component: LayoutComponent,
@@ -36,8 +40,9 @@ const routes: Routes = [
     {path: 'welcome-home',component:WelcomeHomeComponent,pathMatch:'full'},
     {path:'org-org',component:OrganizationComponent,pathMatch:'full'},
     {path:'add-employee',component:AddComponent},
-    {path:'employee-list',component:EmployeeListComponent}
-  ]
+    {path:'employee-list',component:EmployeeListComponent},
+    {path:'file-upload',component:FileUploadComponent}
+  ],canActivate:[AuthGuard]
   }
   
  ];
