@@ -57,13 +57,14 @@ export class LoginComponent {
     this.service.login(data).subscribe(
       (response) => {
         console.log(response);
-        
+         
         if(response.statusCode==0){
           this.token = response.data.token
         }
          this.errorCode = response.errorCode
-        this.message = response.message
-        this.statusCode = response.statusCode
+ 
+         this.message = response.message
+         this.statusCode = response.statusCode
 
         localStorage.setItem('token', this.token);
         
