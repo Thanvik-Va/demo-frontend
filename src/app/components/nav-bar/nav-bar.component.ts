@@ -59,7 +59,10 @@ logout(){
   if(confirm('Are you sure you want to logout?')){
    // this.authServ.logOut();
    this.loginService.isAuthenticated=false;
-    window.location.href='/login';
+    localStorage.removeItem('token');
+    
+   // window.location.href='/login';
+   this.router.navigate(['/login']);
   }
   else{
     this.router.navigate([]);
