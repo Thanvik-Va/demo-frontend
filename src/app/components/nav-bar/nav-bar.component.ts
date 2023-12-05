@@ -6,7 +6,6 @@ import { LoginComponent } from '../login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SlideBarComponent } from '../slide-bar/slide-bar.component';
 import { MatSidenav } from '@angular/material/sidenav';
-import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -47,7 +46,7 @@ export class NavBarComponent {
  
 
 
-constructor(private loginService: LoginServiceService, private router: Router, private dailogRef:MatDialog,private authServ:AuthService) {
+constructor(private loginService: LoginServiceService, private router: Router, private dailogRef:MatDialog) {
   router.events.pipe(
     filter((event): event is NavigationEnd => event instanceof NavigationEnd)
   ).subscribe((event: NavigationEnd) => {

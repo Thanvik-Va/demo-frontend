@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Credentails } from 'src/app/credentails';
-import { AuthService } from 'src/app/services/auth.service';
 import { LoginServiceService } from 'src/app/services/login-service.service';
 import { OrgServiceService } from 'src/app/services/services/org-service.service';
 
@@ -28,7 +27,7 @@ export class LoginComponent {
 
   //FormBuilder service used to building the login form  
   //Router-> for the navigation 
-  constructor(private service: LoginServiceService, private orgService: OrgServiceService,private authServ: AuthService, private router: Router,
+  constructor(private service: LoginServiceService, private orgService: OrgServiceService, private router: Router,
     private fb: FormBuilder) { }
 
 
