@@ -9,52 +9,61 @@ export class OrgServiceService {
 
   //token:string|null=null;
 
-  constructor(private http: HttpClient) {}
-
-  updateTokenInOrg(data:any){
-    console.log(`Org Service --> ${data}`);
-    //this.token=data;
-    
-    //this.dataSubject.next(data);
+  tokenData={}
+  constructor(private http: HttpClient) {
+    this.tokenData={
+      headers:new HttpHeaders({
+        "Authorization":"Bearer "+localStorage.getItem("token")
+      })
+    }
   }
 
-  // private httpOptions={
-  //   headers:new HttpHeaders({
-  //     'Authorization':`Bearer ${token}`
-  //   })
-  // }
-
-  
-
   addOrganization(data: any): Observable<any> {
-    const token=localStorage.getItem('token');
-    const headers=new HttpHeaders().set('Authorization',`Bearer ${token}`)
     return this.http.post(
       ' http://localhost:8383/org/createOrganization',
-      data,{headers}
+      data,this.tokenData
     );
   }
 
   getOrganization(data: any): Observable<any> {
-    const token=localStorage.getItem('token');
-    const headers=new HttpHeaders().set('Authorization',`Bearer ${token}`)
-    return this.http.get<any>(`http://localhost:8383/org/getBy/${data}`,{headers});
+    
+    return this.http.get<any>(`http://localhost:8383/org/getBy/${data}`,this.tokenData);
   }
 
   // add business place
   addBusinessPlace(bp: any, org: any): Observable<any> {
-    const token=localStorage.getItem('token');
-    const headers=new HttpHeaders().set('Authorization',`Bearer ${token}`)
     return this.http.post<any>(
       `http://localhost:8383/businessplaces/create/${org}`,
-      bp,{headers}
+      bp,this.tokenData
     );
   }
 
   // get business places
   getBusinessPlace(): Observable<any> {
-    const token=localStorage.getItem('token');
-    const headers=new HttpHeaders().set('Authorization',`Bearer ${token}`)
-    return this.http.get<any>('http://localhost:8383/businessplaces/findAll',{headers});
+    return this.http.get<any>('http://localhost:8383/businessplaces/findAll',this.tokenData);
+  }
+
+  // getAll orgranizations
+
+  getAllOrganizations():Observable<any>
+  {
+    return this.http.get<any>('http://localhost:8383/org/getAllOrganizations',this.tokenData)
+  }
+
+  // Add this method to update an existing business place
+  updateBusinessPlace(businessPlaceId: any, data: any): Observable<any> {
+    console.log(businessPlaceId);
+    return this.http.put<any>(
+      `http://localhost:8383/businessplaces/update/${businessPlaceId}`,
+      data,
+      this.tokenData
+    );
+  }
+
+   // Add this method to delete a business place
+   deleteBusinessPlace(businessPlaceId: any): Observable<any> {
+    return this.http.delete<any>( `http://localhost:8383/businessplaces/${businessPlaceId}`,
+      this.tokenData
+    );
   }
 }

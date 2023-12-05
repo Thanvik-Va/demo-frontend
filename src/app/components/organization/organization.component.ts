@@ -20,81 +20,60 @@ export class OrganizationComponent  implements OnInit{
   bpDetails: any[] = [];
 
   checkStatus!: boolean;
-
   states: string[] = [
-    'Kerala',
-    'Maharastra',
     'Delhi',
-    'Uttar Pradesh',
+    'Kerala',
     'Karnataka',
-    'Madhya Pradesh',
-  ];
-  public countries: string[] = [
-    'India',
-    'Israel',
-    'Usa',
-    'Dubai',
-    'Uk',
-    'France',
-    'London',
+    'Maharashtra',
+    'Telangana',
+    'Tamil Nadu',
+    'West Bengal',
   ];
 
-  bpRegister!: FormGroup;
+  countries: string[] = ['India'];
+
+  orgRegister: FormGroup;
+  bpRegister: FormGroup;
   orgId: any;
-
-   organization: Organization = new Organization();
+  organization: any = {}; // Use the correct type or interface if available
+  isEditMode: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private orgService: OrgServiceService,
-    private dialog: MatDialog,
-    private toastr: ToastrService
-  ) {
+    private toastr: ToastrService,
+    ) 
+    {
+      this.orgRegister = this.fb.group({
+      organizationName: ['', [Validators.required]],
+      countryName: ['', [Validators.required]],
+      stateName: ['', [Validators.required]],
+      zipCode: ['', [Validators.required, Validators.minLength(6)]],
+      addressLine1: ['', [Validators.required, Validators.minLength(5)]],
+      addressLine2: ['', [Validators.required, Validators.minLength(4)]],
+      contact: [
+        '',
+        [Validators.required, Validators.pattern(/\+91\d{10}/), Validators.minLength(10)],
+      ],
+    });
+
     this.bpRegister = this.fb.group({
       businessPlaceLegalName: ['', [Validators.required]],
-      businessPlaceLocation: this.fb.control('', [Validators.required]),
-      stateName: this.fb.control('', [Validators.required]),
-      countryName: this.fb.control('', [Validators.required]),
-      businessPlaceContact: this.fb.control('', [
-        Validators.required,
-        Validators.pattern(/\+91\d{10}/),
-      ]),
-      businessPlaceZipCode: this.fb.control('', [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
+      businessPlaceLocation: ['', [Validators.required]],
+      stateName: ['', [Validators.required]],
+      countryName: ['', [Validators.required]],
+      businessPlaceContact: [
+        '',
+        [Validators.required, Validators.pattern(/\+91\d{10}/)],
+      ],
+      businessPlaceZipCode: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   ngOnInit(): void {
-    this.orgId = localStorage.getItem('id');
-    console.log(this.orgId);
+    this.orgId = localStorage.getItem('orgid');
     this.getOrganization(this.orgId);
-    this.getBpDetails();
   }
-
-  public orgRegister = this.fb.group({
-    organizationName: this.fb.control('', [Validators.required]),
-    countryName: this.fb.control('', [Validators.required]),
-    stateName: this.fb.control('', [Validators.required]),
-    zipCode: this.fb.control('', [
-      Validators.required,
-      Validators.minLength(6),
-    ]),
-    addressLine1: this.fb.control('', [
-      Validators.required,
-      Validators.minLength(5),
-    ]),
-    addressLine2: this.fb.control('', [
-      Validators.required,
-      Validators.minLength(4),
-    ]),
-    contact: this.fb.control('', [
-      Validators.required,
-      Validators.pattern(/\+91\d{10}/),
-      Validators.minLength(10),
-    ]),
-  });
 
   get OrganizationName(): FormControl {
     return this.orgRegister.get('organizationName') as FormControl;
@@ -103,18 +82,23 @@ export class OrganizationComponent  implements OnInit{
   get Country(): FormControl {
     return this.orgRegister.get('countryName') as FormControl;
   }
+
   get State(): FormControl {
     return this.orgRegister.get('stateName') as FormControl;
   }
+
   get Pincode(): FormControl {
     return this.orgRegister.get('zipCode') as FormControl;
   }
+
   get Address1(): FormControl {
     return this.orgRegister.get('addressLine1') as FormControl;
   }
+
   get Address2(): FormControl {
     return this.orgRegister.get('addressLine2') as FormControl;
   }
+
   get MobileNumber(): FormControl {
     return this.orgRegister.get('contact') as FormControl;
   }
@@ -143,112 +127,86 @@ export class OrganizationComponent  implements OnInit{
     return this.bpRegister.get('businessPlaceZipCode') as FormControl;
   }
 
-  
-
   collectForm() {
     if (this.orgRegister.valid) {
-      this.orgService
-        .addOrganization(this.orgRegister.value)
-        .subscribe((response: { statusCode: number; }) => {
-          if (response.statusCode == 0) {
-
-            this.toastr.success('Saved Successfully','Sucess', {
-              positionClass: 'toast-top-right',
-            });
-          } else {
-            this.toastr.error('Something went wrong..!!', 'Error', {
-              positionClass: 'toast-top-right',
-              // progressBar:true,
-              // progressAnimation:'increasing',
-              // easing: 'ease-in',
-              // easeTime: 1000,
-            });
-          }
-        });
+      this.orgService.addOrganization(this.orgRegister.value).subscribe((response) => {
+        this.handleResponse(response);
+      });
     }
   }
 
-  // get organization
-  getOrganization(id: any) {
-    this.orgService.getOrganization(id).subscribe((response: { response: { data: Organization; }; }) => {
-      this.organization = response.response.data;
+  editBusinessPlace(businessPlace: any) {
+    this.isEditMode = true;
 
-      // if (res.status == 'OK') {
-      //   this.organization = res.data;
-      //   this.msg = res.message;
-      //   this.toastr.info(this.msg, 'Sucess', {
-      //     positionClass: 'toast-top-center',
-      //     progressBar: true,
-      //     progressAnimation: 'increasing',
-      //     easing: 'ease-in',
-      //     easeTime: 1000,
-      //     timeOut: 1500,
-      //   });
-      // } else {
-      //   this.msg = 'Something went wrong';
-      //   this.toastr.error(this.msg, 'Error', {
-      //     positionClass: 'toast-top-center',
-      //     easing: 'ease-in',
-      //     easeTime: 1000,
-      //     timeOut: 1500,
-      //   });
-      // }
-    });
-  }
-
-  getBpDetails() {
-    this.orgService.getBusinessPlace().subscribe((response: any[]) => {
-      this.bpDetails = response;
-      
-      
-      //console.log(this.bpDetails);
+    // Set the form values with the selected business place details
+    this.bpRegister.patchValue({
+      businessPlaceLegalName: businessPlace.businessPlaceLegalName,
+      businessPlaceLocation: businessPlace.businessPlaceLocation,
+      businessPlaceContact: businessPlace.businessPlaceContact,
+      businessPlaceZipCode: businessPlace.businessPlaceZipCode,
+      countryName: businessPlace.countryName,
+      stateName: businessPlace.stateName,
     });
   }
 
   onSubmit() {
     if (this.bpRegister.valid) {
-      this.orgService
-        .addBusinessPlace(this.bpRegister.value, this.orgId)
-        .subscribe((response: { response: { data: any; }; statusCode: number; }) => {
-          
-   
-          if (response.statusCode == 0) {
-            console.log('hi-this is vamshi')
-            this.toastr.success('Saved Successfully','Sucess', {
-              positionClass: 'toast-top-left',
-            });
-            this.bpRegister.reset();
-            this.getBpDetails();
-          } else {
-            this.toastr.error('Something went wrong..!!', 'Error', {
-              positionClass: 'toast-top-right',
-              // progressBar:true,
-              // progressAnimation:'increasing',
-              // easing: 'ease-in',
-              // easeTime: 1000,
-              // timeOut: 1800,
-            });
-            this.bpRegister.reset();
-          }
+      const businessPlaceData = this.bpRegister.value;
+      const existingBusinessPlace = this.organization.businessPlaces.find(
+              (bp: any) => bp.businessPlaceLegalName === businessPlaceData.businessPlaceLegalName);
+              console.log(existingBusinessPlace)
+      if (this.isEditMode) {
+        this.orgService
+          .updateBusinessPlace(existingBusinessPlace.businessPlaceId, businessPlaceData)
+          .subscribe((response) => {
+            this.handleResponse(response);
+          });
+      } else {
+        this.orgService.addBusinessPlace(businessPlaceData, this.orgId).subscribe((response) => {
+          this.handleResponse(response);
         });
+      }
     }
   }
 
-  // this.orgService
-  // .addBusinessPlace(this.bpRegister.value, this.orgId)
-  // .subscribe({
-  //   next: (val: any) => {
-  //     alert('Business place added successfully');
-  //     this.bpRegister.reset();
-  //   },
-  //   error: (err: any) => {
-  //     console.log(err);
-  //   },
-  // });
+  
+
+  deleteBusinessPlace(businessPlace: any) {
+    const confirmDelete = confirm('Are you sure you want to delete this business place?');
+
+    if (confirmDelete) {
+      this.orgService.deleteBusinessPlace(businessPlace.businessPlaceId).subscribe((response) => {
+        this.handleResponse(response);
+      });
+    }
+  }
+
+  getOrganization(id: any) {
+    this.orgService.getOrganization(id).subscribe((response) => {
+      this.organization = response.response.data;
+    });
+  }
+
+  handleResponse(response: any) {
+    if (response.statusCode === 0) {
+      this.toastr.success(response.message, 'Success', {
+        positionClass: 'toast-top-right',
+      });
+      this.resetForms();
+      this.getOrganization(this.orgId);
+    } else {
+      this.toastr.error('Something went wrong..!!', 'Error', {
+        positionClass: 'toast-top-right',
+      });
+    }
+  }
+
+  resetForms() {
+    this.orgRegister.reset();
+    this.bpRegister.reset();
+    // this.isEditMode = false;
+  }
 
   close() {
-    this.bpRegister.reset();
-   // location.reload();
-   this.getOrganization(this.orgId);
-  }
-}
+    this.resetForms();
+  }}
