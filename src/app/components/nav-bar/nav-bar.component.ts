@@ -15,7 +15,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class NavBarComponent {
 
-  
 
   username='supergas';
   profile='Incresol'
@@ -59,7 +58,7 @@ logout(){
   if(confirm('Are you sure you want to logout?')){
    // this.authServ.logOut();
    this.loginService.isAuthenticated=false;
-    window.location.href='/login';
+    window.location.href='';
   }
   else{
     this.router.navigate([]);
@@ -73,6 +72,8 @@ logout(){
     
   //   this.loginService.toggleSidebar();
   // }
+
+ 
 
 }
  
