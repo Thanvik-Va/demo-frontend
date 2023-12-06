@@ -28,8 +28,7 @@
 
     <mat-menu #logoutMenu="matMenu">
       <button mat-menu-item>profile</button>
-      <button mat-menu-item data-bs-dismiss="alert" (click)="logout()" routerLink="/login">logout -
-        {{username}}</button>
+      <button mat-menu-item data-bs-dismiss="alert" (click)="logout()" routerLink="/login" class="text-danger">Logout</button>
     </mat-menu>
 
   </mat-toolbar>

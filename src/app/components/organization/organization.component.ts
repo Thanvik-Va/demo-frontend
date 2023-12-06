@@ -71,7 +71,7 @@ export class OrganizationComponent  implements OnInit{
   }
 
   ngOnInit(): void {
-    this.orgId = localStorage.getItem('orgid');
+    this.orgId = localStorage.getItem('id');
     this.getOrganization(this.orgId);
   }
 
