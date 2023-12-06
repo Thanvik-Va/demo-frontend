@@ -1,33 +1,17 @@
-<!-- employee-table.component.html -->
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
-</head>
 <body>
   <div class="set-size"> 
 <div class="container">
-     
       
-      <div class=" justify-content-between" >
-        <div>
-           <img src="assets/incresol.jpeg"  style="height: 100px;  width: 100px;" >
-        </div>
-        <div>
-          <h2 class="mt-4"><b><u>List View</u></b></h2>
-        </div>
-        <div>
-            <button  class="rounded rounded-1 btn btn-outline-info text-dark mt-4"   style="background: DodgerBlue;" mat-raised-button (click)="openAddEmployeeDialog()"><b> Add Employee</b> </button>
-        </div>
-      </div>
-    
- 
-    <p></p><br><br>
-    <div class=" mt-1">
-      <div class="justify-content-between">
-        <h2 class="" style="color: DodgerBlue;"><b>Employee List</b></h2>
+          <h2 class="justify-content-center d-flex font-bold" style="color: DodgerBlue;"><u>Employee List</u></h2>
+         
 
-        <button  class="rounded rounded-1 btn btn-outline-info text-dark mt-4"   style="background: rgb(117, 240, 80);" mat-raised-button (click)="generateExcel()"><b>Excel Export</b> </button>
-    </div><br>
+    <div class=" mt-0">
+
+     <div class="float-end m-1">
+      <button  class="rounded rounded-1   text-dark btn btn-primary  m-1" (click)="resetForm()"   data-target="#edit" data-toggle="modal"><b> Add Employee</b> </button>
+      <button  class="rounded rounded-1   btn btn-outline-info text-dark m-1 btn btn-success"     (click)="generateExcel()"><b>Excel Export</b> </button>
+     </div>
+
       <table class="table table-striped border border-2 border-dark mt-1" >
         <thead >
           <tr>
@@ -55,93 +39,79 @@
             <td>{{ employee.emp_type }}</td>
             <td>{{ employee.bp }}</td>
             <td>{{ employee.address}}</td>
-            <td><i type="button" (click)="edit (employee)" class="bi bi-pencil-square mx-2" data-target="#login" data-toggle="modal"></i></td>
+            <td><i type="button" (click)="edit (employee)" class="bi bi-pencil-square mx-2" data-target="#edit" data-toggle="modal"></i></td>
             <td><i type="button" (click)="Delete(employee.emp_id)"   class="bi bi-trash mx-3"></i></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    
-    
-      <div class="modal " id="login">
+      <div class="modal " id="edit">
         <div class="modal-dialog ">
-           <div class="modal-content" style="width: 600px; height: 520px;">
-      <div>
-        <h4 class="modal-title">Edit Employee</h4>
+           <div class="modal-content" style="width: 500px; height: 555px;">
+      <div class="justify-content-between">
+        <h4 class="modal-title m-2">Employee Details</h4>
+        <i class="bi bi-x-lg m-2" data-dismiss="modal" type="button"></i>
       </div>
-      <div class="modal-body">
-        
+      <div>
         <form [formGroup]="frmEdit" (ngSubmit)="submit()">
-         <div class="form-control">
-
+         <div class="m-3">
           <dt>Emp_id</dt>
           <input type="text"  class="form-control"  formControlName="emp_id" id="emp_id" placeholder="Emp id" >
-          <div class="text-danger" *ngIf="Emp_id.touched && Emp_id.invalid">
-            <div *ngIf="email_id.errors?.['required']">id Required</div>
+          <div class="text-danger" *ngIf="frmEdit.controls.emp_id.touched && frmEdit.controls.emp_id.invalid">
+            <div *ngIf="frmEdit.controls.emp_id.errors?.['required']">id Required</div>
         </div>
-
           <dt >Email id</dt>
           <input type="email"  class="form-control" formControlName="email_id" placeholder="Email id" id="email_id"  >
-          <div class="text-danger" *ngIf="email_id.touched && email_id.invalid">
-            <div *ngIf="email_id.errors?.['required']">Email Required</div>
-            <div *ngIf="email_id.errors?.['email']">write in email form</div>
+          <div class="text-danger" *ngIf="frmEdit.controls.email_id.touched && frmEdit.controls.email_id.invalid">
+            <div *ngIf="frmEdit.controls.email_id.errors?.['required']">Email Required</div>
+            <div *ngIf="frmEdit.controls.email_id.errors?.['email']">write in email form</div>
          </div>
          <dt>Mobile No</dt>
             <input type="text" class="form-control" formControlName="mobile_no" placeholder="mobile no" id="mobile_no" >
-            <div class="text-danger" *ngIf="Mobile.touched && Mobile.invalid">
-                    <div *ngIf="Mobile.errors?.['required']">Mobile Required</div>
-                    <div *ngIf="Mobile.errors?.['pattern']">Invalid Mobile +91 and 10 digits</div>
+            <div class="text-danger" *ngIf="frmEdit.controls.mobile_no.touched &&frmEdit.controls.mobile_no.invalid">
+                    <div *ngIf="frmEdit.controls.mobile_no.errors?.['required']">Mobile Required</div>
+                    <div *ngIf="frmEdit.controls.mobile_no.errors?.['pattern']">Invalid Mobile +91 and 10 digits</div>
                 </div>
-          
             <dt>Department</dt>
             <input type="text" class="form-control" formControlName="department" placeholder="Department" id="department" >
-            <div class="text-danger" *ngIf="Deparment.touched && Deparment.invalid">
-              <div *ngIf="Deparment.errors?.['required']">Department Required</div>
+            <div class="text-danger" *ngIf="frmEdit.controls.department.touched && frmEdit.controls.department.invalid">
+              <div *ngIf="frmEdit.controls.department.errors?.['required']">Department Required</div>
           </div>
-          
             <dt>Role</dt>
             <select type="text" class="form-control dropdown" formControlName="role" placeholder="Role"  [(ngModel)]="Role">
               <option *ngFor="let r of Roles " [value]="r.id">
                 {{r.roles}}
               </option>
-            </select>         
-           
+            </select>               
             <dt>Organization Name</dt>
             <select type="text" class="form-control dropdown" formControlName="org_name" placeholder="Organization" id="org_name" >
               <option>Incresol</option>
-            </select>
-          
+            </select>         
             <dt>Employee Type</dt>
             <select type="text" class="form-control dropdown" formControlName="emp_type" placeholder="Employee Type" id="emp_type"  [(ngModel)]="Emptype">
               <option *ngFor="let t of EmpType " [value]="t.id">{{t.type}}</option>
-            </select>   
-        
+            </select>          
             <dt>B_Place</dt>
             <select type="text" class="form-control dropdown" formControlName="bp" id="bp" placeholder="Business place" >
               <option>Hyderabad</option>
-            </select>
-         
+            </select>        
             <dt>Address</dt>
             <input type="text" class="form-control" formControlName="address" id="address" placeholder="Address" >
-            <div class="text-danger" *ngIf="Address.touched && Address.invalid">
-              <div *ngIf="Address.errors?.['required']">Address Required</div>
+            <div class="text-danger" *ngIf="frmEdit.controls.address.touched && frmEdit.controls.address.invalid">
+              <div *ngIf="frmEdit.controls.address.errors?.['required']">Address Required</div>
           </div>
-          <br>
-          <br>
-          <div style="margin-bottom: 5px;margin-left: 50px;">
-            <button  data-dismiss="modal" class="btn btn-primary" type="submit" value="submit" (click)="submit()">Save Edit</button>
+          <div class="modal-footer justify-content-end">
+            <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button  data-dismiss="modal" [disabled]="frmEdit.invalid" class="btn btn-primary" type="submit" value="submit" (click)="submit()">Save</button>
           </div>
          </div>
-        
         </form>
+
       </div>
     </div>
     </div>
     </div>
-  
-
     </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </div>
 </body>
