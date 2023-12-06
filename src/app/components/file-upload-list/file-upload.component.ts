@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileService } from 'src/app/services/file.service';
 import { saveAs } from 'file-saver';//we need to install 'file-saver' from npm as -> npm install file-saver
 import { ToastrService } from 'ngx-toastr';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-file-upload',
@@ -15,7 +16,7 @@ export class FileUploadComponent implements OnInit{
 isValidFileType=true;
  files: any[] = [];
  index:number=1;
- listLoadFile='';
+ loadFilesFailed:boolean=false;
 
   constructor(private fileService: FileService,private toaster:ToastrService) {}
 
@@ -155,8 +156,9 @@ isValidFileType=true;
         if(response.errorCode==20){
           this.files = response.response.data;
         }
-       else if(response.errorCode==53){
-         this.listLoadFile=response.message;
+       else if(response.errorCode==50){
+        console.log(response.message)
+         this.loadFilesFailed=true;
        }
       })
       
