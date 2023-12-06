@@ -12,7 +12,6 @@ import { SlideBarComponent } from './components/slide-bar/slide-bar.component';
 import { WelcomeHomeComponent } from './components/welcome-home/welcome-home.component';
 import { OrganizationComponent } from './components/organization/organization.component';
 import { LayoutComponent } from './layout/layout/layout.component';
-import { AddComponent } from './components/add/add.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { FileUploadComponent } from './components/file-upload-list/file-upload.component';
 import { AuthGuard } from './services/auth.guard';
@@ -39,7 +38,6 @@ const routes: Routes = [
     {path:  'slide-bar',component:SlideBarComponent,pathMatch:'full'},
     {path: 'welcome-home',component:WelcomeHomeComponent,pathMatch:'full'},
     {path:'org-org',component:OrganizationComponent,pathMatch:'full'},
-    {path:'add-employee',component:AddComponent},
     {path:'employee-list',component:EmployeeListComponent},
     {path:'file-upload',component:FileUploadComponent}
   ],canActivate:[AuthGuard]
