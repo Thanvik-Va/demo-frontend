@@ -1,23 +1,17 @@
 <body>
   <div class="set-size"> 
 <div class="container">
-        
-      <div class=" justify-content-between" >
-        <div>
-           <img src="assets/download2.jpeg"  style="width: 100px;" >
-        </div>
-        <div>
-          <h2 class="mt-0"><b><u>List View</u></b></h2>
-        </div>
-        <div>
-            <button  class="rounded rounded-1  text-dark mt-0 btn btn-primary" (click)="resetForm()"   data-target="#edit" data-toggle="modal"><b> Add Employee</b> </button>
-        </div>
-      </div>
-    <div class=" mt-1">
-     <div class="justify-content-between">
-      <h2 class="" style="color: DodgerBlue;"><b>Employee List</b></h2>
-      <button  class="rounded rounded-1 btn btn-outline-info text-dark mt-4"   style="background: rgb(117, 240, 80);"  (click)="generateExcel()"><b>Excel Export</b> </button>
+      
+          <h2 class="justify-content-center d-flex font-bold" style="color: DodgerBlue;"><u>Employee List</u></h2>
+         
+
+    <div class=" mt-0">
+
+     <div class="float-end m-1">
+      <button  class="rounded rounded-1   text-dark btn btn-primary  m-1" (click)="resetForm()"   data-target="#edit" data-toggle="modal"><b> Add Employee</b> </button>
+      <button  class="rounded rounded-1   btn btn-outline-info text-dark m-1 btn btn-success"     (click)="generateExcel()"><b>Excel Export</b> </button>
      </div>
+
       <table class="table table-striped border border-2 border-dark mt-1" >
         <thead >
           <tr>
