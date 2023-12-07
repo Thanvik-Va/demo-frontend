@@ -38,7 +38,7 @@ EmpType : any[] = [
   constructor( private employeeService:EmployeeService, private fb:FormBuilder ) { }
 
 public frmEdit = this.fb.group({
-  emp_id:this.fb.control('',[Validators.required]),
+  // emp_id:this.fb.control('',[Validators.required]),
   mobile_no: this.fb.control('', [Validators.required, Validators.pattern(/\d{10}/)]),
   email_id:this.fb.control('',[Validators.required, Validators.email]),
   department:this.fb.control('',[Validators.required, Validators.minLength(4)]),
@@ -74,7 +74,7 @@ submit(){
   });
   this.employeeService.getEmployeeList().subscribe(data =>{
     this.employees = data;
-  });
+  })
 }
   
 Delete(id:number){
@@ -83,7 +83,7 @@ Delete(id:number){
   });
   this.employeeService.getEmployeeList().subscribe(data =>{
     this.employees = data;
-  });
+  }); 
 }
 
 save(){
