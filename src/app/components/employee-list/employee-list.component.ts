@@ -81,6 +81,9 @@ Delete(id:number){
   this.employee = data;
   this.getEmployees();
   });
+  this.employeeService.getEmployeeList().subscribe(data =>{
+    this.employees = data;
+  }); 
 }
 
 save(){
