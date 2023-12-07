@@ -6,8 +6,8 @@
       <div class="p-3">
         <form (ngSubmit)="onSubmit()" #fileUploadForm="ngForm" >
           <div class="form-group ">
-            <label  for="fileInput" style="color:rgb(7, 126, 245);font-weight:bold;font-size:15px;">Choose File(XLS or XLSX) :&nbsp;</label>
-            <input type="file" (change)="onFileSelect($event)" name="file"  id="fileInput" class="form-control-file" style="background-color: darkgrey; width: 190px;">
+            <label  for="fileInput" style="color:rgb(7, 126, 245);font-weight:bold;font-size:16px;">Choose File(xls or xlsx):&nbsp;</label>
+            <input type="file" (change)="onFileSelect($event)" name="file"  id="fileInput" class="form-control-file input" style="background-color: darkgrey; width: 190px;">
             <div *ngIf="selectedFile && !isValidFileType " class="text-danger mt-2">
               Invalid file type. Only XLS and XLSX files are allowed.
             </div>
