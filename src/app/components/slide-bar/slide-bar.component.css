@@ -49,11 +49,10 @@ cursor: pointer;
 }
 mat-sidenav{
    width: 210px;
-   top: 64px;
-   padding-top:20px;
+   top: 56px;
+   padding-top: 20px;
    padding-left: 10px;
    left: 0px;
-  
   }
 .menu-button{
    margin-left: 0px;
