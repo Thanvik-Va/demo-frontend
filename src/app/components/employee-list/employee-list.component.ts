@@ -77,13 +77,15 @@ submit(){
 }
   
 Delete(id:number){
+  const confirmDelete = confirm('Are you sure you want to delete this employee Details?');
+
   this.employeeService.DeleteEmployee(id).subscribe((data:Employee)=>{
   this.employee = data;
-  this.getEmployees();
-  });
   this.employeeService.getEmployeeList().subscribe(data =>{
     this.employees = data;
   }); 
+  });
+ 
 }
 
 save(){
