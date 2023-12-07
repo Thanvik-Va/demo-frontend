@@ -54,13 +54,13 @@
         <i class="bi bi-x-lg m-2" data-dismiss="modal" type="button"></i>
       </div>
       <div>
-        <form [formGroup]="frmEdit" (ngSubmit)="submit()">
+        <form [formGroup]="frmEdit">
          <div class="m-3">
-          <!-- <dt>Emp_id</dt>
+          <dt>Emp_id</dt>
           <input type="text"  class="form-control"  formControlName="emp_id" id="emp_id" placeholder="Emp id" style="height: 30px;" >
           <div class="text-danger" *ngIf="frmEdit.controls.emp_id.touched && frmEdit.controls.emp_id.invalid">
             <div *ngIf="frmEdit.controls.emp_id.errors?.['required']">id Required</div>
-        </div> -->
+        </div>
           <dt >Email id</dt>
           <input type="email"  class="form-control" formControlName="email_id" placeholder="Email id" id="email_id" style="height: 30px;" >
           <div class="text-danger" *ngIf="frmEdit.controls.email_id.touched && frmEdit.controls.email_id.invalid">
@@ -110,7 +110,7 @@
           </div>
           <div class="modal-footer float-end ">
             <button class="btn btn-secondary m-1 text-light" data-dismiss="modal" style="height: 30px;">Cancel</button>
-            <button  data-dismiss="modal" [disabled]="frmEdit.invalid" class="btn btn-primary m-1 text-light"style="height: 30px;" type="submit" value="submit" (click)="submit()">Save</button>
+            <button  [disabled]="frmEdit.invalid" class="btn btn-primary m-1 text-light"style="height: 30px;"  (click)="save()" (click)="submit()">Save</button>
           </div>
          </div>
         </form>
