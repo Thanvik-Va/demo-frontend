@@ -87,15 +87,16 @@ cursor: pointer;
  }
  #nav{
    list-style-type: none;
-margin: 0 auto 0 auto;
-margin-left: -15px;
-margin-left: px;
-padding: 0;
-position: fixed;
-top: 0;
-width: 100%;
-min-width: 100%;
-overflow: auto;
+   margin: 0 auto 0 auto;
+   margin-left: -15px;
+   margin-left: px;
+   padding: 0;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   min-width: 100%;
+   overflow: auto;
+   z-index: 100;
 
  }
  a mat-icon span{
