@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate{
       return true;
     }
     else{
-      this.router.navigate(['/login']);
+      this.router.navigate(['']);
       console.log("authentication failed in auth.guard.ts")
       return false;
     }

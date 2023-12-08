@@ -21,3 +21,14 @@ mat-drawer{
 }
 
 @import 'ngx-toastr/toastr';
+ 
+.page-border {
+    margin-top: 80px;
+    width: 90%;
+    height: fit-content;
+    border: 1px solid #1bb1d7;
+    border-radius: 26px;
+    padding: 9px;
+    margin-left: 75px;
+    
+  }

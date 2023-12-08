@@ -29,9 +29,9 @@
     <img class="img" src="/assets/logout.jpg" alt="" [matMenuTriggerFor]="logoutMenu">
 
     <mat-menu #logoutMenu="matMenu">
-      <!-- <button mat-menu-item>profile</button> -->
-      <button class="logout" mat-menu-item data-bs-dismiss="alert" (click)="logout()">logout
-      </button>
+      <button mat-menu-item>profile</button>
+      <button mat-menu-item data-bs-dismiss="alert" (click)="logout()" routerLink="/login">logout -
+        {{username}}</button>
     </mat-menu>
 
   </mat-toolbar>

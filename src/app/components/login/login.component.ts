@@ -97,7 +97,7 @@ export class LoginComponent {
         this.router.navigate(['/layout']);
       }
       else{
-        this.router.navigate(['/login']);
+        this.router.navigate(['']);
       }
      
     }

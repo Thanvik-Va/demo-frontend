@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { AddComponent } from '../add/add.component';
  import { Employee } from '../classes/employee';
  import { EmployeeService } from 'src/app/services/employee.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { saveAs } from 'file-saver';
- 
+import * as saveAs from 'file-saver';
 
+ 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.css'],
-  
+  styleUrls: ['./employee-list.component.css'],  
 })
+
 export class EmployeeListComponent  implements OnInit {
  
   employees :any=[];
@@ -38,119 +36,73 @@ EmpType : any[] = [
   
   employee: Employee = new Employee();
   
-  constructor(private dialog: MatDialog , private employeeService:EmployeeService, private fb:FormBuilder ) { }
-openAddEmployeeDialog(): void {
-  const dialogRef = this.dialog.open(AddComponent);
-
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      this.employees.push(result);
-    }
-  });
-}
+  constructor( private employeeService:EmployeeService, private fb:FormBuilder ) { }
 
 public frmEdit = this.fb.group({
-  emp_id:this.fb.control('',[Validators.required]),
+  emp_id:this.fb.control(''),
   mobile_no: this.fb.control('', [Validators.required, Validators.pattern(/\d{10}/)]),
   email_id:this.fb.control('',[Validators.required, Validators.email]),
   department:this.fb.control('',[Validators.required, Validators.minLength(4)]),
-  role:this.fb.control(''),
-  org_name:this.fb.control(''),
-  emp_type:this.fb.control(''),
-  bp:this.fb.control(''),
+  role:this.fb.control('',[Validators.required]),
+  org_name:this.fb.control('',[Validators.required]),
+  emp_type:this.fb.control('',[Validators.required]),
+  bp:this.fb.control('',[Validators.required]),
   address:this.fb.control('',[Validators.required, Validators.minLength(4)])
  });
 
  edit(obj: any){
   this.frmEdit.patchValue(obj);
  }
- get Emp_id():FormControl{
-  return this.frmEdit.get("emp_id")as FormControl;
-}
 
- get Mobile():FormControl{
-  return this.frmEdit.get("mobile_no")as FormControl;
+ resetForm() {
+  this.frmEdit.reset();
 }
-
-get Deparment():FormControl{
-  return this.frmEdit.get("department")as FormControl;
-}
-
-get role():FormControl{
-  return this.frmEdit.get("role")as FormControl;
-}
-
-get email_id():FormControl{
-  return this.frmEdit.get("email_id")as FormControl;
-}
-
-get Address():FormControl{
-  return this.frmEdit.get("address")as FormControl;
-}
-
-get Emp():FormControl{
-  return this.frmEdit.get("emp_type") as FormControl
-}
-
-get Organization():FormControl{
- return this.frmEdit.get("org_name") as  FormControl;
-}
-
-get BP():FormControl{
- return this.frmEdit.get("bp") as FormControl;
-}
-
- 
 
   ngOnInit(): void {
    this.getEmployees();
   }
+
   private getEmployees(){
     this.employeeService.getEmployeeList().subscribe(data =>{
       this.employees = data;
     });
-  
   }
-
-
-  public getEmployeesData(data:any){
-    this.employees=data;
-  }
-
 
 submit(){
   this.employeeService.updateEmployees(this.frmEdit.value).subscribe((data: Employee)=>{
   this.employee = data;
   console.log(data);
-  // this.refreshPage();
-  
+  this.getEmployees();
   });
+  
 }
   
-
-
-
 Delete(id:number){
+  const confirmDelete = confirm('Are you sure you want to delete this employee Details?');
+
   this.employeeService.DeleteEmployee(id).subscribe((data:Employee)=>{
   this.employee = data;
-  // this.refreshPage();
+  this.employeeService.getEmployeeList().subscribe(data =>{
+    this.employees = data;
+  }); 
   });
+ 
 }
 
-//to get excel sheet of employees
+save(){
+  this.employeeService.createEmployee(this.frmEdit.value).subscribe((data:Employee)=>{
+    console.log(data);
+    this.employee=data;
+    this.getEmployees();
+});
+
+}
+
 generateExcel(){
   this.employeeService.excelExport().subscribe((data:Blob)=>{
     console.log(data);
     const blob=new Blob([data],{ type: 'application/octet-stream' });
-    
     saveAs(data, 'Emp_List.xls');
-    
-    // const link = document.createElement('a');
-    //   link.href = window.URL.createObjectURL(blob);
-    //   link.download = 'Emp_List.xls';
-    //   link.click();
-
-    //   window.URL.revokeObjectURL(link.href);
   },
   error=>{
     console.log(error);
