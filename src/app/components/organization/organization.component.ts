@@ -36,6 +36,8 @@ export class OrganizationComponent {
   orgId: any;
   organization: any = {}; // Use the correct type or interface if available
   isEditMode: boolean = false;
+ 
+
 
   constructor(
     private fb: FormBuilder,
@@ -70,7 +72,7 @@ export class OrganizationComponent {
   }
 
   ngOnInit(): void {
-    this.orgId = localStorage.getItem('id');
+    this.orgId = localStorage.getItem('orgid');
     this.getOrganization(this.orgId);
   }
 
@@ -129,6 +131,18 @@ export class OrganizationComponent {
     }
   }
 
+  populateOrganizationForm() {
+    this.orgRegister.patchValue({
+      organizationName: this.organization.organizationName,
+      countryName: this.organization.countryName,
+      stateName: this.organization.stateName,
+      zipCode: this.organization.zipCode,
+      addressLine1: this.organization.addressLine1,
+      addressLine2: this.organization.addressLine2,
+      contact: this.organization.contact,
+    });
+  }
+
   editBusinessPlace(businessPlace: any) {
     this.isEditMode = true;
 
@@ -142,6 +156,8 @@ export class OrganizationComponent {
       stateName: businessPlace.stateName,
     });
   }
+
+ 
 
   onSubmit() {
     if (this.bpRegister.valid) {
@@ -178,6 +194,8 @@ export class OrganizationComponent {
   getOrganization(id: any) {
     this.orgService.getOrganization(id).subscribe((response) => {
       this.organization = response.response.data;
+      this.populateOrganizationForm();
+    
     });
   }
 
@@ -199,7 +217,7 @@ export class OrganizationComponent {
   resetForms() {
     this.orgRegister.reset();
     this.bpRegister.reset();
-    // this.isEditMode = false;
+     this.isEditMode = false;
   }
 
   close() {
