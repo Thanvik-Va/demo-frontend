@@ -4,6 +4,8 @@ import { Project } from '../classes/project';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PctService } from 'src/app/services/pct.service';
 import { ToastrService } from 'ngx-toastr';
+import { Employee } from '../classes/employee';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-child',
@@ -20,11 +22,13 @@ export class ChildComponent implements OnInit{
   options:any[]=[];
   proj!:Project;
   p2:Project=new Project();
+  tempId:any;
+  employee:Employee[]=[];
   
   statusOptions: string[] = ['In Progress', 'Completed', 'On Hold', 'Cancelled'];
   leadOptions: string[] = ['Lead 1', 'Lead 2', 'Lead 3', 'Lead 4'];
   membersOptions: string[] = ['Member 1', 'Member 2', 'Member 3', 'Member 4'];
-  constructor(private formBuilder: FormBuilder, private route: Router, private http: PctService, private router: ActivatedRoute,private toast:ToastrService) {
+  constructor(private formBuilder: FormBuilder, private route: Router, private http: PctService, private router: ActivatedRoute,private toast:ToastrService,private emp:EmployeeService) {
     this.childProjectForm = this.formBuilder.group({
       name: this.formBuilder.control('', [Validators.required]),
       type: this.formBuilder.control('', [Validators.required]),
@@ -84,6 +88,7 @@ export class ChildComponent implements OnInit{
       this.http.createProject(this.project).subscribe(response => { 
         this.proj=response.response.data;
         console.log(this.proj)
+        this.tempId=this.proj.id;
         this.toast.success("Child Project saved Successfully","Info",{
           positionClass:'toast-bottom-right',
           progressBar:true,
@@ -99,12 +104,13 @@ export class ChildComponent implements OnInit{
   }
 
   clickToTask() {
-    // this.onSubmit();
+    this.onSubmit();
+    this.tempId=this.proj.id;
     
-   if (this.p && this.p.id) {
+   
      console.log(this.p.id);
      console.log(this.proj.id);
-     this.route.navigate(['/layout/task',{projectId:this.proj.id} ])
+     this.route.navigate(['/layout/task',{projectId:this.tempId} ])
      this.toast.success("Child Project saved Successfully and navigated to task","Info",{
       positionClass:'toast-bottom-right',
       progressBar:true,
@@ -114,33 +120,10 @@ export class ChildComponent implements OnInit{
       easeTime:1000
     });
      
-   } else {
-     console.error('Project ID is missing or undefined');
-   }
+   
  }
 
  ngOnInit(): void {
-  
-
-
-  //  this.router.paramMap.subscribe(params => {
-  //     this.parentId1 = params.get('projectId')
-  //     console.log(this.parentId1);
-  //     this.http.getProjectById(this.parentId1).subscribe((project: Project) => {
-  //       this.p = project;
-  //       console.log(this.p)
-  //     });
-  //   });
-
-
-  // this.router.paramMap.subscribe((params) => {
-  //   this.parentId1 = params.get('projectId');
-  //   this.childProjectForm.get('projectId')?.setValue(this.parentId1);
-  //   this.http.getProjectById(this.parentId1).subscribe((prr:Project)=>{
-  //     this.p=prr;
-  //     console.log(this.p)
-  //   })
-  // });
     
  
  
@@ -153,6 +136,11 @@ export class ChildComponent implements OnInit{
     })
     // this.childProjectForm.get('projectId')?.setValue(this.parentId1);
   });
+
+  this.emp.getEmployeeList().subscribe(data=>{
+    this.employee=data;
+  })
+
   this.getProjectById1();
  
 }

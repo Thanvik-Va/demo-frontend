@@ -4,6 +4,8 @@ import { Project } from '../classes/project';
 import { PctService } from 'src/app/services/pct.service'; 
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Employee } from '../classes/employee';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-task',
@@ -21,7 +23,9 @@ export class TaskComponent implements OnInit {
   p!: Project;
   task!: any;
   pr!: any;
-  constructor(private fb: FormBuilder, private dataService: PctService, private route: Router, private router: ActivatedRoute,private toast:ToastrService) {
+  formData:any;
+  employee:Employee[]=[];
+  constructor(private fb: FormBuilder, private dataService: PctService, private route: Router, private router: ActivatedRoute,private toast:ToastrService,private emp:EmployeeService) {
 
     this.taskForm = this.fb.group({
       // id: [null],
@@ -39,13 +43,14 @@ export class TaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.paramMap.subscribe(params => {
+      this.projectIdd = params.get('projectId')
+    });
     this.dataService.getAllNames().subscribe(response => {
       console.log(response.response.data)
       this.prjNameOptions = response.response.data;
     })
-    this.router.paramMap.subscribe(params => {
-      this.projectIdd = params.get('projectId')
-    });
+    
     if (this.projectIdd != 0) {
       this.dataService.getProjectById(this.projectIdd).subscribe((response) => {
         console.log(response.response.data)
@@ -53,6 +58,9 @@ export class TaskComponent implements OnInit {
         console.log(this.prjNameOptions)
       });
     }
+    this.emp.getEmployeeList().subscribe(data=>{
+      this.employee=data;
+    })
 
 
 
@@ -98,13 +106,15 @@ export class TaskComponent implements OnInit {
 
       const formData = this.taskForm.value;
       console.log(this.taskForm.value);
-      console.log(this.taskForm.get("projectId")?.value)
+      console.log(this.projectIdd)
+      console.log(formData.projectId)
+      // console.log(this.taskForm.get("projectId")?.value)
 
 
-      if (this.taskForm.get("projectId")?.value != 0) {
-        const formData = this.taskForm.value;
+      if (this.projectIdd!=null) {
+        // const formData = this.taskForm.value;
         console.log(formData)
-        this.dataService.createTask(formData, this.taskForm.get("projectId")?.value).subscribe((response) => {
+        this.dataService.createTask(formData, this.projectIdd).subscribe((response) => {
           this.task = response.response.data
           console.log(this.task);
           this.toast.success("Child Project Task saved Successfully","Info",{
@@ -124,7 +134,7 @@ export class TaskComponent implements OnInit {
       else {
 
 
-        this.dataService.createTask(formData, this.projectIdd).
+        this.dataService.createTask(formData, formData.projectId).
           subscribe((response) => {
             this.task = response.response.data
             console.log(this.task)

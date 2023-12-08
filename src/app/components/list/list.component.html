@@ -43,7 +43,7 @@
                   <td>{{project.startDate}}</td>
                   <td>{{project.endDate}}</td>
                   <td>{{project.hours}}</td>
-                  <td>{{project.lead}}</td>
+                  <td>{{project.assignee}}</td>
                   <td class="text-center ">
                     <button class="bt" (click)="navigateToUpdateProject(project.name)"  @fade>Edit Project</button>
                       <button class="btn bt m-2 " (click)="showParentTasks(i)" @fade >View Parent Tasks 
@@ -111,7 +111,7 @@
                                   <p>{{parent.endDate}}</p>
                                 </td>
                                 <td>
-                                  <p>{{parent.lead}}</p>
+                                  <p>{{parent.assignee}}</p>
                                 </td>
                                 <td>
                                   <p>{{parent.hours}}</p>
@@ -175,7 +175,7 @@
                                   <p>{{childProject.endDate}}</p>
                                 </td>
                                 <td>
-                                  <p>{{childProject.lead}}</p>
+                                  <p>{{childProject.assignee}}</p>
                                 </td>
                                 <td>
                                   <p>{{childProject.hours}}</p>
@@ -241,7 +241,7 @@
                                   <p>{{t.endDate}}</p>
                                 </td>
                                 <td>
-                                  <p>{{t.lead}}</p>
+                                  <p>{{t.assignee}}</p>
                                 </td>
                                 <td>
                                   <p>{{t.hours}}</p>

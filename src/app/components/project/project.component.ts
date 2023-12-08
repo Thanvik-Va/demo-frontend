@@ -4,6 +4,8 @@ import { Project } from '../classes/project';
 import { PctService } from 'src/app/services/pct.service'; 
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Employee } from '../classes/employee';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-project',
@@ -13,13 +15,15 @@ import { ToastrService } from 'ngx-toastr';
 export class ProjectComponent implements OnInit{
 
   projectForm!: FormGroup;
-  project: Project = new Project();
+  project!: Project ;
   statusOptions: string[] = ['In Progress', 'Completed', 'On Hold', 'Cancelled'];
   projectOptions: any[] = []
   leadOptions: string[] = ['Lead 1', 'Lead 2', 'Lead 3', 'Lead 4'];
   all:any[]=[];
+  employee:Employee[]=[];
+  tempId:any;
 
-  constructor(private fb:FormBuilder,private dataService:PctService,private router:Router,private toast:ToastrService){
+  constructor(private fb:FormBuilder,private dataService:PctService,private router:Router,private toast:ToastrService,private emp:EmployeeService){
     this.projectForm=this.fb.group({
       name:this.fb.control('',[Validators.required]),
       type: this.fb.control('', [Validators.required]),
@@ -46,6 +50,13 @@ export class ProjectComponent implements OnInit{
       this.all=response.response.data;
       console.log(response)
     })
+
+    this.emp.getEmployeeList().subscribe(data=>{
+      this.employee=data;
+
+    })
+
+  
     
       
    
@@ -92,7 +103,8 @@ export class ProjectComponent implements OnInit{
       this.dataService.createProject(formData).subscribe((response) => {
         this.project = response.response.data;
         // console.log(this.project.id);
-       console.log(this.project);
+        this.tempId=this.project.id;
+       console.log(this.tempId);
        this.toast.success("Parent project saved successfully and navigated to create childproject", "Info", {
         positionClass: 'toast-bottom-top',
         progressBar: true,
@@ -119,18 +131,10 @@ export class ProjectComponent implements OnInit{
   }
 
   clickToChild() {
-    if (this.project && this.project.id) {
-        console.log(this.project.id);
-
-        this.router.navigate(['/layout/child', { projectId: this.project.id }])
-            .then(
-                () => {
-                    this.project = null as any;
-                },
-                (error) => {
-                    console.error('Error navigating to child:', error);
-                }
-            );
+    this.onSubmit();
+    this.tempId=this.project.id;
+        console.log(this.tempId);
+        this.router.navigate(['/layout/child', { projectId: this.tempId }])
             this.toast.success("Parent project saved successfully and navigated to create childproject", "Info", {
               positionClass: 'toast-bottom-top',
               progressBar: true,
@@ -139,17 +143,17 @@ export class ProjectComponent implements OnInit{
               easing: 'ease-in',
               easeTime: 1000
             });
-    } else {
-        console.error('Project ID is missing or undefined');
-    }
+   
 }
 
 
   clickToTask(){
-
-    if (this.project && this.project.id) {
+    this.onSubmit();
+    this.tempId=this.project.id;
+    console.log(this.tempId)
+    
       console.log(this.project.id);
-      this.router.navigate(['/layout/task',  { projectId: this.project.id }]);
+      this.router.navigate(['/layout/task',  { projectId: this.tempId }]);
       this.toast.success(
         "Parent project added successfully and navigated to create task",
         "Info",
@@ -163,10 +167,7 @@ export class ProjectComponent implements OnInit{
         }
       );
 
-  }
-  else {
-    console.error('Project ID is missing or undefined');
-  }
+ 
 }
 
 

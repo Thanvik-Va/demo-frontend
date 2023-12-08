@@ -21,7 +21,7 @@
           <label for="lead">Lead:</label>
           <select id="lead" formControlName="assignee" class="form-control" [ngClass]="{'is-invalid': assignee?.invalid && (assignee?.dirty || assignee?.touched)}" required>
             <option [ngValue]="null">Select a Lead</option>
-            <option *ngFor="let option of leadOptions" [ngValue]="option">{{ option }}</option>
+            <option *ngFor="let option of employee" [ngValue]="option.email_id">{{ option.email_id }}</option>
           </select>
           <div *ngIf="assignee?.invalid && (assignee?.dirty || assignee?.touched)" class="invalid-feedback">
             Lead is required.

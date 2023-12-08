@@ -23,3 +23,13 @@
 input{
     cursor: pointer;
 }
+.page-border {
+    margin-top: 102px;
+    width: 84%;
+    height: -moz-fit-content;
+    height: fit-content;
+    border: 1px solid #1bb1d7;
+    border-radius: 26px;
+    padding: 9px;
+    margin-left: 210px;
+  }

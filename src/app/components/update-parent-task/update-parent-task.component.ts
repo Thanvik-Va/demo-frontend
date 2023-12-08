@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PctService } from 'src/app/services/pct.service'; 
 import { ToastrService } from 'ngx-toastr';
+import { Employee } from '../classes/employee';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-update-parent-task',
@@ -13,7 +15,10 @@ export class UpdateParentTaskComponent implements OnInit {
   taskName:any;
   details:any;
   updatedDetails:any;
-  constructor(private route:ActivatedRoute,private service:PctService,private router:Router,private toaster:ToastrService){}
+  employee:Employee[]=[];
+  statusOptions: string[] = ['In Progress', 'Completed', 'On Hold', 'Cancelled'];
+
+  constructor(private route:ActivatedRoute,private service:PctService,private router:Router,private toaster:ToastrService,private emp:EmployeeService){}
  
   ngOnInit(){
     this.route.paramMap.subscribe(params=>{
@@ -24,6 +29,10 @@ export class UpdateParentTaskComponent implements OnInit {
         console.log(this.details.name )
       })
    
+    })
+    
+    this.emp.getEmployeeList().subscribe(data=>{
+      this.employee=data;
     })
   }
 

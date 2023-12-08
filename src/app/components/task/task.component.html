@@ -1,4 +1,5 @@
 <app-project-header></app-project-header>
+<div class="page-border"> 
 <div class="container">
     <form [formGroup]="taskForm" (ngSubmit)="taskSubmit()">
         <h2 class="h2 text-center text-primary">Create Task</h2>
@@ -80,7 +81,7 @@
               <label for="assignee">Assignee</label>
               <select id="assignee" class="form-control" formControlName="assignee">
                 <option value="" disabled>Select an Assignee</option>
-                <option *ngFor="let option of assigneeOptions" [ngValue]="option">{{ option }}</option>
+                <option *ngFor="let option of employee" [ngValue]="option.email_id">{{ option.email_id }}</option>
               </select>
               <div *ngIf="taskForm.get('assignee')?.invalid&&taskForm.get('assignee')?.touched ">
                 <div *ngIf="taskForm.get('assignee')?.hasError('required')" class=" text-danger">Select Lead</div>
@@ -105,4 +106,5 @@
         </div>
       </form>
     </div>
+  </div>
       

@@ -89,6 +89,15 @@
   margin-right: 15px;
   color: black; /* Text color for valid state */
 }
-
+.page-border {
+  margin-top: 105px;
+  width: 84%;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid #1bb1d7;
+  border-radius: 26px;
+  padding: 9px;
+  margin-left: 208px;
+}
 
 

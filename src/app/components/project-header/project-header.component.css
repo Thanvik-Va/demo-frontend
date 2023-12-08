@@ -18,8 +18,17 @@
     background-color: #563D7c;
     color: whitesmoke;
     border-radius: 10px;
-    padding: 4px;
-    font-size: 21px;
+    padding: -3px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    flex: 1 1 auto;
+    margin-left: 2px;
+    margin-right: 45px;
+    padding-left: 21px;
+    padding-right: 41px;
+    margin-top: -8px;
+
   }
   .d{
     /* margin-top: -4px; */
@@ -29,3 +38,13 @@
     margin-right: 200px;
     justify-content: space-between;
   }
+  /* .page-border{
+    margin-top: 102px;
+    width: 84%;
+    height: -moz-fit-content;
+    height: fit-content;
+    border: 1px solid #1bb1d7;
+    border-radius: 26px;
+    padding: 9px;
+    margin-left: 210px;
+  } */

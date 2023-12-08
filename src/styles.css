@@ -22,7 +22,7 @@ mat-drawer{
 
 @import 'ngx-toastr/toastr';
  
-.page-border {
+/* .page-border {
     margin-top: 80px;
     width: 90%;
     height: fit-content;
@@ -31,4 +31,4 @@ mat-drawer{
     padding: 9px;
     margin-left: 75px;
     
-  }
+  } */

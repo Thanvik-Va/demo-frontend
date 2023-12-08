@@ -9,3 +9,13 @@ button{
 .justify-content-between{
     display: flex;
  }
+ .page-border {
+    margin-top: 66px;
+    width: 89%;
+    height: -moz-fit-content;
+    height: fit-content;
+    border: 1px solid #1bb1d7;
+    border-radius: 26px;
+    padding: 9px;
+    margin-left: 158px;
+  }

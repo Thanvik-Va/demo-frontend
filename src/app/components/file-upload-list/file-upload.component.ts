@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef, ViewChild } from '@angular/core';
 import { FileService } from 'src/app/services/file.service';
 import { saveAs } from 'file-saver';//we need to install 'file-saver' from npm as -> npm install file-saver
 import { ToastrService } from 'ngx-toastr';
@@ -17,7 +17,7 @@ isValidFileType=true;
  files: any[] = [];
  index:number=1;
  loadFilesFailed:boolean=false;
-
+@ViewChild('fileInputRef', {static:false}) fileInputRef!:ElementRef;
   constructor(private fileService: FileService,private toaster:ToastrService) {}
 
   
@@ -39,7 +39,6 @@ isValidFileType=true;
     // );
 
     this.updateList();
-  
   }
 
   //downloading file
@@ -125,6 +124,12 @@ isValidFileType=true;
           //     this.files = response.response.data;
           //   })
 
+           //resetting input file
+          if(this.fileInputRef && this.fileInputRef.nativeElement){
+            this.fileInputRef.nativeElement.value='';
+          }
+          this.selectedFile=null;
+          
           this.updateList();
         },
         
