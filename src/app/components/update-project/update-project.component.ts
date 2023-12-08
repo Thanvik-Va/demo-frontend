@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PctService } from 'src/app/services/pct.service'; 
 import { ToastrService } from 'ngx-toastr';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { Employee } from '../classes/employee';
 
 @Component({
   selector: 'app-update-project',
@@ -15,8 +17,9 @@ export class UpdateProjectComponent {
   projectDetails: any;
   updatedDetails:any;
   statusOptions: string[] = ['In Progress', 'Completed', 'On Hold', 'Cancelled'];
+  employee:Employee[]=[];
 
-  constructor(private route: ActivatedRoute, private projectService: PctService,private toaster:ToastrService,private router:Router) {}
+  constructor(private route: ActivatedRoute, private projectService: PctService,private toaster:ToastrService,private router:Router,private emp:EmployeeService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -27,6 +30,9 @@ export class UpdateProjectComponent {
         console.log(this.projectDetails)
       });
     });
+    this.emp.getEmployeeList().subscribe(data=>{
+      this.employee=data;
+    })
   }
 
   updateProject(name:any) {

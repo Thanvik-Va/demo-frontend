@@ -7,5 +7,6 @@ export class Employee {
     org_name !:string;
     emp_type !:string;
     bp !: string;
-    address !:string
+    address !:string;
+    deleteStatus:any;
 }

@@ -26,7 +26,11 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="projectName">Status</label>
-            <input type="text" id="projectName" class="form-control" [(ngModel)]="details.status" >
+            <select  id="lead" formControlName="status" class="form-control">
+              <option [ngValue]="null">Select status</option>
+              <option *ngFor="let option of statusOptions" [ngValue]="option">{{option}}</option>
+            </select>
+            
           </div>
         </div>
         <div class="col-md-4">
@@ -53,7 +57,10 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="projectType">Lead</label>
-            <input type="text" id="projectType" class="form-control" [(ngModel)]="details.lead" required>
+            <select  id="lead" formControlName="assignee" class="form-control">
+              <option [ngValue]="null">Select lead</option>
+              <option *ngFor="let option of employee" [ngValue]="option.email_id">{{option.email_id}}</option>
+            </select>
           </div>
         </div>
       </div>
