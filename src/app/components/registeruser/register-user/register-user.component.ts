@@ -52,4 +52,8 @@ export class RegisterUserComponent {
       console.log('registration failed due to invalid form');
     }
   }
+
+  goBack(): void {
+     this.router.navigate(['']);
+  }
 }

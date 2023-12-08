@@ -1,0 +1,34 @@
+ul{
+    list-style: none;
+}
+/* #imgg{
+    height: 650px;
+  color: 
+#cb1a1a;
+  background-image: url("../../assets/OIP.jpg");
+  /* background-size: 100%; */
+  /* background-size: cover; */
+/* } */
+
+
+.visible {
+  display: flex;
+  display: block ;
+}
+
+.b{
+  background-color: cadetblue;
+  color:black;
+  padding: 10px;
+  width: 50%;
+  border-radius: 10px;
+  display: flex;
+  justify-content:flex-end;
+}
+
+.bt{
+  background-color: rgb(44, 83, 85);
+  color: whitesmoke;
+  border-radius: 10px;
+  padding: 10px;
+}

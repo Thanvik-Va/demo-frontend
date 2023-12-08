@@ -6,7 +6,6 @@ import { LoginComponent } from '../login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SlideBarComponent } from '../slide-bar/slide-bar.component';
 import { MatSidenav } from '@angular/material/sidenav';
- 
 
 @Component({
   selector: 'app-nav-bar',
@@ -58,7 +57,10 @@ logout(){
   if(confirm('Are you sure you want to logout?')){
    // this.authServ.logOut();
    this.loginService.isAuthenticated=false;
-    window.location.href='';
+    localStorage.removeItem('token');
+    
+   // window.location.href='/login';
+   this.router.navigate(['']);
   }
   else{
     this.router.navigate([]);

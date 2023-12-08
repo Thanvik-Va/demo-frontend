@@ -12,7 +12,7 @@ import {
   Router,
   UrlTree,
 } from '@angular/router';
- import { Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { LoginServiceService } from "./login-service.service";
 
 @Injectable({

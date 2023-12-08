@@ -1,11 +1,13 @@
  
-    <div class="content"> 
-     <div class="text-center ">
+
+<div class="page-border"> 
+    
+ <div class="text-center ">
         <h1 class="main-heading">Organization Details </h1>
     </div>
 
     <div class="container mt-2">
-        <form [formGroup]="orgRegister" (ngSubmit)="collectForm()">
+        <form [formGroup]="orgRegister" (ngSubmit)="collectForm()" >
             <div class="row row-check m-2">
                 <div class="form-col-12 col-md-3 mt-1">
                     <label class="form-label">Organization Name*</label>
@@ -79,7 +81,15 @@
                 </div>
             </div>
             <br />
-            <button class="btn btn-btn" type="submit" [disabled]="orgRegister.invalid">Update</button>
+            <!-- <button class="btn btn-btn btn-temp" type="submit" [disabled]="orgRegister.invalid">Update</button> -->
+           <!-- Rest of your form -->
+<button class="btn btn-temp"
+type="submit"
+[disabled]="orgRegister.invalid"
+[ngClass]="{ 'btn-invalid': orgRegister.invalid, 'btn-valid': !orgRegister.invalid }">
+Update
+</button>
+
         </form>
     </div>
 
@@ -112,125 +122,23 @@
                     <td>{{ businessPlace.businessPlaceContact }}</td>
                     <td>{{ businessPlace.businessPlaceZipCode }}</td>
                     <td >
-
-                        <button  (click)="editBusinessPlace(businessPlace)" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter1" >Edit</button>&nbsp;
+                        <button  (click)="editBusinessPlace(businessPlace)" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter" >Edit</button>&nbsp;
                         <button (click)="deleteBusinessPlace(businessPlace)" class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-
     <!-- Modal -->
-
-    <!-- Modal -->
-    <form action [formGroup]="bpRegister" (ngSubmit)="onCreateSubmit()">
+    <form action [formGroup]="bpRegister" (ngSubmit)="onSubmit()">
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2 class="modal-title" id="exampleModalLongTitle">
-                            Add Business Place
+                            {{ isEditMode ? 'Edit' : 'Add' }} Business Place
                         </h2>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label class="form-label">Bp Legal Name</label>
-                                <input type="text" class="form-control" placeholder="Ex:Hyderabad" formControlName="businessPlaceLegalName" />
-                                <div *ngIf=" businessPlaceLegalName.touched && businessPlaceLegalName.invalid" class="text-danger">
-                                    <div *ngIf="businessPlaceLegalName.errors?.['required']" class="text-danger">
-                                        *Bp Legal Name required
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label class="form-label">Location</label>
-                                <input type="text" class="form-control" placeholder="Ex:-1234, Beside Jntuh" formControlName="businessPlaceLocation" />
-                                <div *ngIf="businessPlaceLocation.touched &&businessPlaceLocation.invalid " class="text-danger">
-                                    <div *ngIf="businessPlaceLocation.errors?.['required']" class="text-danger">
-                                        *Location required
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label class="form-label">Mobile Number</label>
-                                <input type="tel" class="form-control" placeholder="Ex:- +919542458692" formControlName="businessPlaceContact" />
-                                <div *ngIf="businessPlaceContact.touched &&businessPlaceContact.invalid" class="text-danger">
-                                    <div *ngIf="businessPlaceContact.errors?.['required']">
-                                        *Mobile Number required
-                                    </div>
-                                    <div *ngIf="businessPlaceContact.errors?.['pattern']">
-                                        *Invalid mobile number
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label class="form-label">Pincode</label>
-                                <input type="number" class="form-control" placeholder="Ex:- 5000100" formControlName="businessPlaceZipCode" />
-                                <div *ngIf="businessPlaceZipCode.touched &&businessPlaceZipCode.invalid" class="text-danger">
-                                    <div *ngIf="businessPlaceZipCode.errors?.['required']" class="text-danger">
-                                        * PinCode required
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label class="form-label">Country</label>
-                                <select id="inputCountry" class="form-control" formControlName="countryName">
-                                        <!-- <option value>{{organization.countryName}}</option> -->
-                                        <option
-                                            *ngFor="let country of countries"
-                                            [value]="country">{{ country }}</option>
-                                    </select>
-                                <div *ngIf="countryName.touched && countryName.invalid" class="text-danger">
-                                    <div *ngIf="countryName.errors?.['required']" class="text-danger">
-                                        *Country required
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label>State</label>
-                                <select id="inputState" class="form-control" formControlName="stateName">
-                                        <!-- <option value>{{organization.stateName}}</option> -->
-                                        <option *ngFor="let state of states"
-                                            [value]="state">{{ state }}</option>
-                                    </select>
-                                <div *ngIf="stateName.touched && stateName.invalid" class="text-danger">
-                                    <div *ngIf="stateName.errors?.['required']" class="text-danger">
-                                        *State required
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
-                        <button mat-raised-button type="submit" class="btn" [disabled]="bpRegister.invalid" color="warn">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <form action [formGroup]="bpRegister" (ngSubmit)="onSubmit()">
-        <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="exampleModalCenterTitle">
-                           Edit Business Place
-                        </h2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                            (click)="close()">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -297,7 +205,7 @@
                             <div class="form-group col-md-6">
                                 <label>State</label>
                                 <select id="inputState" class="form-control" formControlName="stateName">
-                                        <!-- <option value>{{organization.stateName}}</option> -->
+                                        <option value>{{organization.stateName}}</option>
                                         <option *ngFor="let state of states"
                                             [value]="state">{{ state }}</option>
                                     </select>
@@ -310,13 +218,17 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
-                        <button mat-raised-button type="submit" class="btn "
-                            [disabled]="bpRegister.invalid" color="warn" data-dismiss="modal">Update</button>
+                        <button class="btn btn-secondary"  (click)="close()" data-dismiss="modal">Close</button>
+                        <button mat-raised-button type="submit" class="btn"  [disabled]="bpRegister.invalid" color="warn">
+                            {{ isEditMode ? 'Update' : 'Save' }}
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </form>
+
 </div>
+ 
+
  

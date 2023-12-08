@@ -4,6 +4,7 @@ import { AddComponent } from '../add/add.component';
  import { Employee } from '../classes/employee';
  import { EmployeeService } from 'src/app/services/employee.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { saveAs } from 'file-saver';
  
 
 @Component({
@@ -134,6 +135,27 @@ Delete(id:number){
   this.employee = data;
   // this.refreshPage();
   });
+}
+
+//to get excel sheet of employees
+generateExcel(){
+  this.employeeService.excelExport().subscribe((data:Blob)=>{
+    console.log(data);
+    const blob=new Blob([data],{ type: 'application/octet-stream' });
+    
+    saveAs(data, 'Emp_List.xls');
+    
+    // const link = document.createElement('a');
+    //   link.href = window.URL.createObjectURL(blob);
+    //   link.download = 'Emp_List.xls';
+    //   link.click();
+
+    //   window.URL.revokeObjectURL(link.href);
+  },
+  error=>{
+    console.log(error);
+  }
+  )
 }
 }
 

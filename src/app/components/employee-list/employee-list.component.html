@@ -21,9 +21,13 @@
       </div>
     
  
-    <p></p>
+    <p></p><br><br>
     <div class=" mt-1">
-      <h2 class="" style="color: DodgerBlue;"><b>Employee List</b></h2>
+      <div class="justify-content-between">
+        <h2 class="" style="color: DodgerBlue;"><b>Employee List</b></h2>
+
+        <button  class="rounded rounded-1 btn btn-outline-info text-dark mt-4"   style="background: rgb(117, 240, 80);" mat-raised-button (click)="generateExcel()"><b>Excel Export</b> </button>
+    </div><br>
       <table class="table table-striped border border-2 border-dark mt-1" >
         <thead >
           <tr>

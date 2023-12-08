@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class OrgServiceService {
+
+  //token:string|null=null;
+
   tokenData={}
   constructor(private http: HttpClient) {
     this.tokenData={

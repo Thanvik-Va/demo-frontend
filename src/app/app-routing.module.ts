@@ -17,6 +17,13 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { FileUploadComponent } from './components/file-upload-list/file-upload.component';
 import { AuthGuard } from './services/auth.guard';
 import { RegisterUserComponent } from './components/registeruser/register-user/register-user.component';
+import { ListComponent } from './components/list/list.component';
+import { ChildComponent } from './components/child/child.component';
+import { ProjectComponent } from './components/project/project.component';
+import { TaskComponent } from './components/task/task.component';
+import { UpdateParentTaskComponent } from './components/update-parent-task/update-parent-task.component';
+import { UpdateProjectComponent } from './components/update-project/update-project.component';
+import { ProjectHeaderComponent } from './components/project-header/project-header.component';
 
 // import { AuthGuard } from './services/auth.guard';
 
@@ -41,7 +48,17 @@ const routes: Routes = [
     {path:'org-org',component:OrganizationComponent,pathMatch:'full'},
     {path:'add-employee',component:AddComponent},
     {path:'employee-list',component:EmployeeListComponent},
-    {path:'file-upload',component:FileUploadComponent}
+    {path:'file-upload',component:FileUploadComponent},
+    {path:'list',component:ListComponent},
+    {path:'project',component:ProjectComponent},
+    {path:'project/:projectId',component:ProjectComponent},
+    {path:'child',component:ChildComponent},
+    {path:'child/:projectId',component:ChildComponent},
+    {path:'task',component:TaskComponent},
+    {path:'task/:projectId',component:TaskComponent},
+    {path:'pro/:name',component:UpdateProjectComponent},
+    {path:'update/:name',component:UpdateParentTaskComponent},
+    {path:'project-header',component:ProjectHeaderComponent}
   ],canActivate:[AuthGuard]
   }
   

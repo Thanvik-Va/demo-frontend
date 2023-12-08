@@ -1,9 +1,19 @@
 .h1{
+    color: #1bb1d7;
+    margin-top: 10px;
+    text-align: center;
+    border: 1px solid #1bb1d7;
+    padding: 185px;
+    margin-left: 208px;
+    margin-right: 14px;
+    width: 80%;
+    height: 72%;
+    border-radius: 26px;
      
-      color: red;
-     justify-content: center;
- margin-top: 250px; 
- text-align: center;
-   
-
+}
+.pcollab{
+    margin-top: 86px;
+    color: #1bb1d7;
+    margin-left: 251px;
+    font-size: 26px;
 }

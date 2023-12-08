@@ -1,0 +1,71 @@
+<div class="container dd">
+    <h2 class="h2 text-center text-danger">Update Task</h2>
+  
+    <div *ngIf="details">
+      <div class="row m-2">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="projectName">Task Name</label>
+            <input type="text" id="projectName" class="form-control" [(ngModel)]="details.name" disabled>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="projectType">Task Type</label>
+            <input type="text" id="projectType" class="form-control" [(ngModel)]="details.type" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="projectDescription">Task Description</label>
+            <input type="text" id="projectDescription" class="form-control" [(ngModel)]="details.description" required>
+          </div>
+        </div>
+      </div>
+      <div class="row m-2">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="projectName">Status</label>
+            <input type="text" id="projectName" class="form-control" [(ngModel)]="details.status" >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="projectType">Start Date</label>
+            <input type="date" id="projectType" class="form-control" [(ngModel)]="details.startDate" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="projectDescription">End Date</label>
+            <input type="date" id="projectDescription" class="form-control" [(ngModel)]="details.endDate" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="row m-2">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="projectName">Hours</label>
+            <input type="text" id="projectName" class="form-control" [(ngModel)]="details.hours" >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="projectType">Lead</label>
+            <input type="text" id="projectType" class="form-control" [(ngModel)]="details.lead" required>
+          </div>
+        </div>
+      </div>
+  
+  
+      
+  
+      <div class="form-group d-flex justify-content-center">
+        <button type="button" class="btn  btn-primary m-3" (click)="navigateBackToList()">Back</button>
+        <button type="button" class="btn btn-success m-3" (click)="updateTask(details.name)">Update Task</button>
+      </div>
+    </div>
+  </div>
+  
+

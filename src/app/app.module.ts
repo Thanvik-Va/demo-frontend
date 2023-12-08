@@ -27,7 +27,6 @@ import { SlideBarComponent } from './components/slide-bar/slide-bar.component';
 import { WelcomeHomeComponent } from './components/welcome-home/welcome-home.component';
 import { LoginServiceService } from './services/login-service.service';
 import { HttpClient } from '@angular/common/http';
-
 import { OrganizationComponent } from './components/organization/organization.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ToastrModule } from 'ngx-toastr';
@@ -37,6 +36,13 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { ReactiveFormsModule } from '@angular/forms';
 import { FileUploadComponent } from './components/file-upload-list/file-upload.component';
 import { RegisterUserComponent } from './components/registeruser/register-user/register-user.component';
+import { ProjectComponent } from './components/project/project.component';
+import { ChildComponent } from './components/child/child.component';
+import { TaskComponent } from './components/task/task.component';
+import { ListComponent } from './components/list/list.component';
+import { UpdateParentTaskComponent } from './components/update-parent-task/update-parent-task.component';
+import { UpdateProjectComponent } from './components/update-project/update-project.component';
+import { ProjectHeaderComponent } from './components/project-header/project-header.component';
   //import {FormControl} from '@angular/forms'
 
 
@@ -55,15 +61,20 @@ import { RegisterUserComponent } from './components/registeruser/register-user/r
     LoginForm2Component,
     SlideBarComponent,
     WelcomeHomeComponent,
-    
-
     OrganizationComponent,
     LayoutComponent,
     AddComponent,
     EmployeeListComponent,
+     FileUploadComponent,
+    RegisterUserComponent,
+    ProjectComponent,
+    ChildComponent,
+    TaskComponent,
+    ListComponent,
+    UpdateParentTaskComponent,
+    UpdateProjectComponent,
     
-    FileUploadComponent,
-          RegisterUserComponent,
+    ProjectHeaderComponent,
   
   ],
   imports: [

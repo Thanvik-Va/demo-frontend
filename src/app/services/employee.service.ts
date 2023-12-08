@@ -35,6 +35,13 @@ export class EmployeeService {
     return this.httpclient.delete<any>(`http://localhost:8383/api/v1/Delete/${id}`,this.tokenData)
   }
 
- 
+  //to get list of employees as xl sheet
+ excelExport():Observable<Blob>{
+  return this.httpclient.get("http://localhost:8383/getexcel",{
+    responseType:'blob',
+    ...this.tokenData
+  });
+
+ }
 
 }

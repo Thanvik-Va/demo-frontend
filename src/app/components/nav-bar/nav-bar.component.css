@@ -10,14 +10,11 @@ form{
     
    
 }
-.text-color{
-    color: white;
-}
+ 
 .height{
     height: 35px;
     width: 100px;
     cursor: pointer;
-    
    
   }
 /* .sidenav{
@@ -32,10 +29,9 @@ cursor: pointer;
 }
  .menu1{
     color:white;
-    margin-left: 10px;
+    margin-left: 0px;
     padding-top: 5px;
-    padding-bottom: 10px;
-    width: 50px;
+     width: 50px;
      
  }
  .sidenav-wrapper{
@@ -49,7 +45,7 @@ cursor: pointer;
  }
  mat-sidenav{
     width: 210px;
-    top: 64px;
+    top: 56px;
     padding-top:20px;
     padding-left: 10px;
     left: 0px;
@@ -60,7 +56,9 @@ cursor: pointer;
     margin-left: 0px;
  }
  .supergas{
-    margin-left:-7px;
+    margin-left:7px;
+    flex: 1 1 auto;
+    width: 10px;
  }
  mat-sidenav-content{
  display: flex;
@@ -78,10 +76,9 @@ cursor: pointer;
     margin-top: 10px;
     margin-left: 20px;
  }
- .text-color1{
-  color: white;
-  margin-left: 3px;
-  }
+  
+
+  
  a mat-icon span{
     margin: 10px;
     font-weight: bold;
@@ -89,8 +86,6 @@ cursor: pointer;
  #nav{
    list-style-type: none;
 margin: 0 auto 0 auto;
-margin-left: -15px;
-margin-left: px;
 padding: 0;
 position: fixed;
 top: 0;
@@ -106,8 +101,9 @@ overflow: auto;
  .img1{
    width: 40px;  
    margin-top:7px;
-margin-left: 30px;
+ 
 cursor: pointer;
+margin-right: 100px;
 }
   
  /*  */
@@ -129,8 +125,11 @@ cursor: pointer;
 .menu-button{
    margin-left: 0px;
 }
-.supergas{
-   margin-left:-7px;
+.incresol{
+padding-right: 20px; 
+font-weight: bold;
+flex: 1 1 auto;
+
 }
  
 button span{
@@ -144,6 +143,7 @@ button span{
 .text-color1{
  color: white;
  margin-left: 3px;
+
  }
 a mat-icon span{
    margin: 10px;
@@ -160,6 +160,7 @@ top: 0;
 width: 100%;
 min-width: 100%;
 overflow: auto;
+z-index: 100;
 
 }
 a mat-icon span{
@@ -167,10 +168,12 @@ margin-left: 10px;
 
 }
 .img1{
-  width: 40px;  
-  margin-top:7px;
+  width: 80px;  
+  margin-top:30px;
 margin-left: 30px;
 cursor: pointer;
+    
+  
 }
 .cursor{
    cursor: pointer;
@@ -178,6 +181,19 @@ cursor: pointer;
  .mat-sidenav-container1{
    margin-right: 10px;
  }
-  
-
+  .logout{
+   color: red;
+  }
+.text-color1{
+   color:skyblue;
+   margin-left: -5px;
+   height: 10px;
+}
+.text-color{
+   color: white;
+    cursor: pointer;
+    margin-left: 13px;
+    height: 27px;
+    padding: 0px;
+}
 

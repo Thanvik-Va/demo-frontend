@@ -3,9 +3,16 @@
     
     <div class="border">
         <div class="m-3">
-            <h2 class="text-primary title">Register user</h2>
+
+          <a class="cross-symobl" (click)="goBack()"><mat-icon>close</mat-icon></a>
+
+          <h2 class="text-primary title">Register user</h2>
+
+  
         </div>
         <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)">
+
+ 
 
             <div class="container-fluid mt-5">
                 <mat-form-field class="full-width" appearance="outline">
