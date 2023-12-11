@@ -138,7 +138,7 @@
                         <h2 class="modal-title" id="exampleModalLongTitle">
                             {{ isEditMode ? 'Edit' : 'Add' }} Business Place
                         </h2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -225,7 +225,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" (click)="close()" data-dismiss="modal">Close</button>
+                        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button mat-raised-button type="submit" class="btn" [disabled]="bpRegister.invalid"
                             color="warn">
                             {{ isEditMode ? 'Update' : 'Save' }}
