@@ -222,4 +222,6 @@ export class OrganizationComponent {
 
   close() {
     this.resetForms();
+   this.isEditMode = false;
+
   }}
