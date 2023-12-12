@@ -36,6 +36,7 @@ export class OrganizationComponent {
   orgId: any;
   organization: any = {}; // Use the correct type or interface if available
   isEditMode: boolean = false;
+  bpId:any;
  
 
 
@@ -155,6 +156,8 @@ export class OrganizationComponent {
       countryName: businessPlace.countryName,
       stateName: businessPlace.stateName,
     });
+    this.bpId=businessPlace.businessPlaceId;
+    console.log(this.bpId)
   }
 
  
@@ -162,12 +165,12 @@ export class OrganizationComponent {
   onSubmit() {
     if (this.bpRegister.valid) {
       const businessPlaceData = this.bpRegister.value;
-      const existingBusinessPlace = this.organization.businessPlaces.find(
-              (bp: any) => bp.businessPlaceLegalName === businessPlaceData.businessPlaceLegalName);
-              console.log(existingBusinessPlace)
+      // const existingBusinessPlace = this.organization.businessPlaces.find(
+      //         (bp: any) => bp.businessPlaceLegalNam === businessPlaceData.businessPlaceLegalName);
+      //         console.log(existingBusinessPlace)
       if (this.isEditMode) {
         this.orgService
-          .updateBusinessPlace(existingBusinessPlace.businessPlaceId, businessPlaceData)
+          .updateBusinessPlace(this.bpId, businessPlaceData)
           .subscribe((response) => {
             this.handleResponse(response);
           });
