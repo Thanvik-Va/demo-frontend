@@ -226,5 +226,6 @@ export class OrganizationComponent {
   close() {
     this.resetForms();
    this.isEditMode = false;
+   this.getOrganization(this.orgId);
 
   }}
