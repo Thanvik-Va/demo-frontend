@@ -1,15 +1,9 @@
-
-
 <body>
- 
   <div class="set-size"> 
 <div class="container">
       <div class="page-border">
           <h2 class="justify-content-center d-flex font-bold"  style="color: DodgerBlue;"><u>Employee List</u></h2>
-         
-
     <div class=" mt-0">
-
      <div class="float-end m-1">
       <button  class="rounded rounded-1   text-light btn btn-primary  m-1" (click)="resetForm()"   data-target="#edit" data-toggle="modal"><b> Add Employee</b> </button>
       <button  class="rounded rounded-1   text-light m-1 btn btn-success"     (click)="generateExcel()"><b>Excel Export</b> </button>
@@ -112,13 +106,11 @@
               <div *ngIf="frmEdit.controls.address.errors?.['required']">Address Required</div>
           </div>
           <div class="modal-footer float-end ">
-            <button class="btn btn-secondary m-1 text-light" data-dismiss="modal" style="height: 30px;">Cancel</button>
-            <button  [disabled]="frmEdit.invalid" class="btn btn-primary m-1 text-light"style="height: 30px;"   (click)="submit()">Save</button>
+            <button class="btn btn-secondary m-1 text-light" data-dismiss="modal"  style="height: 30px;">Cancel</button>
+            <button  [disabled]="frmEdit.invalid" class="btn btn-primary m-1 text-light"style="height: 30px;"   (click)="submit()" data-dismiss="modal">Save</button>
           </div>
-         </div>
-        
+         </div>    
         </form>
-
       </div>
     </div>
     </div>
@@ -126,5 +118,4 @@
     </div>
     </div>
 </div>
-
 </body>
