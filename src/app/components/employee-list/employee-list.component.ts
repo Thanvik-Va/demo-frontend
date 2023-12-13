@@ -81,11 +81,10 @@ submit(){
 Delete(id:number){
   this.employeeService.DeleteEmployee(id).subscribe((data:Employee)=>{
   this.employee = data;
-  this.employeeService.getEmployeeList().subscribe(data =>{
+  });
+ this.employeeService.getEmployeeList().subscribe(data =>{
     this.employees = data;
   }); 
-  });
- 
 }
 
 save(){
