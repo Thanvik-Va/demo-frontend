@@ -59,15 +59,15 @@ export class LoginComponent {
         console.log(response);
          
         if(response.statusCode==0){
-          this.token = response.data.token
+          this.token = response.data.token; 
+         localStorage.setItem('token', this.token);
+         
         }
-         this.errorCode = response.errorCode
+        this.errorCode = response.errorCode
  
-         this.message = response.message
-         this.statusCode = response.statusCode
+        this.message = response.message
+        this.statusCode = response.statusCode
 
-        localStorage.setItem('token', this.token);
-        
         this.doNavigating();
       },
       (error) => {
@@ -112,6 +112,9 @@ export class LoginComponent {
       }
     }
 
+  }
+  clearError(){
+    this.loginError='';
   }
 
 }

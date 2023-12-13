@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project } from '../classes/project'; 
 import { PctService } from 'src/app/services/pct.service'; 
@@ -23,7 +23,8 @@ export class TaskComponent implements OnInit {
   p!: Project;
   task!: any;
   pr!: any;
-  formData:any;
+  formData!:any;
+
   employee:Employee[]=[];
   constructor(private fb: FormBuilder, private dataService: PctService, private route: Router, private router: ActivatedRoute,private toast:ToastrService,private emp:EmployeeService) {
 
@@ -43,23 +44,26 @@ export class TaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.router.paramMap.subscribe(params => {
+     this.router.paramMap.subscribe(params => {
       this.projectIdd = params.get('projectId')
     });
     this.dataService.getAllNames().subscribe(response => {
       console.log(response.response.data)
       this.prjNameOptions = response.response.data;
     })
-    
+  
     if (this.projectIdd != 0) {
       this.dataService.getProjectById(this.projectIdd).subscribe((response) => {
         console.log(response.response.data)
         this.prjNameOptions = this.prjNameOptions.filter(pro => pro.id == this.projectIdd);
         console.log(this.prjNameOptions)
+
       });
     }
+
     this.emp.getEmployeeList().subscribe(data=>{
       this.employee=data;
+      console.log(this.employee)
     })
 
 
@@ -97,27 +101,48 @@ export class TaskComponent implements OnInit {
     return this.taskForm.get('projectId')
   }
 
-  clickToChild() {
-    this.route.navigate(['/layout/child'])
+
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
   }
-  taskSubmit() {
+  taskSubmit(event:Event) {
+    event.preventDefault();
     console.log(this.taskForm.valid)
     if (this.taskForm.valid) {
 
       const formData = this.taskForm.value;
-      console.log(this.taskForm.value);
-      console.log(this.projectIdd)
-      console.log(formData.projectId)
-      // console.log(this.taskForm.get("projectId")?.value)
 
-
-      if (this.projectIdd!=null) {
-        // const formData = this.taskForm.value;
+      console.log(this.taskForm.value)
+      console.log(this.projectIdd);
+    //  console.log(this.taskForm.get("projectIdd")?.value)
+    console.log(formData.projectId)
+      //formData.projectId=this.projectIdd
+   
+    
+      if (this.projectIdd != null) {
+        
         console.log(formData)
         this.dataService.createTask(formData, this.projectIdd).subscribe((response) => {
-          this.task = response.response.data
+          
+          this.task = response.response.data;
+          this.task.projectId=this.projectIdd;
           console.log(this.task);
-          this.toast.success("Child Project Task saved Successfully","Info",{
+          if(response.errorCode===0){
+          this.toast.success("Task saved Successfully","Info",{
+            positionClass:'toast-bottom-right',
+            progressBar:true,
+            progressAnimation:'increasing',
+            timeOut:3000,
+            easing:'ease-in',
+            easeTime:1000
+          })
+        }
+        if(response.errorCode===1){
+          this.toast.error("Task with same name already exists","Info",{
             positionClass:'toast-bottom-right',
             progressBar:true,
             progressAnimation:'increasing',
@@ -126,27 +151,37 @@ export class TaskComponent implements OnInit {
             easeTime:1000
           })
 
+        }
+
         });
-
-
-
       }
       else {
-
-
+       console.log(formData)
         this.dataService.createTask(formData, formData.projectId).
           subscribe((response) => {
             this.task = response.response.data
             console.log(this.task)
-            this.toast.success("Task saved Successfully","Info",{
-              positionClass:'toast-bottom-right',
-              progressBar:true,
-              progressAnimation:'increasing',
-              timeOut:3000,
-              easing:'ease-in',
-              easeTime:1000
-            })
-
+            if(response.errorCode===0){
+              this.toast.success("Task saved Successfully","Info",{
+                positionClass:'toast-bottom-right',
+                progressBar:true,
+                progressAnimation:'increasing',
+                timeOut:3000,
+                easing:'ease-in',
+                easeTime:1000
+              })
+            }
+            if(response.errorCode===1){
+              this.toast.error("Task with same name already exists","Info",{
+                positionClass:'toast-bottom-right',
+                progressBar:true,
+                progressAnimation:'increasing',
+                timeOut:3000,
+                easing:'ease-in',
+                easeTime:1000
+              })
+    
+            }
           })
 
 
@@ -154,6 +189,10 @@ export class TaskComponent implements OnInit {
       }
 
     }
+  }
+
+  clickToChild() {
+    this.route.navigate(['/layout/child'])
   }
 
   getProjectById1() {
@@ -175,7 +214,6 @@ export class TaskComponent implements OnInit {
       });
     }
   }
-
 
 
 }
