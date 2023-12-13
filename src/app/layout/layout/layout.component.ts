@@ -35,7 +35,18 @@ export class LayoutComponent implements OnInit {
     )
   }
   navigateToDashboard() {
-    this.router.navigate(['/layout/dashboard']);
+    const authToken = localStorage.getItem('token');
+  
+    // Check if the user is authenticated
+    if (authToken) {
+      // Do whatever logic you need to do in the current component
+      // This block will prevent navigation to the dashboard
+      console.log('User is authenticated. Perform actions in the current component.');
+    } else {
+      // Navigate to the dashboard if the user is not authenticated
+      this.router.navigate(['/layout/dashboard']);
+    }
   }
+  
 
 }

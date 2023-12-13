@@ -1,32 +1,36 @@
 .container{
-    margin-top: 62px;
     background: #f8f9fa;
-    padding: 20px;
+    padding: -3px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 13px;
     border: 1px solid skyblue;
-
+    width: 98%;
+    margin-left: 15px;
+    margin-top: 2px;
 }
+
+
 
 .form-control{
+    
     display: block;
     width: 100%;
-    padding: 2.375rem 0.75rem;
+    padding: 10px;
     font-size: 1rem;
     font-weight: bolder;
-    line-height: 1.5;
-    color: var(--bs-body-color);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: var(--bs-body-bg);
-    background-clip: padding-box;
+    
+    color: black;
+   
     border: var(--bs-border-width) solid var(--bs-border-color);
     border-radius: var(--bs-border-radius);
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  
+}
+select.form-control:not([size]):not([multiple]) {
+height: 39px;
 }
 
-.btn:disabled{
+/* .btn:disabled{
     color: var(--bs-btn-disabled-color);
     pointer-events: none;
     background-color: var(--bs-btn-disabled-bg);
@@ -35,15 +39,15 @@
     font-size: 20px;
     border-radius: 10px;
     border-radius: 10px;
-}
+} */
 
-.btn:not(:disabled):not(.disabled){
+/* .btn:not(:disabled):not(.disabled){
     cursor: pointer;
     padding-right: 27px;
     padding-left: 27px;
     font-size: 20px;
     border-radius: 10px;
-}
+} */
 /* .page-border{
     margin-top: 105px;
     width: 84%;
@@ -54,3 +58,26 @@
     padding: 9px;
     margin-left: 208px;
 } */
+
+
+.edit{
+    margin-right: 13px;
+    background-color: #376eb9;
+    color: whitesmoke;
+    height: 25px;
+    padding-left: 18px;
+    padding-right: 18px;
+    border-radius: 6px;
+    font-size: 11px;
+    margin-top: 9px;
+    /* padding: 4px; */
+    border: none;
+  }
+  .page-border {
+    margin-top: 92px;
+    width: 84%;
+    border: 1px solid skyblue;
+    border-radius: 26px;
+    padding: 20px; /* Adjust the padding as needed */
+    margin-left: 208px;
+  }

@@ -17,18 +17,63 @@ ul{
 }
 
 .b{
-  background-color: cadetblue;
-  color:black;
-  padding: 10px;
-  width: 50%;
+  background-color: #373c5c;
+  color: black;
+  padding: 6px;
+  width: 44%;
   border-radius: 10px;
   display: flex;
-  justify-content:flex-end;
+  justify-content: space-between;
+
 }
 
 .bt{
-  background-color: rgb(44, 83, 85);
+  background-color: rgb(69 123 28);
   color: whitesmoke;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 6px;
+  padding: 9px;
+  padding-top: 7px;
+  margin-left: -2px;
+  margin-right: -10px;
+  padding-bottom: 5px;
+  border: none;
+  /* font-size: 10px; */
+  padding-bottom: 6px;
+}
+
+
+.edit{
+  margin-right: 13px;
+  background-color: #376eb9;
+  color: whitesmoke;
+  height: 25px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-radius: 6px;
+  font-size: 11px;
+  margin-top: 9px;
+  /* padding: 4px; */
+  border: none;
+}
+.cc{
+  background-color: rgb(69 123 28);
+  color: whitesmoke;
+  border-radius: 6px;
+  padding: 9px;
+  padding-top: 4px;
+  margin-left: -2px;
+  margin-right: -10px;
+  padding-bottom: 5px;
+  border: none;
+  /* font-size: 10px; */
+  padding-bottom: 6px;
+  font-size: 11px;
+}
+.page-border {
+  margin-top: 92px;
+  width: 84%;
+  border: 1px solid skyblue;
+  border-radius: 26px;
+  padding: 20px; /* Adjust the padding as needed */
+  margin-left: 208px;
 }

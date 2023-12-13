@@ -1,10 +1,17 @@
 .container {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid skyblue;
-  }
+  background: #f8f9fa;
+  padding: -3px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 13px;
+  border: 1px solid skyblue;
+  width: 98%;
+  margin-left: 15px;
+  margin-top: 2px;
+  /* height: 195px; */
+  /* height: 235px; */
+
+}
   
   h2 {
     color: #007bff;
@@ -25,41 +32,54 @@
   .invalid-feedback {
     color: #dc3545;
   }
-  
   .btn:disabled{
-    color: var(--bs-btn-disabled-color);
-    pointer-events: none;
-    background-color: var(--bs-btn-disabled-bg);
-    border-color: var(--bs-btn-disabled-border-color);
-    opacity: var(--bs-btn-disabled-opacity);
-    font-size: 20px;
-    border-radius: 10px;
-    border-radius: 10px;
-}
-
-.btn:not(:disabled):not(.disabled){
+    color: whitesmoke;
+    /* pointer-events: none; */
+    background-color: green;
+    /* border-color: var(--bs-btn-disabled-border-color); */
+    /* opacity: var(--bs-btn-disabled-opacity); */
+    font-size: 12px;
+    border-radius: 5px;
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+  
+  .btn:not(:disabled):not(.disabled){
     cursor: pointer;
-    padding-right: 27px;
-    padding-left: 27px;
-    font-size: 20px;
-    border-radius: 10px;
-}
+    padding-right: 22px;
+    padding-left: 22px;
+    font-size: 12px;
+    border-radius: 4px;
+    background-color: rgb(69 123 28);
+    color: whitesmoke;
+    /* padding-bottom: 2px; */
+  
+  }
+  
 
 
   .form-control{
-    display: block;
-    width: 100%;
-    padding: 2.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: bolder;
-    line-height: 1.5;
-    color: var(--bs-body-color);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: var(--bs-body-bg);
-    background-clip: padding-box;
-    border: var(--bs-border-width) solid var(--bs-border-color);
-    border-radius: var(--bs-border-radius);
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      font-weight: bolder;
+      
+      color: black;
+     
+      border: var(--bs-border-width) solid var(--bs-border-color);
+      border-radius: var(--bs-border-radius);
+    
+}
+select.form-control:not([size]):not([multiple]) {
+  height: 39px;
+}
+.page-border {
+  margin-top: 92px;
+  width: 84%;
+  border: 1px solid skyblue;
+  border-radius: 26px;
+  padding: 20px; /* Adjust the padding as needed */
+  margin-left: 208px;
 }

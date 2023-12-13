@@ -39,10 +39,11 @@ import { ProjectComponent } from './components/project/project.component';
 import { ChildComponent } from './components/child/child.component';
 import { TaskComponent } from './components/task/task.component';
 import { ListComponent } from './components/list/list.component';
-import { UpdateParentTaskComponent } from './components/update-parent-task/update-parent-task.component';
-import { UpdateProjectComponent } from './components/update-project/update-project.component';
+
 import { ProjectHeaderComponent } from './components/project-header/project-header.component';
-import { SendemailforgotpasswordComponent } from './components/sendemailforgotpassword/sendemailforgotpassword.component';
+import { UpdateProjectComponent } from './components/update-project/update-project.component';
+import { UpdateParentTaskComponent } from './components/update-parent-task/update-parent-task.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
   //import {FormControl} from '@angular/forms'
 
 
@@ -70,11 +71,13 @@ import { SendemailforgotpasswordComponent } from './components/sendemailforgotpa
     ChildComponent,
     TaskComponent,
     ListComponent,
-    UpdateParentTaskComponent,
-    UpdateProjectComponent,
+    
     
     ProjectHeaderComponent,
-    SendemailforgotpasswordComponent,
+                UpdateProjectComponent,
+                UpdateParentTaskComponent,
+                NotfoundComponent,
+  
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<<div class="bootstrap-wrapper">
+<div class="bootstrap-wrapper">
   <div class="container mt">
     <div class="row">
       <div class="col-md-6 offset-md-3">
@@ -8,9 +8,9 @@
 
         <h1 class="text-center">Login here !! </h1>
 
+        <!-- creating form -->
 
-
-        <div *ngIf="hideLoginForm">
+        <div>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
 
             <div class="container-fluid mt-5">
@@ -18,11 +18,14 @@
 
               <mat-form-field class="full-width" appearance="outline">
 
-                <mat-label><span class="bi bi-envelope"> Email Id </span></mat-label>
-                <input name="email" formControlName="email" id="email" type="email" matInput name="email" value=""
-                  autocomplete="username">
-
-
+              <mat-label><span class="bi bi-envelope"> Email Id </span> </mat-label>
+                <input name="email" 
+                formControlName="email" 
+                id="email" type="email"
+                matInput name="email" 
+                value="" 
+                autocomplete="username"
+                (focus)="clearError()">
               </mat-form-field>
 
 
@@ -39,8 +42,14 @@
 
               <mat-form-field class="full-width" appearance="outline">
                 <mat-label> <span class="bi bi-lock"> Password</span> </mat-label>
-                <input name="password" formControlName="password" type="password" matInput name="password" value=""
-                  autocomplete="current-password">
+                <input name="password"
+                 formControlName="password" 
+                 type="password"
+                  matInput 
+                  name="password" 
+                  value="" 
+                  autocomplete="current-password"
+                  (focus)="clearError()">
               </mat-form-field>
 
               <small class="red-color-password">
@@ -56,43 +65,19 @@
 
               <div class="container text-center">
 
-                <button class="bi bi-person mt-1" type="submit" mat-raised-button color="primary" routerLink=""
-                  [disabled]="loginForm.invalid">Send OTP</button>
+                <button class="bi bi-person mt-1" type="submit" mat-raised-button color="primary"  routerLink=""
+                  [disabled]="loginForm.invalid">Login</button>
 
                 <button class="mt-1" mat-raised-button color="warn" style="margin-left: 10px;"
-                  routerLinkActive="active-link" routerLink="/send-email">Forgot Password
+                  routerLinkActive="active-link" routerLink="/forgot-password">Forgot Password
                 </button>
 
               </div>
             </div>
-
           </form><br><br>
-
         </div>
-        <div *ngIf="otpSubmitted" class="container text-center mt-3">
-
-          <form action="" [formGroup]="otpForm" (ngSubmit)="verifyOTP()">
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label><span class="bi bi-key"> Verify OTP</span></mat-label>
-              <input formControlName="verifyOTP" type="text" matInput placeholder="Enter OTP">
-            </mat-form-field>
-            <small class="red-color-password">
-              <div class="text-height" *ngIf="VerifyOTP.errors?.['required'] && VerifyOTP.touched && VerifyOTP.invalid">
-                Verification OTP is required.
-              </div>
-              <div class="text-height" *ngIf="VerifyOTP.errors?.['pattern']">
-                Please enter a valid 6-digit OTP.
-              </div>
-            </small>
-            <button class="bi bi-person mt-1 check-submit" type="submit" mat-raised-button color="primary" routerLink=""
-              [disabled]="otpForm.invalid">Submit</button>
-            &nbsp;
-
-          </form>
-          <button class="bi bi-person mt-1 check" type="submit" mat-raised-button color="primary" routerLink=""
-            (click)="resendOTP()">Resend OTP</button>
-        </div>
+        <!-- <a routerLink="/register" class="register">Register user</a> -->
       </div>
-    </div>
-
+        </div>
+     
   </div>
