@@ -18,31 +18,44 @@ import { LoginServiceService } from 'src/app/services/login-service.service';
 export class ForgotPasswordComponent implements OnInit {
 
 
-  constructor(private service: LoginServiceService,
-    private fb: FormBuilder, private route: ActivatedRoute, private passwordservice: ForgotpasswordService) {
-  }
-  token: string = ''
+  token: string = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private passwordservice: ForgotpasswordService
+  ) {}
+
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.token = params['token'];
       console.log('Token from URL:', this.token);
-    })
+    });
   }
 
-
   public forgotPasswordForm = this.fb.group({
-    password: this.fb.control('', [Validators.required, Validators.pattern(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)]),
+    password: this.fb.control('', [Validators.required]),
+    confirmPassword: this.fb.control('', [Validators.required])
   });
 
   get Password(): FormControl {
-    return this.forgotPasswordForm.get("password") as FormControl;
+    return this.forgotPasswordForm.get('password') as FormControl;
   }
-  submitForm() {
-    console.log(this.forgotPasswordForm.value.password);
-    // if (this.forgotPasswordForm.valid) {
 
+  get ConfirmPassword(): FormControl {
+    return this.forgotPasswordForm.get('confirmPassword') as FormControl;
+  }
+
+  confirmPasswordMismatch(): boolean {
+    const password = this.forgotPasswordForm.get('password')?.value;
+    const confirmPassword = this.forgotPasswordForm.get('confirmPassword')?.value;
+    return password !== confirmPassword && this.forgotPasswordForm.dirty;
+  }
+
+  submitForm() {
+    if (this.forgotPasswordForm.valid && !this.confirmPasswordMismatch()) {
       const password = this.forgotPasswordForm.value.password;
-      console.log('In Component '+this.token+' '+ password);
+      console.log('In Component ' + this.token + ' ' + password);
       this.passwordservice.sendPasswordDetails(this.token, password).subscribe(
         data => {
           console.log(data);
@@ -50,10 +63,10 @@ export class ForgotPasswordComponent implements OnInit {
         err => {
           console.log(err);
         }
-      )
+      );
     }
   }
-
+}
   // message() {
   //   alert("A password verification message has been sent to your email...")
   // }
