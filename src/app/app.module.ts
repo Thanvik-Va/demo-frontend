@@ -42,6 +42,7 @@ import { ListComponent } from './components/list/list.component';
 import { UpdateParentTaskComponent } from './components/update-parent-task/update-parent-task.component';
 import { UpdateProjectComponent } from './components/update-project/update-project.component';
 import { ProjectHeaderComponent } from './components/project-header/project-header.component';
+import { SendemailforgotpasswordComponent } from './components/sendemailforgotpassword/sendemailforgotpassword.component';
   //import {FormControl} from '@angular/forms'
 
 
@@ -73,7 +74,7 @@ import { ProjectHeaderComponent } from './components/project-header/project-head
     UpdateProjectComponent,
     
     ProjectHeaderComponent,
-  
+    SendemailforgotpasswordComponent,
   ],
   imports: [
     BrowserModule,
