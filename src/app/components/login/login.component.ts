@@ -14,104 +14,185 @@ import { OrgServiceService } from 'src/app/services/services/org-service.service
 export class LoginComponent {
 
 
+  // email: string = '';
+  // password: string = '';
+
+  // token!: string;
+  // statusCode: number | null = null;
+  // errorCode: number | null = null; /*  Represents the error code from the login response. */
+  // message: string | null = null;
+
+  // loginError: string | null = null; /* Stores the specific login error message if encountered. */
+
+
+  // //FormBuilder service used to building the login form  
+  // //Router-> for the navigation 
+  // constructor(private service: LoginServiceService, private orgService: OrgServiceService, private router: Router,
+  //   private fb: FormBuilder) { }
+
+
+  // public loginForm = this.fb.group({
+  //   email: this.fb.control('', [Validators.required, Validators.pattern(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)]),
+  //   password: this.fb.control('', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/)])
+  // });
+
+  // get Email(): FormControl {
+  //   return this.loginForm.get("email") as FormControl;
+  // }
+
+  // get Password(): FormControl {
+
+  //   return this.loginForm.get("password") as FormControl;
+  // }
+
+
+
+  // /* Receives form data
+  //  Invoke the login service using the provided data
+  //  Handle the login response and errors
+  //  Store the authenticaion token in local storage */
+
+  // onSubmit(data: any): void {
+  //   console.log(data);
+  //   this.service.login(data).subscribe(
+  //     (response) => {
+  //       console.log(response);
+         
+  //       if(response.statusCode==0){
+  //         this.token = response.data.token
+  //       }
+  //        this.errorCode = response.errorCode
+ 
+  //        this.message = response.message
+  //        this.statusCode = response.statusCode
+
+  //       localStorage.setItem('token', this.token);
+        
+  //       this.doNavigating();
+  //     },
+  //     (error) => {
+  //       console.log("This is error block");
+  //       console.log(error);
+       
+        
+
+  //     }
+  //   )
+   
+
+  // }
+
+  // /*Based on the recived response, navigate the user to
+  //  the appropriate page or display relevant error */
+  // doNavigating(): void {
+  //   if (this.statusCode == 0 && this.token != null) {
+  //     localStorage.setItem('token', this.token)
+  //     console.log(localStorage.getItem('token'));
+
+  //    //
+  //     //this.authServ.logIn();
+  //     this.service.isAuthenticated=true;
+
+  //     if(this.service.isAuthenticatedUser()){
+  //       this.router.navigate(['/layout']);
+  //     }
+  //     else{
+  //       this.router.navigate(['']);
+  //     }
+     
+  //   }
+  //   else {
+  //     switch (this.errorCode) {
+  //       case 8: this.loginError = "Authentication Error"; break;
+  //       case 9: this.loginError = "Bad credentials"; break;
+  //       case 10: this.loginError = "Password expired"; break;
+  //       case 11: this.loginError = "Account Expired"; break;
+  //       case 12: this.loginError = "Account De-activated"; break;
+  //       case 13: this.loginError = "Account Locked"; break;
+  //     }
+  //   }
+
+  // }
   email: string = '';
   password: string = '';
 
   token!: string;
   statusCode: number | null = null;
-  errorCode: number | null = null; /*  Represents the error code from the login response. */
+  errorCode: number | null = null;
   message: string | null = null;
+  loginError: string | null = null;
 
-  loginError: string | null = null; /* Stores the specific login error message if encountered. */
-
-
-  //FormBuilder service used to building the login form  
-  //Router-> for the navigation 
   constructor(private service: LoginServiceService, private orgService: OrgServiceService, private router: Router,
     private fb: FormBuilder) { }
 
-
   public loginForm = this.fb.group({
     email: this.fb.control('', [Validators.required, Validators.pattern(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)]),
-    password: this.fb.control('', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/)])
+    password: this.fb.control('', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/)]),
+    otp: this.fb.control('', [Validators.required, Validators.pattern(/^\d{6}$/)]),
   });
 
   get Email(): FormControl {
-    return this.loginForm.get("email") as FormControl;
+    return this.loginForm.get('email') as FormControl;
   }
 
   get Password(): FormControl {
-
-    return this.loginForm.get("password") as FormControl;
+    return this.loginForm.get('password') as FormControl;
   }
 
-
-
-  /* Receives form data
-   Invoke the login service using the provided data
-   Handle the login response and errors
-   Store the authenticaion token in local storage */
+  get OTP(): FormControl {
+    return this.loginForm.get('otp') as FormControl;
+  }
 
   onSubmit(data: any): void {
     console.log(data);
+
     this.service.login(data).subscribe(
       (response) => {
         console.log(response);
-         
-        if(response.statusCode==0){
-          this.token = response.data.token
+
+        if (response.statusCode === 0) {
+          this.token = response.data.token;
         }
-         this.errorCode = response.errorCode
- 
-         this.message = response.message
-         this.statusCode = response.statusCode
+
+        this.errorCode = response.errorCode;
+        this.message = response.message;
+        this.statusCode = response.statusCode;
 
         localStorage.setItem('token', this.token);
-        
+
         this.doNavigating();
       },
       (error) => {
-        console.log("This is error block");
+        console.log('This is error block');
         console.log(error);
-       
-        
-
       }
-    )
-   
-
+    );
   }
 
-  /*Based on the recived response, navigate the user to
-   the appropriate page or display relevant error */
   doNavigating(): void {
-    if (this.statusCode == 0 && this.token != null) {
-      localStorage.setItem('token', this.token)
+    if (this.statusCode === 0 && this.token != null) {
+      localStorage.setItem('token', this.token);
       console.log(localStorage.getItem('token'));
 
-     //
-      //this.authServ.logIn();
-      this.service.isAuthenticated=true;
+      this.service.isAuthenticated = true;
 
-      if(this.service.isAuthenticatedUser()){
+      if (this.service.isAuthenticatedUser()) {
+        // Enable OTP input only if login is successful
+        this.loginForm.get('otp')?.enable();
         this.router.navigate(['/layout']);
-      }
-      else{
+      } else {
         this.router.navigate(['']);
       }
-     
-    }
-    else {
+    } else {
       switch (this.errorCode) {
-        case 8: this.loginError = "Authentication Error"; break;
-        case 9: this.loginError = "Bad credentials"; break;
-        case 10: this.loginError = "Password expired"; break;
-        case 11: this.loginError = "Account Expired"; break;
-        case 12: this.loginError = "Account De-activated"; break;
-        case 13: this.loginError = "Account Locked"; break;
+        case 8: this.loginError = 'Authentication Error'; break;
+        case 9: this.loginError = 'Bad credentials'; break;
+        case 10: this.loginError = 'Password expired'; break;
+        case 11: this.loginError = 'Account Expired'; break;
+        case 12: this.loginError = 'Account De-activated'; break;
+        case 13: this.loginError = 'Account Locked'; break;
       }
     }
-
   }
 
 }
