@@ -61,5 +61,12 @@ export class LoginServiceService {
     }
     return this.http.get<User>(this.httpgetapi, httpoptions);
   }
+
+
+  // verify otp
+  public sendOtp(data: any): Observable<any> {
+    return this.http.get<any>(`http://localhost:8383/auth/otp-token?username=${localStorage.getItem('email')}&otp=${data}`);
+    
+  }
  
 }
