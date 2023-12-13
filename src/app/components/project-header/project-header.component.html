@@ -1,15 +1,9 @@
-<!-- <div class="page-border"> -->
-  <div class="b">
-    <div class="container-fluid set">
-      <header class="float-left d head">
-        <button class="bt" [ngClass]="{'highlight': isButtonActive('/layout/list'), 'fixedHighlight': isButtonActive('/layout/list')}" (click)="navigateTo('/layout/list')">List of Projects</button>
-        <button class="bt" [ngClass]="{'highlight': isButtonActive('/layout/project'), 'fixedHighlight': isButtonActive('/layout/project')}" (click)="navigateTo('/layout/project')">Create Project</button>
-        <button class="bt" [ngClass]="{'highlight': isButtonActive('/layout/task'), 'fixedHighlight': isButtonActive('/layout/task')}" (click)="navigateTo('/layout/task')">Create Task</button>
-      </header>
-    </div>
+<div class="page-border"> 
+<div class="container-fluid  set b">
+    <header class="float-left d head">
+      <button routerLink="/layout/list" class="bt " >List of Projects</button>
+      <button routerLink="/layout/project" class="bt" >Create Project</button>
+      <button routerLink="/layout/task" class=" bt" >Create Task</button>
+    </header>
   </div>
-
-<!-- <app-project-header></app-project-header> -->
-  <!-- Your component content goes here -->
-  <!-- <app-list></app-list> -->
- <!-- </div> -->
+</div>
