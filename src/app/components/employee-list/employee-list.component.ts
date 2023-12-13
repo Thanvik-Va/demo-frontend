@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import * as saveAs from 'file-saver';
 
- 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
@@ -58,7 +57,6 @@ public frmEdit = this.fb.group({
   this.frmEdit.reset();
 }
 
-
   ngOnInit(): void {
    this.getEmployees();
   }
@@ -82,9 +80,7 @@ Delete(id:number){
   this.employeeService.DeleteEmployee(id).subscribe((data:Employee)=>{
   this.employee = data;
   });
- this.employeeService.getEmployeeList().subscribe(data =>{
-    this.employees = data;
-  }); 
+  this.getEmployees();
 }
 
 save(){
