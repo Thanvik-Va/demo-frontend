@@ -1,17 +1,16 @@
- 
+<div class="page-border">
 
-<div class="page-border"> 
-    
- <div class="text-center ">
+    <div class="text-center ">
         <h1 class="main-heading">Organization Details </h1>
     </div>
 
     <div class="container mt-2">
-        <form [formGroup]="orgRegister" (ngSubmit)="collectForm()" >
+        <form [formGroup]="orgRegister" (ngSubmit)="collectForm()">
             <div class="row row-check m-2">
                 <div class="form-col-12 col-md-3 mt-1">
                     <label class="form-label">Organization Name*</label>
-                    <input type="text" class="form-control" id="inputOragnizationName" placeholder="Enter Organization Name" formControlName="organizationName" [ngModel]="organization.organizationName" />
+                    <input type="text" class="form-control" id="inputOragnizationName"
+                        placeholder="Enter Organization Name" formControlName="organizationName" />
                     <div *ngIf="OrganizationName.touched && OrganizationName.invalid" class="text-danger">
                         <div *ngIf="OrganizationName.errors?.['required']">Please enter Organization Name </div>
                     </div>
@@ -20,10 +19,9 @@
                 <div class="col-12 col-md-3">
                     <label class="form-label">Country*</label>
                     <select id="inputCountry" class="form-control" formControlName="countryName">
-                            <!-- <option value>{{organization.countryName}}</option> -->
-                            <option *ngFor="let country of countries"
-                                [value]="country">{{ country }} </option>
-                        </select>
+                        <!-- <option value>{{organization.countryName}}</option> -->
+                        <option *ngFor="let country of countries" [value]="country">{{ country }} </option>
+                    </select>
                     <div *ngIf="Country.touched && Country.invalid" class="text-danger">
                         <div *ngIf="Country.errors?.['required']"> Please Select Country</div>
                     </div>
@@ -33,10 +31,9 @@
                     <div>
                         <label for="inputState" class="form-label">State*</label>
                         <select id="inputState" class="form-control" formControlName="stateName">
-                                <!-- <option value>{{organization.stateName}}</option> -->
-                                <option *ngFor="let state of states"
-                                    [value]="state">{{ state }}</option>
-                            </select>
+                            <!-- <option value>{{organization.stateName}}</option> -->
+                            <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                        </select>
                         <div *ngIf="State.touched && State.invalid" class="text-danger">
                             <div *ngIf="State.errors?.['required']"> Please select State
                             </div>
@@ -45,7 +42,7 @@
                 </div>
                 <div class="col-12 col-md-3">
                     <label for="inputZip" class="form-label">Pincode*</label>
-                    <input type="text" class="form-control" id="inputZip" formControlName="zipCode" [ngModel]="organization.zipCode" />
+                    <input type="text" class="form-control" id="inputZip" formControlName="zipCode" />
                     <div *ngIf="Pincode.touched && Pincode.invalid" class="text-danger">
                         <div *ngIf="Pincode.errors?.['required']">Please enter Pincode</div>
                         <div *ngIf="Pincode.errors?.['minlength']">Please enter Valid Pincode </div>
@@ -56,14 +53,16 @@
             <div class="row row-check m-3">
                 <div class="col-12 col-md-3">
                     <label for="inputAddress" class="form-label">Address 1*</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" formControlName="addressLine1" [ngModel]="organization.addressLine1" />
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+                        formControlName="addressLine1" />
                     <div *ngIf="Address1.touched && Address1.invalid" class="text-danger">
                         <div *ngIf="Address1.errors?.['required']">Please enter Permanent Address </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-3">
                     <label for="inputAddress2" class="form-label">Address 2*</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" formControlName="addressLine2" [ngModel]="organization.addressLine2" />
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"
+                        formControlName="addressLine2" />
                     <div *ngIf="Address2.touched && Address2.invalid" class="text-danger">
                         <div *ngIf="Address2.errors?.['required']">Please enter temporary Address
                         </div>
@@ -71,7 +70,8 @@
                 </div>
                 <div class="col-12 col-md-3">
                     <label class="form-label">MobileNumber*</label>
-                    <input type="text" class="form-control" id="inputMobileNumber" placeholder="+910000000000" formControlName="contact" [ngModel]="organization.contact" />
+                    <input type="text" class="form-control" id="inputMobileNumber" placeholder="+910000000000"
+                        formControlName="contact" />
                     <div *ngIf="MobileNumber.touched && MobileNumber.invalid" class="text-danger">
                         <div *ngIf="MobileNumber.errors?.['required']">Please enter Mobile Number
                         </div>
@@ -82,13 +82,11 @@
             </div>
             <br />
             <!-- <button class="btn btn-btn btn-temp" type="submit" [disabled]="orgRegister.invalid">Update</button> -->
-           <!-- Rest of your form -->
-<button class="btn btn-temp"
-type="submit"
-[disabled]="orgRegister.invalid"
-[ngClass]="{ 'btn-invalid': orgRegister.invalid, 'btn-valid': !orgRegister.invalid }">
-Update
-</button>
+            <!-- Rest of your form -->
+            <button class="btn btn-temp" type="submit" [disabled]="orgRegister.invalid"
+                [ngClass]="{ 'btn-valid': !orgRegister.invalid, 'btn-invalid':orgRegister.invalid }">
+                Update
+            </button>
 
         </form>
     </div>
@@ -108,8 +106,8 @@ Update
                     <th scope="col">Bp State</th>
                     <th scope="col">Bp Contact</th>
                     <th scope="col">Bp Pincode</th>
-                
-                    <th scope="col">   Actions</th>
+
+                    <th scope="col"> Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -121,8 +119,9 @@ Update
                     <td>{{ businessPlace.stateName }}</td>
                     <td>{{ businessPlace.businessPlaceContact }}</td>
                     <td>{{ businessPlace.businessPlaceZipCode }}</td>
-                    <td >
-                        <button  (click)="editBusinessPlace(businessPlace)" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter" >Edit</button>&nbsp;
+                    <td>
+                        <button (click)="editBusinessPlace(businessPlace)" class="btn btn-dark" data-toggle="modal"
+                            data-target="#exampleModalCenter">Edit</button>&nbsp;
                         <button (click)="deleteBusinessPlace(businessPlace)" class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
@@ -131,7 +130,8 @@ Update
     </div>
     <!-- Modal -->
     <form action [formGroup]="bpRegister" (ngSubmit)="onSubmit()">
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -146,8 +146,10 @@ Update
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="form-label">Bp Legal Name</label>
-                                <input type="text" class="form-control" placeholder="Ex:Hyderabad" formControlName="businessPlaceLegalName" />
-                                <div *ngIf=" businessPlaceLegalName.touched && businessPlaceLegalName.invalid" class="text-danger">
+                                <input type="text" class="form-control" placeholder="Ex:Hyderabad"
+                                    formControlName="businessPlaceLegalName" />
+                                <div *ngIf=" businessPlaceLegalName.touched && businessPlaceLegalName.invalid"
+                                    class="text-danger">
                                     <div *ngIf="businessPlaceLegalName.errors?.['required']" class="text-danger">
                                         *Bp Legal Name required
                                     </div>
@@ -155,8 +157,10 @@ Update
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="form-label">Location</label>
-                                <input type="text" class="form-control" placeholder="Ex:-1234, Beside Jntuh" formControlName="businessPlaceLocation" />
-                                <div *ngIf="businessPlaceLocation.touched &&businessPlaceLocation.invalid " class="text-danger">
+                                <input type="text" class="form-control" placeholder="Ex:-1234, Beside Jntuh"
+                                    formControlName="businessPlaceLocation" />
+                                <div *ngIf="businessPlaceLocation.touched &&businessPlaceLocation.invalid "
+                                    class="text-danger">
                                     <div *ngIf="businessPlaceLocation.errors?.['required']" class="text-danger">
                                         *Location required
                                     </div>
@@ -166,8 +170,10 @@ Update
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="form-label">Mobile Number</label>
-                                <input type="tel" class="form-control" placeholder="Ex:- +919542458692" formControlName="businessPlaceContact" />
-                                <div *ngIf="businessPlaceContact.touched &&businessPlaceContact.invalid" class="text-danger">
+                                <input type="tel" class="form-control" placeholder="Ex:- +919542458692"
+                                    formControlName="businessPlaceContact" />
+                                <div *ngIf="businessPlaceContact.touched &&businessPlaceContact.invalid"
+                                    class="text-danger">
                                     <div *ngIf="businessPlaceContact.errors?.['required']">
                                         *Mobile Number required
                                     </div>
@@ -178,8 +184,10 @@ Update
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="form-label">Pincode</label>
-                                <input type="number" class="form-control" placeholder="Ex:- 5000100" formControlName="businessPlaceZipCode" />
-                                <div *ngIf="businessPlaceZipCode.touched &&businessPlaceZipCode.invalid" class="text-danger">
+                                <input type="number" class="form-control" placeholder="Ex:- 5000100"
+                                    formControlName="businessPlaceZipCode" />
+                                <div *ngIf="businessPlaceZipCode.touched &&businessPlaceZipCode.invalid"
+                                    class="text-danger">
                                     <div *ngIf="businessPlaceZipCode.errors?.['required']" class="text-danger">
                                         * PinCode required
                                     </div>
@@ -190,11 +198,10 @@ Update
                             <div class="form-group col-md-6">
                                 <label class="form-label">Country</label>
                                 <select id="inputCountry" class="form-control" formControlName="countryName">
-                                        <!-- <option value>{{organization.countryName}}</option> -->
-                                        <option
-                                            *ngFor="let country of countries"
-                                            [value]="country">{{ country }}</option>
-                                    </select>
+                                    <!-- <option value>{{organization.countryName}}</option> -->
+                                    <option value="" disabled selected>Select country</option>
+                                    <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+                                </select>
                                 <div *ngIf="countryName.touched && countryName.invalid" class="text-danger">
                                     <div *ngIf="countryName.errors?.['required']" class="text-danger">
                                         *Country required
@@ -205,10 +212,10 @@ Update
                             <div class="form-group col-md-6">
                                 <label>State</label>
                                 <select id="inputState" class="form-control" formControlName="stateName">
-                                        <option value>{{organization.stateName}}</option>
-                                        <option *ngFor="let state of states"
-                                            [value]="state">{{ state }}</option>
-                                    </select>
+                                    <option value="" disabled selected>Select state</option>
+
+                                    <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                                </select>
                                 <div *ngIf="stateName.touched && stateName.invalid" class="text-danger">
                                     <div *ngIf="stateName.errors?.['required']" class="text-danger">
                                         *State required
@@ -218,8 +225,9 @@ Update
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary"  (click)="close()" data-dismiss="modal">Close</button>
-                        <button mat-raised-button type="submit" class="btn"  [disabled]="bpRegister.invalid" color="warn">
+                        <button class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
+                        <button mat-raised-button type="submit" class="btn" [disabled]="bpRegister.invalid"
+                            color="warn">
                             {{ isEditMode ? 'Update' : 'Save' }}
                         </button>
                     </div>
@@ -229,6 +237,3 @@ Update
     </form>
 
 </div>
- 
-
- 

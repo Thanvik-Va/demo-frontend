@@ -36,6 +36,9 @@ export class OrganizationComponent {
   orgId: any;
   organization: any = {}; // Use the correct type or interface if available
   isEditMode: boolean = false;
+  bpId:any;
+ 
+
 
   constructor(
     private fb: FormBuilder,
@@ -70,7 +73,7 @@ export class OrganizationComponent {
   }
 
   ngOnInit(): void {
-    this.orgId = localStorage.getItem('id');
+    this.orgId = localStorage.getItem('orgid');
     this.getOrganization(this.orgId);
   }
 
@@ -129,6 +132,18 @@ export class OrganizationComponent {
     }
   }
 
+  populateOrganizationForm() {
+    this.orgRegister.patchValue({
+      organizationName: this.organization.organizationName,
+      countryName: this.organization.countryName,
+      stateName: this.organization.stateName,
+      zipCode: this.organization.zipCode,
+      addressLine1: this.organization.addressLine1,
+      addressLine2: this.organization.addressLine2,
+      contact: this.organization.contact,
+    });
+  }
+
   editBusinessPlace(businessPlace: any) {
     this.isEditMode = true;
 
@@ -141,17 +156,21 @@ export class OrganizationComponent {
       countryName: businessPlace.countryName,
       stateName: businessPlace.stateName,
     });
+    this.bpId=businessPlace.businessPlaceId;
+    console.log(this.bpId)
   }
+
+ 
 
   onSubmit() {
     if (this.bpRegister.valid) {
       const businessPlaceData = this.bpRegister.value;
-      const existingBusinessPlace = this.organization.businessPlaces.find(
-              (bp: any) => bp.businessPlaceLegalName === businessPlaceData.businessPlaceLegalName);
-              console.log(existingBusinessPlace)
+      // const existingBusinessPlace = this.organization.businessPlaces.find(
+      //         (bp: any) => bp.businessPlaceLegalNam === businessPlaceData.businessPlaceLegalName);
+      //         console.log(existingBusinessPlace)
       if (this.isEditMode) {
         this.orgService
-          .updateBusinessPlace(existingBusinessPlace.businessPlaceId, businessPlaceData)
+          .updateBusinessPlace(this.bpId, businessPlaceData)
           .subscribe((response) => {
             this.handleResponse(response);
           });
@@ -178,6 +197,8 @@ export class OrganizationComponent {
   getOrganization(id: any) {
     this.orgService.getOrganization(id).subscribe((response) => {
       this.organization = response.response.data;
+      this.populateOrganizationForm();
+    
     });
   }
 
@@ -199,9 +220,12 @@ export class OrganizationComponent {
   resetForms() {
     this.orgRegister.reset();
     this.bpRegister.reset();
-    // this.isEditMode = false;
+     this.isEditMode = false;
   }
 
   close() {
     this.resetForms();
+   this.isEditMode = false;
+   this.getOrganization(this.orgId);
+
   }}
