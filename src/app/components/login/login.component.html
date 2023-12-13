@@ -1,4 +1,4 @@
-<!-- <div class="bootstrap-wrapper">
+<<div class="bootstrap-wrapper">
   <div class="container mt">
     <div class="row">
       <div class="col-md-6 offset-md-3">
@@ -8,9 +8,9 @@
 
         <h1 class="text-center">Login here !! </h1>
 
- 
 
-        <div>
+
+        <div *ngIf="hideLoginForm">
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
 
             <div class="container-fluid mt-5">
@@ -19,7 +19,8 @@
               <mat-form-field class="full-width" appearance="outline">
 
                 <mat-label><span class="bi bi-envelope"> Email Id </span></mat-label>
-                <input name="email" formControlName="email" id="email" type="email" matInput name="email" value="" autocomplete="username">
+                <input name="email" formControlName="email" id="email" type="email" matInput name="email" value=""
+                  autocomplete="username">
 
 
               </mat-form-field>
@@ -38,7 +39,8 @@
 
               <mat-form-field class="full-width" appearance="outline">
                 <mat-label> <span class="bi bi-lock"> Password</span> </mat-label>
-                <input name="password" formControlName="password" type="password" matInput name="password" value="" autocomplete="current-password">
+                <input name="password" formControlName="password" type="password" matInput name="password" value=""
+                  autocomplete="current-password">
               </mat-form-field>
 
               <small class="red-color-password">
@@ -54,8 +56,8 @@
 
               <div class="container text-center">
 
-                <button class="bi bi-person mt-1" type="submit" mat-raised-button color="primary"  routerLink=""
-                  [disabled]="loginForm.invalid">Login</button>
+                <button class="bi bi-person mt-1" type="submit" mat-raised-button color="primary" routerLink=""
+                  [disabled]="loginForm.invalid">Send OTP</button>
 
                 <button class="mt-1" mat-raised-button color="warn" style="margin-left: 10px;"
                   routerLinkActive="active-link" routerLink="/send-email">Forgot Password
@@ -63,85 +65,34 @@
 
               </div>
             </div>
+
           </form><br><br>
+
         </div>
-   
-      </div>
-        </div>
-     
-  </div> -->
-  <div class="bootstrap-wrapper">
-    <div class="container mt">
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <div class="container text-center">
-            <img class="img-fluid" style="width: 100px;" src="/assets/password.png.png" alt="">
-          </div>
-  
-          <h1 class="text-center">Login here !! </h1>
-  
-          <div>
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-  
-              <div class="container-fluid mt-5">
-  
-                <mat-form-field class="full-width" appearance="outline">
-                  <mat-label><span class="bi bi-envelope"> Email Id </span></mat-label>
-                  <input name="email" formControlName="email" id="email" type="email" matInput name="email" value="" autocomplete="username">
-                </mat-form-field>
-  
-                <small class="red-color-password">
-                  <div class="text-height" *ngIf="Email.errors?.['required'] && Email.touched && Email.invalid">
-                    Email is required.
-                  </div>
-                  <div class="text-height" *ngIf="Email.errors?.['pattern']">
-                    Please enter a valid email address like abc&#64;gmail.com
-                  </div>
-                </small>
-  
-                <br>
-  
-                <mat-form-field class="full-width" appearance="outline">
-                  <mat-label> <span class="bi bi-lock"> Password</span> </mat-label>
-                  <input name="password" formControlName="password" type="password" matInput name="password" value="" autocomplete="current-password">
-                </mat-form-field>
-  
-                <small class="red-color-password">
-                  <div class="text-height" *ngIf="Password.errors?.['required'] && Password.touched && Password.invalid">
-                    Password is required.
-                  </div>
-                </small>
-  
-                <h3>
-                  <div *ngIf="loginError" class="error-block">{{ loginError }}</div>
-                </h3>
-  
-                <div class="container text-center">
-                  <button class="bi bi-person mt-1" type="submit" mat-raised-button color="primary" routerLink="" [disabled]="loginForm.invalid">Login</button>
-                  <button class="mt-1" mat-raised-button color="warn" style="margin-left: 10px;" routerLinkActive="active-link" routerLink="/send-email">Forgot Password</button>
-                </div>
-  
-                <!-- Add the OTP input field -->
-                <div *ngIf="statusCode === 0 && token" class="container text-center mt-3">
-                  <mat-form-field class="full-width" appearance="outline">
-                    <mat-label><span class="bi bi-key"> OTP</span></mat-label>
-                    <input formControlName="otp" type="text" matInput [disabled]="!token" placeholder="Enter OTP">
-                  </mat-form-field>
-                  <small class="red-color-password">
-                    <div class="text-height" *ngIf="OTP.errors?.['required'] && OTP.touched && OTP.invalid">
-                      OTP is required.
-                    </div>
-                    <div class="text-height" *ngIf="OTP.errors?.['pattern']">
-                      Please enter a valid 6-digit OTP.
-                    </div>
-                  </small>
-                </div>
-  
+        <div *ngIf="otpSubmitted" class="container text-center mt-3">
+
+          <form action="" [formGroup]="otpForm" (ngSubmit)="verifyOTP()">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label><span class="bi bi-key"> Verify OTP</span></mat-label>
+              <input formControlName="verifyOTP" type="text" matInput placeholder="Enter OTP">
+            </mat-form-field>
+            <small class="red-color-password">
+              <div class="text-height" *ngIf="VerifyOTP.errors?.['required'] && VerifyOTP.touched && VerifyOTP.invalid">
+                Verification OTP is required.
               </div>
-            </form><br><br>
-          </div>
+              <div class="text-height" *ngIf="VerifyOTP.errors?.['pattern']">
+                Please enter a valid 6-digit OTP.
+              </div>
+            </small>
+            <button class="bi bi-person mt-1 check-submit" type="submit" mat-raised-button color="primary" routerLink=""
+              [disabled]="otpForm.invalid">Submit</button>
+            &nbsp;
+
+          </form>
+          <button class="bi bi-person mt-1 check" type="submit" mat-raised-button color="primary" routerLink=""
+            (click)="resendOTP()">Resend OTP</button>
         </div>
       </div>
     </div>
+
   </div>
-  
