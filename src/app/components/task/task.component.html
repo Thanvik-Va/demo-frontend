@@ -1,7 +1,7 @@
 <app-project-header></app-project-header>
 <div class="page-border"> 
 <div class="container">
-    <form [formGroup]="taskForm" (ngSubmit)="taskSubmit()">
+    <form [formGroup]="taskForm" (ngSubmit)="taskSubmit($event)">
         <h2 class="h2 text-center text-primary">Create Task</h2>
         <div class="row m-2" >
           <div class="col-md-4">
