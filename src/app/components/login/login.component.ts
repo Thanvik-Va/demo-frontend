@@ -149,7 +149,7 @@ export class LoginComponent {
       this.service.isAuthenticated=true;
 
       if(this.service.isAuthenticatedUser()){
-        this.router.navigate(['/layout']);
+        this.router.navigate(['/layout/dashboard']);
       }
       else{
         this.router.navigate(['']);
