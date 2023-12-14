@@ -1,198 +1,129 @@
-<!-- <div class="container dd">
-  <h2 class="h2 text-center text-danger">Update Project</h2>
-
-  <div *ngIf="projectDetails">
-    <div class="row m-2">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="projectName">Project Name</label>
-          <input type="text" id="projectName" class="form-control" [(ngModel)]="projectDetails.name" disabled>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="projectType">Project Type</label>
-          <input type="text" id="projectType" class="form-control" [(ngModel)]="projectDetails.type" required>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="projectDescription">Project Description</label>
-          <input type="text" id="projectDescription" class="form-control" [(ngModel)]="projectDetails.description" required>
-        </div>
-      </div>
-    </div>
-    <div class="row m-2">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="projectDescription">Status</label>
-          <input type="text" id="projectDescription" class="form-control" [(ngModel)]="projectDetails.status" required>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="projectType">Start Date</label>
-          <input type="date" id="projectType" class="form-control" [(ngModel)]="projectDetails.startDate" required>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="projectDescription">End Date</label>
-          <input type="date" id="projectDescription" class="form-control" [(ngModel)]="projectDetails.endDate" required>
-        </div>
-      </div>
-    </div>
-
-    <div class="row m-2">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="projectName">Hours</label>
-          <input type="text" id="projectName" class="form-control" [(ngModel)]="projectDetails.hours" >
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="assignee">Lead</label>
-          <input type="text" id="assignee" class="form-control" [(ngModel)]="projectDetails.assignee" required>
-        </div>
-      </div>
-    </div>
-
-
-    
-
-    <div class="form-group d-flex justify-content-center">
-      <button type="button" class="btn btn-danger m-4" (click)="navigateBackToList()">Back</button>
-      <button type="button" class="btn btn-primary m-4" (click)="updateProject(projectDetails)">Update Project</button>
-    </div>
-  </div>
-</div> -->
 <div class="page-border">
-<app-project-header></app-project-header>
-<div class="container mt-5" >
-    <h2 class="mb-4 text-center text-primary">{{ projectName ? 'Edit Project' : 'Create Project' }}</h2>
-  
-    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" [ngClass]="{'was-validated': projectForm.invalid && projectForm.touched}" >
-      <div class="row">
-  
-  
-        <!-- <div class="col-md-4">
-          <div class="form-group">
-            <label for="projectId">Parent Project:</label>
-            <select class="form-control" formControlName="projectId" id="parentProjectId" (change)="onSelectParentProject()">
-              <option value='' >Select Project</option>
-              <option *ngFor="let project of projectOptions" [value]="project.id">{{ project.name}}</option>
-            </select>
-          </div>
-        </div> -->
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="lead">Lead:</label>
-            <select id="lead" formControlName="assignee" class="form-control" [ngClass]="{'is-invalid': assignee?.invalid && (assignee?.dirty || assignee?.touched)}" required>
-              <option [ngValue]="null">Select a Lead</option>
-              <option *ngFor="let option of employee" [ngValue]="option.email_id">{{ option.email_id }}</option>
-            </select>
-            <div *ngIf="assignee?.invalid && (assignee?.dirty || assignee?.touched)" class="invalid-feedback">
-              Lead is required.
+  <app-project-header></app-project-header>
+  <div class="container mt-5" >
+      <h2 class="mb-4 text-center text-primary">{{ projectName ? 'Edit Project' : 'Create Project' }}</h2>
+    
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" [ngClass]="{'was-validated': projectForm.invalid && projectForm.touched}" >
+        <div class="row">
+    
+    
+          <!-- <div class="col-md-4">
+            <div class="form-group">
+              <label for="projectId">Parent Project:</label>
+              <select class="form-control" formControlName="projectId" id="parentProjectId" (change)="onSelectParentProject()">
+                <option value='' >Select Project</option>
+                <option *ngFor="let project of projectOptions" [value]="project.id">{{ project.name}}</option>
+              </select>
+            </div>
+          </div> -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="lead">Lead:</label>
+              <select id="lead" formControlName="assignee" class="form-control" [ngClass]="{'is-invalid': assignee?.invalid && (assignee?.dirty || assignee?.touched)}" required>
+                <option [ngValue]="null">Select a Lead</option>
+                <option *ngFor="let option of employee" [ngValue]="option.email_id">{{ option.email_id }}</option>
+              </select>
+              <div *ngIf="assignee?.invalid && (assignee?.dirty || assignee?.touched)" class="invalid-feedback">
+                Lead is required.
+              </div>
             </div>
           </div>
-        </div>
-  
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" formControlName="name" class="form-control rounded-0" [ngClass]="{'is-invalid': name?.invalid && (name?.dirty || name?.touched)}" required  />
-            <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="invalid-feedback">
-              Name is required.
+    
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" formControlName="name" class="form-control rounded-0" [ngClass]="{'is-invalid': name?.invalid && (name?.dirty || name?.touched)}" required  />
+              <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="invalid-feedback">
+                Name is required.
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="status">Status:</label>
-            <select id="status" formControlName="status" class="form-control" [ngClass]="{'is-invalid': status?.invalid && (status?.dirty || status?.touched)}" required>
-              <option [ngValue]="null">Select a Status</option>
-              <option *ngFor="let option of statusOptions" [ngValue]="option">{{ option }}</option>
-            </select>
-            <div [ngClass]="{'is-invalid': status?.invalid && (status?.dirty || status?.touched)}" required>
-              <div *ngIf="status?.invalid && (status?.dirty || status?.touched)" class="invalid-feedback">
-                Status is required.
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="status">Status:</label>
+              <select id="status" formControlName="status" class="form-control" [ngClass]="{'is-invalid': status?.invalid && (status?.dirty || status?.touched)}" required>
+                <option [ngValue]="null">Select a Status</option>
+                <option *ngFor="let option of statusOptions" [ngValue]="option">{{ option }}</option>
+              </select>
+              <div [ngClass]="{'is-invalid': status?.invalid && (status?.dirty || status?.touched)}" required>
+                <div *ngIf="status?.invalid && (status?.dirty || status?.touched)" class="invalid-feedback">
+                  Status is required.
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-  
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="type">Type:</label>
-            <input type="text" id="type" formControlName="type" class="form-control rounded-0" [ngClass]="{'is-invalid': type?.invalid && (type?.dirty || type?.touched)}" required />
-            <div *ngIf="type?.invalid && (type?.dirty || type?.touched)" class="invalid-feedback">
-              Type is required.
+    
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="type">Type:</label>
+              <input type="text" id="type" formControlName="type" class="form-control rounded-0" [ngClass]="{'is-invalid': type?.invalid && (type?.dirty || type?.touched)}" required />
+              <div *ngIf="type?.invalid && (type?.dirty || type?.touched)" class="invalid-feedback">
+                Type is required.
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea id="description" formControlName="description" class="form-control rounded-0" [ngClass]="{'is-invalid': description?.invalid && (description?.dirty || description?.touched)}" required></textarea>
+              <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="invalid-feedback">
+                Description is required.
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="hours">Hours:</label>
+              <input type="number" id="hours" formControlName="hours" class="form-control rounded-0" [ngClass]="{'is-invalid': hours?.invalid && (hours?.dirty || hours?.touched)}" required />
+              <div *ngIf="hours?.invalid && (hours?.dirty || hours?.touched)" class="invalid-feedback">
+                Hours is required.
+              </div>
             </div>
           </div>
         </div>
-  
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea id="description" formControlName="description" class="form-control rounded-0" [ngClass]="{'is-invalid': description?.invalid && (description?.dirty || description?.touched)}" required></textarea>
-            <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="invalid-feedback">
-              Description is required.
+    
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="startDate">Start Date:</label>
+              <input type="date" id="startDate" formControlName="startDate" class="form-control rounded-0" [ngClass]="{'is-invalid': startDate?.invalid && (startDate?.dirty || startDate?.touched)}" required />
+              <div *ngIf="startDate?.invalid && (startDate?.dirty || startDate?.touched)" class="invalid-feedback">
+                Start Date is required.
+              </div>
             </div>
           </div>
-        </div>
-  
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="hours">Hours:</label>
-            <input type="number" id="hours" formControlName="hours" class="form-control rounded-0" [ngClass]="{'is-invalid': hours?.invalid && (hours?.dirty || hours?.touched)}" required />
-            <div *ngIf="hours?.invalid && (hours?.dirty || hours?.touched)" class="invalid-feedback">
-              Hours is required.
+    
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="endDate">End Date:</label>
+              <input type="date" id="endDate" formControlName="endDate" class="form-control rounded-0" [ngClass]="{'is-invalid': endDate?.invalid && (endDate?.dirty || endDate?.touched)}" required />
+              <div *ngIf="endDate?.invalid && (endDate?.dirty || endDate?.touched)" class="invalid-feedback">
+                End Date is required.
+              </div>
             </div>
           </div>
+    
+         
         </div>
-      </div>
-  
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="startDate">Start Date:</label>
-            <input type="date" id="startDate" formControlName="startDate" class="form-control rounded-0" [ngClass]="{'is-invalid': startDate?.invalid && (startDate?.dirty || startDate?.touched)}" required />
-            <div *ngIf="startDate?.invalid && (startDate?.dirty || startDate?.touched)" class="invalid-feedback">
-              Start Date is required.
+    
+    
+        <div class="row mt-4">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="d-flex justify-content-between">
+              <button type="submit" class="bt  " [disabled]="projectForm.invalid" >{{ projectName ? 'Update Project' : 'Create Project' }}</button>
+              <!-- <button  *ngIf="!projectName"  class="btn btn-success rounded-0" [disabled]="projectForm.invalid" (click)="clickToChild()">Save & add Child Project</button> -->
+              <!-- <button *ngIf="!projectName" type="button"  class="btn btn-success rounded-0" [disabled]="projectForm.invalid" (click)="clickToTask()">Save & add task</button> -->
+              <!-- <button type="button" class="btn btn-success rounded-0" (click)="createChild()">Create Child for existing Project</button> -->
+              <!-- <button type="button" class="btn btn-success rounded-0" (click)="createTask()">Create Task</button> -->
             </div>
           </div>
-        </div>
-  
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="endDate">End Date:</label>
-            <input type="date" id="endDate" formControlName="endDate" class="form-control rounded-0" [ngClass]="{'is-invalid': endDate?.invalid && (endDate?.dirty || endDate?.touched)}" required />
-            <div *ngIf="endDate?.invalid && (endDate?.dirty || endDate?.touched)" class="invalid-feedback">
-              End Date is required.
-            </div>
           </div>
         </div>
-  
-       
-      </div>
-  
-  
-      <div class="row mt-4">
-        <div class="col-md-12">
-          <div class="form-group">
-            <div class="d-flex justify-content-between">
-            <button type="submit" class="bt  " [disabled]="projectForm.invalid" >{{ projectName ? 'Update Project' : 'Create Project' }}</button>
-            <!-- <button  *ngIf="!projectName"  class="btn btn-success rounded-0" [disabled]="projectForm.invalid" (click)="clickToChild()">Save & add Child Project</button> -->
-            <!-- <button *ngIf="!projectName" type="button"  class="btn btn-success rounded-0" [disabled]="projectForm.invalid" (click)="clickToTask()">Save & add task</button> -->
-            <!-- <button type="button" class="btn btn-success rounded-0" (click)="createChild()">Create Child for existing Project</button> -->
-            <!-- <button type="button" class="btn btn-success rounded-0" (click)="createTask()">Create Task</button> -->
-          </div>
-        </div>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>

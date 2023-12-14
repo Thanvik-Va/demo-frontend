@@ -1,25 +1,25 @@
 .page-border {
-    margin-top: 92px;
-    width: 84%;
-    border: 1px solid skyblue;
-    border-radius: 26px;
-    padding: 20px; /* Adjust the padding as needed */
-    margin-left: 208px;
-  }
-  .form-control{
-    font-weight: bold;
-  }
-  .bt{
-    border-radius: 5px;
-    background-color: rgb(69 123 28);
-    color: whitesmoke;
-  }
+  margin-top: 92px;
+  width: 84%;
+  border: 1px solid skyblue;
+  border-radius: 26px;
+  padding: 20px; /* Adjust the padding as needed */
+  margin-left: 208px;
+}
+.form-control{
+  font-weight: bold;
+}
+.bt{
+  border-radius: 5px;
+  background-color: rgb(69 123 28);
+  color: whitesmoke;
+}
 
-  
+
 
 
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
-    cursor: pointer;
-    padding: 5px;
-    border: none;
+  cursor: pointer;
+  padding: 5px;
+  border: none;
 }
