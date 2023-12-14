@@ -76,24 +76,24 @@
               <div *ngIf="frmEdit.controls.department.errors?.['required']">Department Required</div>
           </div>
             <dt>Role</dt>
-            <select type="text" class="form-control dropdown" formControlName="role" placeholder="Role"  style="height: 30px;" [(ngModel)]="Role">
+            <select type="text" class="form-control dropdown" formControlName="role"  style="height: 30px;" [(ngModel)]="Role">
               <option [ngValue]="null" disabled selected>Role</option>
               <option *ngFor="let r of Roles " [value]="r.id">
                 {{r.roles}}
               </option>
             </select>               
             <dt>Organization Name</dt>
-            <select type="text" class="form-control dropdown"  formControlName="org_name" placeholder="Organization" style="height: 30px;" id="org_name" >
+            <select type="text" class="form-control dropdown"  formControlName="org_name"  style="height: 30px;" id="org_name" >
               <option [ngValue]="null" disabled selected>Organization</option>
               <option>Incresol</option>
             </select>         
             <dt>Employee Type</dt>
-            <select type="text" class="form-control dropdown" formControlName="emp_type" placeholder="Employee Type" id="emp_type" style="height: 30px;" [(ngModel)]="Emptype">
+            <select type="text" class="form-control dropdown" formControlName="emp_type"  id="emp_type" style="height: 30px;" [(ngModel)]="Emptype">
               <option [ngValue]="null" disabled selected>Employee_Place</option>
               <option *ngFor="let t of EmpType " [value]="t.id">{{t.type}}</option>
             </select>          
             <dt>B_Place</dt>
-            <select type="text" class="form-control dropdown" formControlName="bp" id="bp" placeholder="Business place" style="height: 30px;" >
+            <select type="text" class="form-control dropdown" formControlName="bp" id="bp" style="height: 30px;" >
               <option [ngValue]="null" disabled selected>Business_Place</option>
               <option >Hyderabad</option>
               <option >Banglor</option>
@@ -106,8 +106,8 @@
               <div *ngIf="frmEdit.controls.address.errors?.['required']">Address Required</div>
           </div>
           <div class="modal-footer float-end ">
-            <button class="btn btn-secondary m-1 text-light" data-dismiss="modal"  style="height: 30px;">Cancel</button>
-            <button  [disabled]="frmEdit.invalid" class="btn btn-primary m-1 text-light"style="height: 30px;"   (click)="submit()" data-dismiss="modal">Save</button>
+            <button class="rounded rounded-1 btn btn-secondary m-1 text-light" data-dismiss="modal"  style="height: 30px;"><b>Cancel</b></button>
+            <button  [disabled]="frmEdit.invalid" class=" rounded rounded-1 btn btn-primary m-1 text-light"style="height: 30px;"   (click)="submit()" data-dismiss="modal"><b>Save</b></button>
           </div>
          </div>    
         </form>
