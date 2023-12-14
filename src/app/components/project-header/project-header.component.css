@@ -1,43 +1,27 @@
 .set{
-    margin-top: 64px;
-} 
+  margin-top: 64px;
+  margin-left: -10px;
+  margin-top: -1px;} 
 
-.b{
-    background-color: #563D7c;
-    color:black;
-    padding: 10px;
-    /* width: 50%; */
-    border-radius: 10px;
-    /* display: flex;
-    justify-content:flex-end; */
-    margin-top: 68px;
-    height: 55px;
-  }
+
+.b {
+  background-color: hsl(240, 100%, 99%);
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
   
-  .bt{
-    background-color: #563D7c;
-    color: whitesmoke;
-    border-radius: 10px;
-    padding: -3px;
-    font-size: 16px;
-    display: flex;
-    justify-content: space-between;
-    flex: 1 1 auto;
-    margin-left: 2px;
-    margin-right: 45px;
-    padding-left: 21px;
-    padding-right: 41px;
-    margin-top: -8px;
+  
+   
+.d {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden; /* Prevents contents from overflowing */
+  margin-left: 836px;
 
-  }
-  .d{
-    /* margin-top: -4px; */
-    flex: 1 1 auto;
-    display: flex;
-    margin-left: 900px;
-    margin-right: 200px;
-    justify-content: space-between;
-  }
+}
   /* .page-border{
     margin-top: 102px;
     width: 84%;
@@ -48,3 +32,30 @@
     padding: 9px;
     margin-left: 210px;
   } */
+
+  
+  .bt {
+    background-color: #1e2448;
+    color: whitesmoke;
+    border-radius: 16px;
+    padding: 11px;
+    flex: 1; /* Fill available space */
+    margin: 0 5px; /* Adjust margin as needed */
+    white-space: nowrap; /* Prevents button text wrapping */
+    overflow: hidden; /* Prevents text overflow */
+    text-overflow: ellipsis; /* Show ellipsis for overflow text */
+  }
+  
+ .bt.highlight {
+  background-color: crimson;
+  /* Additional highlighted styles */
+}
+  .page-border {
+    margin-top: 92px;
+    width: 84%;
+    border: 1px solid skyblue;
+    border-radius: 26px;
+    padding: 20px; /* Adjust the padding as needed */
+    margin-left: 208px;
+  }
+        

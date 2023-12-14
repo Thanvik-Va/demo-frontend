@@ -1,4 +1,4 @@
-
+<div class="page-border">
 <app-project-header></app-project-header>
 <div class="container mt-5" >
   <h2 class="mb-4 text-center text-primary">Add Child Project</h2>
@@ -12,7 +12,7 @@
           <label for="projectId">Parent Project:</label>
           <select id="parentProject" formControlName="projectId" class="form-control" (change)="getParentProject($event)">
             <option [value]="null">Select a Parent Project</option>
-            <option *ngFor="let project of prjNameOptions">{{ project.name }}</option>
+            <option *ngFor="let project of projectNameOptions">{{ project.name }}</option>
           </select>
         </div>
       </div>
@@ -115,11 +115,13 @@
         <div class="form-group">
           <div class="d-flex justify-content-between">
             
-          <button type="submit" class="btn btn-success rounded-0" [disabled]="childProjectForm.invalid">Submit</button>
-          <button type="button"  class="btn btn-success rounded-0" [disabled]="childProjectForm.invalid" (click)="clickToTask()">Save and add task</button>
+          <button type="submit" class="btn btn-success " [disabled]="childProjectForm.invalid">Submit</button>
+          <button type="button"  class="btn btn-success " [disabled]="childProjectForm.invalid" (click)="clickToTask()">Save and add task</button>
         </div>
       </div>
       </div>
     </div>
   </form>
+</div>
+
 </div>

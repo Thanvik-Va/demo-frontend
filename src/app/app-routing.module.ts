@@ -24,8 +24,8 @@ import { UpdateParentTaskComponent } from './components/update-parent-task/updat
 import { UpdateProjectComponent } from './components/update-project/update-project.component';
 import { ProjectHeaderComponent } from './components/project-header/project-header.component';
 import { SendemailforgotpasswordComponent } from './components/sendemailforgotpassword/sendemailforgotpassword.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
-// import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
 
@@ -39,6 +39,7 @@ const routes: Routes = [
   path:"layout",
   component: LayoutComponent,
   children:[
+    
     {path:'dashboard',component:DashboardComponent},
     {path: 'aboutus',component:AboutusComponentComponent,pathMatch:'full'},
     {path: 'contact',component:ContactComponent,pathMatch:'full'},
@@ -56,11 +57,15 @@ const routes: Routes = [
     {path:'child/:projectId',component:ChildComponent},
     {path:'task',component:TaskComponent},
     {path:'task/:projectId',component:TaskComponent},
+    {path:'project/:name',component:ProjectComponent},
+    {path:'task/:name',component:TaskComponent},
+    {path:'project-header',component:ProjectHeaderComponent},
     {path:'pro/:name',component:UpdateProjectComponent},
     {path:'update/:name',component:UpdateParentTaskComponent},
-    {path:'project-header',component:ProjectHeaderComponent}
+   
   ],canActivate:[AuthGuard]
-  }
+  },
+  {path:'**',component:NotfoundComponent}
   
  ];
 

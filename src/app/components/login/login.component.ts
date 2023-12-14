@@ -159,5 +159,8 @@ export class LoginComponent {
    
 
   }
+  clearError(){
+    this.loginError='';
+  }
 
 }

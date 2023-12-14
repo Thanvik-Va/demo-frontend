@@ -1,0 +1,15 @@
+.container{
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.display-1{
+    font-size: 8rem;
+    margin-bottom: 20px;
+}
+.lead{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}

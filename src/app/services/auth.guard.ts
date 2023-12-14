@@ -21,17 +21,25 @@ import { LoginServiceService } from "./login-service.service";
 
 export class AuthGuard implements CanActivate{
 
-  constructor(private router:Router,private loginServ:LoginServiceService){}
+  constructor(private router:Router,private loginService:LoginServiceService){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if(this.loginServ.isAuthenticatedUser()){
+
+    const authToken = localStorage.getItem('token');
+    const isDashboardRoute = state.url === '/';
+    if(authToken && isDashboardRoute){
+      return true;
+    }
+    else if(authToken){
       return true;
     }
     else{
       this.router.navigate(['']);
-      console.log("authentication failed in auth.guard.ts")
+       console.log("authentication failed in auth.guard.ts")
+      alert("Please enter credentials to login..")
       return false;
     }
   }
+  }
   
-}
+

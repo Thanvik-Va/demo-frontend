@@ -1,25 +1,23 @@
+<div class="page-border"> 
 <app-project-header></app-project-header>
 <div class="container-fluid mt-5">
-
   <table class="table table-bordered">
-
     <tbody>
       <tr *ngFor="let project of projects; let i = index">
         <td>
-          <div class="input-group d-flex justify-content-center" >
-            <button (click)="closeOtherProjectsDetails(i); loadParentProjects(project, i)" style="cursor: pointer;font-size: 25px;color:whitesmoke"
-              class="b" >
+          <div class="input-group d-flex justify-content-center">
+            <button (click)="closeOtherProjectsDetails(i); loadParentProjects(project, i)"
+              style="cursor: pointer;font-size: 25px;color:whitesmoke" class="b">
               {{ project.name }}
-              <span class="bi bi-chevron-down b btn-sm" *ngIf="!isDetailsOpen[i]"
-                (click)="closeOtherProjectsDetails(i)"></span>
-              <span class="bi bi-chevron-up b  btn-sm" *ngIf="isDetailsOpen[i]"
-                (click)="closeOtherProjectsDetails(i)"></span>
+              <span class="bi bi-chevron-down btn-sm" *ngIf="!isDetailsOpen[i]"
+                (click)="closeOtherProjectsDetails(i)" style="display: flex;justify-content: space-around;"></span>
+              <span class="bi bi-chevron-up btn-sm" *ngIf="isDetailsOpen[i]"
+                (click)="closeOtherProjectsDetails(i)" style="display: flex;justify-content: space-around;"></span>
             </button>
           </div>
 
-
-          <div *ngIf="isDetailsOpen[i] " class="mt-3" >
-            <table class="table table-bordered table-striped table-hover " >
+          <div *ngIf="isDetailsOpen[i]" class="mt-3">
+            <table class="table table-bordered table-striped table-hover">
               <thead class="thead-light text-center">
                 <tr>
                   <th>Name of the Parent Project</th>
@@ -31,7 +29,6 @@
                   <th>Hours</th>
                   <th>Lead</th>
                   <th>Actions</th>
-
                 </tr>
               </thead>
               <tbody>
@@ -45,37 +42,29 @@
                   <td>{{project.hours}}</td>
                   <td>{{project.assignee}}</td>
                   <td class="text-center ">
-                    <button class="bt" (click)="navigateToUpdateProject(project.name)"  @fade>Edit Project</button>
-                      <button class="btn bt m-2 " (click)="showParentTasks(i)" @fade >View Parent Tasks 
-                         <span class="bi bi-chevron-down btn btn-success btn-sm" *ngIf="!isDetailsOpen[i]"
-                        (click)="closeOtherProjectsDetails(i)"  @fade></span>
-                      <span class="bi bi-chevron-up bt  btn-sm" *ngIf="isDetailsOpen[i]"
-                        (click)="closeOtherProjectsDetails(i)"  @fade></span>
-                      </button>
-                      <button class="btn bt  m-2 " (click)="showChildProjects(i)"  @fade>View Sub Projects  
-                        <span class="bi bi-chevron-down btn btn-success btn-sm" *ngIf="!isDetailsOpen[i]"
-                        (click)="closeOtherProjectsDetails(i)"  @fade></span>
-                      <span class="bi bi-chevron-up bt  btn-sm" *ngIf="isDetailsOpen[i]"
-                        (click)="closeOtherProjectsDetails(i)"  @fade></span>
-                      </button>
-
-                      <button class="bt  m-2 " (click)="showChildTasks(i)"  @fade>View Sub Project Tasks  
-                        <span class="bi bi-chevron-down btn btn-success btn-sm" *ngIf="!isDetailsOpen[i]"
-                        (click)="closeOtherProjectsDetails(i)"  @fade></span>
-                      <span class="bi bi-chevron-up bt  btn-sm" *ngIf="isDetailsOpen[i]"
-                        (click)="closeOtherProjectsDetails(i)"  @fade></span>
-                      </button>
-                  </td>
-
+                    
+                    <button class="edit bi bi-pencil-square" (click)="navigateToUpdateProject(project.name)"> Edit</button>
                   
-
+                    <button class=" bt m-2  bi bi-view-list" (click)="showParentTasks(i)"> Parent Tasks 
+                      <!-- <span class="bi bi-chevron-down btn btn-success btn-sm" *ngIf="!isDetailsOpen[i]"
+                        ></span>
+                      <span class="bi bi-chevron-up bt  btn-sm" *ngIf="isDetailsOpen[i]"
+                        (click)="closeOtherProjectsDetails(i)"></span> -->
+                    </button>
+                    <button class=" bt  m-2 bi bi-view-list" (click)="showChildProjects(i)"> Sub Projects  
+                      <!-- <span class="bi bi-chevron-down btn btn-success btn-sm" *ngIf="!isDetailsOpen[i]"
+                        (click)="closeOtherProjectsDetails(i)"></span>
+                      <span class="bi bi-chevron-up bt  btn-sm" *ngIf="isDetailsOpen[i]"
+                        (click)="closeOtherProjectsDetails(i)"></span> -->
+                    </button>
+                  </td>
                 </tr>
                 <tr id="parent-task-{{i}}">
-                  <td colspan="9">
-                 <div *ngIf="isParentTasksVisible[i]" id="elementRef" [ngClass]="{'visible': isParentTasksVisible[i]}">
-                      <h3 class="h3 text-center  bt w-25 p-2" style="font-size: 25px;margin-left: 600px;margin-right: 400px;margin-top: 25px; margin-bottom: 25px;">Parent Tasks</h3>
+                  <td colspan="12">
+                    <div *ngIf="isParentTasksVisible[i]" id="elementRef" [ngClass]="{'visible': isParentTasksVisible[i]}">
+                      <!-- <h3 class="h3 text-center  bt w-25 p-2" style="font-size: 25px;margin-left: 600px;margin-right: 400px;margin-top: 25px; margin-bottom: 25px;">Parent Tasks</h3> -->
                       <table class="table table-bordered table-striped table-hover">
-                        <thead class="thead-light text-center">
+                        <!-- <thead class="thead-light text-center">
                           <th>Name</th>
                           <th>Type</th>
                           <th>Description</th>
@@ -86,42 +75,22 @@
                           <th>Hours</th>
                           <th>CheckType</th>
                           <th>Actions</th>
-                        </thead>
-                        <tbody>
+                        </thead> -->
+                        <tbody class="mt-3">
                           <ng-container *ngFor="let parent of project.subProjects">
-                            <ng-container
-                              *ngIf="parent&&parent.projectId===project.id && parent.checkType === 'Parent-Task'">
+                            <ng-container *ngIf="parent&&parent.projectId===project.id && parent.checkType === 'Parent-Task'">
                               <tr class="text-center">
-                                <td>
-                                  <p>{{parent.name}}</p>
-                                </td>
-                                <td>
-                                  <p>{{parent.type}}</p>
-                                </td>
-                                <td>
-                                  <p>{{parent.description}}</p>
-                                </td>
-                                <td>
-                                  <p>{{parent.status}}</p>
-                                </td>
-                                <td>
-                                  <p>{{parent.startDate}}</p>
-                                </td>
-                                <td>
-                                  <p>{{parent.endDate}}</p>
-                                </td>
-                                <td>
-                                  <p>{{parent.assignee}}</p>
-                                </td>
-                                <td>
-                                  <p>{{parent.hours}}</p>
-                                </td>
-                                <td>
-                                  <p>Task for {{project.name}}</p>
-                                </td>
+                                <td><p>{{parent.name}}</p></td>
+                                <td><p>{{parent.type}}</p></td>
+                                <td><p>{{parent.description}}</p></td>
+                                <td><p>{{parent.status}}</p></td>
+                                <td><p>{{parent.startDate}}</p></td>
+                                <td><p>{{parent.endDate}}</p></td>
+                                <td><p>{{parent.assignee}}</p></td>
+                                <td><p>{{parent.hours}}</p></td>
+                                <td><p>Task for {{project.name}}</p></td>
                                 <td class="text-center">
-                                  <button class="btn btn-danger" (click)="navigateToUpdateTask(parent.name)">Edit
-                                    Task</button>
+                                  <button class="btn btn-danger bi bi-pencil-square" (click)="navigateToUpdateTask(parent.name)"> Edit Task</button>
                                 </td>
                               </tr>
                             </ng-container>
@@ -129,16 +98,13 @@
                         </tbody>
                       </table>
                     </div>
-
                   </td>
                 </tr>
 
-
-
-                <tr id="parent-task-{{i}}">
-                  <td colspan="9">
-                 <div *ngIf="isChildProjectsVisible[i]">
-                      <h3 class="h3 text-center bt w-25 p-2" style="font-size: 25px;margin-left: 600px;margin-right: 400px; margin-top: 25px; margin-bottom: 25px;">Sub Projects</h3>
+                <tr id="child-project-{{i}}">
+                  <td colspan="12">
+                    <div *ngIf="isChildProjectsVisible[i]">
+                      <h3 class="h3 text-center  w-100 me-4 p-2" >Sub Projects</h3>
                       <table class="table table-bordered table-striped table-hover">
                         <thead class="thead-light text-center">
                           <th>Name</th>
@@ -153,299 +119,81 @@
                           <th>Actions</th>
                         </thead>
                         <tbody>
-                          <ng-container *ngFor="let childProject of project.subProjects">
-                            <ng-container *ngIf="childProject&&childProject.projectId===project.id&&(childProject && childProject.checkType === 'Child Project')">
+                          <ng-container *ngFor="let childProject of project.subProjects;let j =index">
+                            <ng-container *ngIf="childProject && childProject.projectId===project.id&&(childProject && childProject.checkType === 'Child Project')">
                               <tr class="text-center">
-                                <td>
-                                  <p>{{childProject.name}}</p>
-                                </td>
-                                <td>
-                                  <p>{{childProject.type}}</p>
-                                </td>
-                                <td>
-                                  <p>{{childProject.description}}</p>
-                                </td>
-                                <td>
-                                  <p>{{childProject.status}}</p>
-                                </td>
-                                <td>
-                                  <p>{{childProject.startDate}}</p>
-                                </td>
-                                <td>
-                                  <p>{{childProject.endDate}}</p>
-                                </td>
-                                <td>
-                                  <p>{{childProject.assignee}}</p>
-                                </td>
-                                <td>
-                                  <p>{{childProject.hours}}</p>
-                                </td>
-                                <td>
-                                  <p>{{childProject.checkType}} for {{project.name}}</p>
-                                </td>
+                                <td><p>{{childProject.name}}</p></td>
+                                <td><p>{{childProject.type}}</p></td>
+                                <td><p>{{childProject.description}}</p></td>
+                                <td><p>{{childProject.status}}</p></td>
+                                <td><p>{{childProject.startDate}}</p></td>
+                                <td><p>{{childProject.endDate}}</p></td>
+                                <td><p>{{childProject.assignee}}</p></td>
+                                <td><p>{{childProject.hours}}</p></td>
+                                <td><p>{{childProject.checkType}} for {{project.name}}</p></td>
                                 <td class="text-center">
-                                  <button class="btn btn-primary m-2 p-2" (click)="navigateToUpdateProject(childProject.name)">Edit Project</button>
-                                   <!-- <button class="btn btn-primary  m-2 p-2" (click)="showChildTasks(i)">View Child Tasks</button> -->
-                                </td>
-                                
-                              </tr>
-                            </ng-container>
-                          </ng-container>
-                        </tbody>
-                      </table>
-                    </div>
-
-                  </td>
-                </tr>
-
-
-                <tr id="parent-task-{{i}}">
-                  <td colspan="9">
-                    <div *ngIf="isChildTasksVisible[i]">
-                      <h3 class="h3 text-center bt w-25 p-2" style="font-size: 25px;margin-left: 600px;margin-right: 400px;margin-top: 25px; margin-bottom: 25px;">Sub Project Tasks</h3>
-                      <table class="table table-bordered table-striped table-hover">
-                        <thead class="thead-light text-center">
-                          <th>Name</th>
-                          <th>Type</th>
-                          <th>Description</th>
-                          <th>Status</th>
-                          <th>StartDate</th>
-                          <th>EndDate</th>
-                          <th>Lead</th>
-                          <th>Hours</th>
-                          <th>CheckType</th>
-                          <th>Actions</th>
-                        </thead>
-                        <tbody>
-                          <ng-container *ngFor="let parent of project.subProjects">
-                            <ng-container *ngFor="let t of parent.task">
-                            <ng-container *ngIf="t.checkType === 'Parent-Task'&& (parent.id===t.projectId)">
-                              
-                              <tr class="text-center">
-                                <td>
-                                  <p>{{t.name}}</p>
-                                </td>
-                                <td>
-                                  <p>{{t.type}}</p>
-                                </td>
-                                <td>
-                                  <p>{{t.description}}</p>
-                                </td>
-                                <td>
-                                  <p>{{t.status}}</p>
-                                </td>
-                                <td>
-                                  <p>{{t.startDate}}</p>
-                                </td>
-                                <td>
-                                  <p>{{t.endDate}}</p>
-                                </td>
-                                <td>
-                                  <p>{{t.assignee}}</p>
-                                </td>
-                                <td>
-                                  <p>{{t.hours}}</p>
-                                </td>
-                                <td>
-                                  <p>Task for {{parent.name}}</p>
-                                </td>
-                                <td class="text-center">
-                                  <button class="btn btn-danger" (click)="navigateToUpdateTask(t.name)">Edit Task</button>
+                                  <button class="edit m-2 p-2 bi bi-pencil-square" (click)="navigateToUpdateProject(childProject.name)"> Edit Project</button>
+                                  <button class="cc m-2 bi bi-view-list" (click)="showChildTasks(j)"  >
+                                     Sub Project Tasks
+                                    <span class="bi bi-chevron-down cc btn-sm" *ngIf="isChildTasksVisible[j]" ></span>
+                                    <span class="bi bi-chevron-up cc btn-sm" *ngIf="!isChildTasksVisible[j]" ></span>
+                                  </button>
+                                  
                                 </td>
                               </tr>
-                
-                              <!-- <div *ngFor="let t of project.subProjects">
-                                
-                              <ng-container *ngFor="let task of t.task">
-                                <ng-container *ngIf="task.checkType === 'Parent-Task'&& (parent.id===task.projectId)">
-                                  <tr class="text-center">
-                                    
-                                    <td>
-                                      <p>{{task.name}}</p>
-                                    </td>
-                                    <td>
-                                      <p>{{task.type}}</p>
-                                    </td>
-                                    <td>
-                                      <p>{{task.description}}</p>
-                                    </td>
-                                    <td>
-                                      <p>{{task.status}}</p>
-                                    </td>
-                                    <td>
-                                      <p>{{task.startDate}}</p>
-                                    </td>
-                                    <td>
-                                      <p>{{task.endDate}}</p>
-                                    </td>
-                                    <td>
-                                      <p>{{task.lead}}</p>
-                                    </td>
-                                    <td>
-                                      <p>{{task.hours}}</p>
-                                    </td>
-                                    <td>
-                                      <p>{{task.checkType}}</p>
-                                    </td>
-                                    <td class="text-center">
-                                      <button class="btn btn-danger" (click)="navigateToUpdateTask(task.name)">Edit Task</button>
-                                    </td>
-                                  </tr>
-                                </ng-container>
-                              </ng-container>
-                            </div> -->
-                            </ng-container>
-                          </ng-container>
-                          </ng-container>
-                          
-                        </tbody>
-                      </table>
-                    </div>
-                  </td>
-                </tr>
-                
-
-                <!-- <tr id="child-project-{{i}}">
-                  <td colspan="9">
-                    <ng-container *ngFor="let childProject of project.subProjects">
-                      <ng-container *ngIf="childProject&&childProject.projectId===project.id&&(childProject && childProject.checkType === 'Child Project')">
-                       
-                        <div class="p-3 m-3">
-                          <h5 class="h5 text-center text-capitalize bg-secondary text-white">Child project for
-                            {{project.name}}</h5>
-                         
-                          <table class="table table-bordered">
-                            <thead class="thead-light text-center">
-                              <th>Name</th>
-                              <th>Type</th>
-                              <th>Description</th>
-                              <th>Status</th>
-                              <th>StartDate</th>
-                              <th>EndDate</th>
-                              <th>Lead</th>
-                              <th>Hours</th>
-                              <th>CheckType</th>
-
-                              <th>Tasks of {{childProject.name}}</th>
-                              <th>Actions</th>
-                            </thead>
-                            <tbody>
-                              <tr class="text-center">
-                                <td>
-                                  <p>{{ childProject.name }}</p>
-                                </td>
-                                <td>
-                                  <p> {{ childProject.type }}</p>
-                                </td>
-                                <td>
-                                  <p> {{ childProject.description }}</p>
-                                </td>
-                                <td>
-                                  <p> {{ childProject.status }}</p>
-                                </td>
-                                <td>
-                                  <p> {{ childProject.startDate }}</p>
-                                </td>
-                                <td>
-                                  <p> {{ childProject.endDate }}</p>
-                                </td>
-                                <td>
-                                  <p> {{ childProject.lead }}</p>
-                                </td>
-                                <td>
-                                  <p> {{ childProject.hours }}</p>
-                                </td>
-                                <td>
-                                  <p>{{childProject.checkType}}</p>
-                                </td>
-
-                                <td>
-                                  <label>
-                                    <input type="checkbox" name="childProjectRadio"
-                                      (change)="loadChildProjectTasks(childProject.id)"
-                                      [(ngModel)]="childProject.id===isChildProjectTasksChecked">
-                                    Child Task
-                                  </label>
-                              <tr>
-                                <td colspan="9">
-                                  <ng-container *ngFor="let task of childTasks">
-                                    <ng-container *ngIf="task&&task.projectId===childProject.id">
-                                      <div>
-                                        <table class="table table-bordered table-striped table-hover">
-                                          <thead class="thead-light text-center">
-                                            <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Description</th>
-                                            <th>Status</th>
-                                            <th>StartDate</th>
-                                            <th>EndDate</th>
-                                            <th>Lead</th>
-                                            <th>Hours</th>
-                                            <th>CheckType</th>
-                                            <th>Actions</th>
-                                          </thead>
-                                          <tbody>
+                              <tr id="child-project-tasks-{{j}}-{{childProject.id}}" class="t">
+                                <td colspan="12">
+                                  <div *ngIf="isChildTasksVisible[j]">
+                                    <table class="table table-bordered table-striped table-hover ">
+                                      <!-- <thead class="thead-light text-center">
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
+                                        <th>StartDate</th>
+                                        <th>EndDate</th>
+                                        <th>Lead</th>
+                                        <th>Hours</th>
+                                        <th>CheckType</th>
+                                        <th>Actions</th>
+                                      </thead> -->
+                                      <tbody class="me-4">
+                                        <ng-container *ngFor="let t of childProject.task">
+                                          <ng-container *ngIf="t.checkType === 'Parent-Task' && (childProject.id === t.projectId)">
                                             <tr class="text-center">
-                                              <td>
-                                                <p>{{task.name}}</p>
-                                              </td>
-                                              <td>
-                                                <p>{{task.type}}</p>
-                                              </td>
-                                              <td>
-                                                <p>{{task.description}}</p>
-                                              </td>
-                                              <td>
-                                                <p>{{task.status}}</p>
-                                              </td>
-                                              <td>
-                                                <p>{{task.startDate}}</p>
-                                              </td>
-                                              <td>
-                                                <p>{{task.endDate}}</p>
-                                              </td>
-                                              <td>
-                                                <p>{{task.assignee}}</p>
-                                              </td>
-                                              <td>
-                                                <p>{{task.hours}}</p>
-                                              </td>
-                                              <td>
-                                                <p>{{task.checkType}}</p>
-                                              </td>
+                                              <td><p>{{t.name}}</p></td>
+                                              <td><p>{{t.type}}</p></td>
+                                              <td><p>{{t.description}}</p></td>
+                                              <td><p>{{t.status}}</p></td>
+                                              <td><p>{{t.startDate}}</p></td>
+                                              <td><p>{{t.endDate}}</p></td>
+                                              <td><p>{{t.assignee}}</p></td>
+                                              <td><p>{{t.hours}}</p></td>
+                                              <td><p>Task for {{childProject.name}}</p></td>
                                               <td class="text-center">
-                                                <button class="btn btn-danger text-center"
-                                                  (click)="navigateToUpdateTask(task.name)">Edit Task</button>
+                                                <button class="btn btn-danger bi bi-pencil-square" (click)="navigateToUpdateTask(t.name)">  Edit Task</button>
                                               </td>
                                             </tr>
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    </ng-container>
-                                  </ng-container>
+                                          </ng-container>
+                                        </ng-container>
+                                      </tbody>
+                                    </table>
+                                  </div>
                                 </td>
                               </tr>
-                  </td>
-                  <td class="text-center">
-                    <button class="btn btn-success text-center"
-                      (click)="navigateToUpdateProject(childProject.name)">Edit Project</button>
+                            </ng-container>
+                          </ng-container>
+                        </tbody>
+                      </table>
+                    </div>
                   </td>
                 </tr>
               </tbody>
             </table>
-             </div> -->
-            <!-- </div> -->
-          <!-- </div> -->
-          <!-- </td> -->
-          <!-- </ng-container> -->
-          <!-- </ng-container> -->
-        <!-- </td> -->
-      <!-- </tr> --> 
+          </div>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
-</td>
-</tr>
-</tbody>
-</table>
 </div>
