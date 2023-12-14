@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate{
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
     const authToken = localStorage.getItem('token');
-    const isDashboardRoute = state.url === '/';
+    const isDashboardRoute = state.url === '/layout/dashboard';
     if(authToken && isDashboardRoute){
       return true;
     }

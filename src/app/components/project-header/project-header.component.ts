@@ -16,4 +16,5 @@ export class ProjectHeaderComponent {
 
   navigateTo(route: string): void {
     this.router.navigateByUrl(route);
-  }}
+  }
+}

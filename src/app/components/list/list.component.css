@@ -1,79 +1,79 @@
 ul{
-    list-style: none;
+  list-style: none;
 }
 /* #imgg{
-    height: 650px;
-  color: 
+  height: 650px;
+color: 
 #cb1a1a;
-  background-image: url("../../assets/OIP.jpg");
-  /* background-size: 100%; */
-  /* background-size: cover; */
+background-image: url("../../assets/OIP.jpg");
+/* background-size: 100%; */
+/* background-size: cover; */
 /* } */
 
 
 .visible {
-  display: flex;
-  display: block ;
+display: flex;
+display: block ;
 }
 
 .b{
-  background-color: #373c5c;
-  color: black;
-  padding: 6px;
-  width: 44%;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
+background-color: #373c5c;
+color: black;
+padding: 6px;
+width: 44%;
+border-radius: 10px;
+display: flex;
+justify-content: space-between;
 
 }
 
 .bt{
-  background-color: rgb(69 123 28);
-  color: whitesmoke;
-  border-radius: 6px;
-  padding: 9px;
-  padding-top: 7px;
-  margin-left: -2px;
-  margin-right: -10px;
-  padding-bottom: 5px;
-  border: none;
-  /* font-size: 10px; */
-  padding-bottom: 6px;
+background-color: rgb(69 123 28);
+color: whitesmoke;
+border-radius: 6px;
+padding: 9px;
+padding-top: 7px;
+margin-left: -2px;
+margin-right: -10px;
+padding-bottom: 5px;
+border: none;
+/* font-size: 10px; */
+padding-bottom: 6px;
 }
 
 
 .edit{
-  margin-right: 13px;
-  background-color: #376eb9;
-  color: whitesmoke;
-  height: 25px;
-  padding-left: 18px;
-  padding-right: 18px;
-  border-radius: 6px;
-  font-size: 11px;
-  margin-top: 9px;
-  /* padding: 4px; */
-  border: none;
+margin-right: 13px;
+background-color: #376eb9;
+color: whitesmoke;
+height: 25px;
+padding-left: 18px;
+padding-right: 18px;
+border-radius: 6px;
+font-size: 11px;
+margin-top: 9px;
+/* padding: 4px; */
+border: none;
 }
 .cc{
-  background-color: rgb(69 123 28);
-  color: whitesmoke;
-  border-radius: 6px;
-  padding: 9px;
-  padding-top: 4px;
-  margin-left: -2px;
-  margin-right: -10px;
-  padding-bottom: 5px;
-  border: none;
-  /* font-size: 10px; */
-  padding-bottom: 6px;
-  font-size: 11px;
+background-color: rgb(69 123 28);
+color: whitesmoke;
+border-radius: 6px;
+padding: 9px;
+padding-top: 4px;
+margin-left: -2px;
+margin-right: -10px;
+padding-bottom: 5px;
+border: none;
+/* font-size: 10px; */
+padding-bottom: 6px;
+font-size: 11px;
 }
 .page-border {
-  margin-top: 92px;
-  width: 84%;
-  border: 1px solid skyblue;
-  border-radius: 26px;
-  padding: 20px; /* Adjust the padding as needed */
-  margin-left: 208px;
+margin-top: 92px;
+width: 84%;
+border: 1px solid skyblue;
+border-radius: 26px;
+padding: 20px; /* Adjust the padding as needed */
+margin-left: 208px;
 }

@@ -39,7 +39,7 @@
     color: whitesmoke;
     border-radius: 16px;
     padding: 11px;
-    flex: 1; /* Fill available space */
+    /* flex: 1;  */
     margin: 0 5px; /* Adjust margin as needed */
     white-space: nowrap; /* Prevents button text wrapping */
     overflow: hidden; /* Prevents text overflow */
