@@ -20,10 +20,10 @@ import { ListComponent } from './components/list/list.component';
 import { ChildComponent } from './components/child/child.component';
 import { ProjectComponent } from './components/project/project.component';
 import { TaskComponent } from './components/task/task.component';
-
-import { ProjectHeaderComponent } from './components/project-header/project-header.component';
-import { UpdateProjectComponent } from './components/update-project/update-project.component';
 import { UpdateParentTaskComponent } from './components/update-parent-task/update-parent-task.component';
+import { UpdateProjectComponent } from './components/update-project/update-project.component';
+import { ProjectHeaderComponent } from './components/project-header/project-header.component';
+import { SendemailforgotpasswordComponent } from './components/sendemailforgotpassword/sendemailforgotpassword.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 
 
@@ -34,7 +34,7 @@ const routes: Routes = [
   {path: 'login',component:LoginComponent,pathMatch:'full'},
   {path: 'forgot-password',component:ForgotPasswordComponent,pathMatch:'full'},
   {path: 'register',component:RegisterUserComponent,pathMatch:'full'},
-  
+  {path:'send-email',component:SendemailforgotpasswordComponent},
   {
   path:"layout",
   component: LayoutComponent,

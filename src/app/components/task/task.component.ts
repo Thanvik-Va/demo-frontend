@@ -1,4 +1,4 @@
-import { Component, OnInit,HostListener } from '@angular/core';
+import { Component, OnInit ,HostListener} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project } from '../classes/project'; 
 import { PctService } from 'src/app/services/pct.service'; 
@@ -101,14 +101,13 @@ export class TaskComponent implements OnInit {
     return this.taskForm.get('projectId')
   }
 
-
-
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
+  @HostListener('document:keydown',['$event'])
+  handleKeyboardEvent(event: KeyboardEvent){
+    if(event.key==='Enter'){
       event.preventDefault();
     }
   }
+ 
   taskSubmit(event:Event) {
     event.preventDefault();
     console.log(this.taskForm.valid)
@@ -215,6 +214,9 @@ export class TaskComponent implements OnInit {
     }
   }
 
+  // clickToChild() {
+  //   this.route.navigate(['/layout/child'])
+  // }
 
 }
 
