@@ -1,19 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
  import {Observable} from 'rxjs';
 import { Employee } from '../components/classes/employee';
-import { ToastrModule } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService implements OnInit {
-
-  
-
+export class EmployeeService  {
 
   // private baseURL= "http://localhost:8383/api/v1";
   tokenData={}
-  constructor(private httpclient: HttpClient,private toast:ToastrModule  ) {
+  constructor(private httpclient: HttpClient  ) {
     let token=localStorage.getItem('token');
     this.tokenData={
       headers:new HttpHeaders({
@@ -21,9 +17,6 @@ export class EmployeeService implements OnInit {
       })
     }
    }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 
   getEmployeeList() : Observable<Employee[]>{
   
@@ -51,6 +44,5 @@ export class EmployeeService implements OnInit {
 
  }
 
- 
  
 }
