@@ -73,7 +73,7 @@ submit(){
   console.log(data);
   this.getEmployees();
   });
-  
+  this.refreshPage();
 }
   
 Delete(id:number){
@@ -81,6 +81,7 @@ Delete(id:number){
   this.employee = data;
   });
   this.getEmployees();
+  this.refreshPage();
 }
 
 save(){
@@ -88,9 +89,15 @@ save(){
     console.log(data);
     this.employee=data;
     this.getEmployees();
+    this.refreshPage();
 });
 
 }
+
+refreshPage() {
+  location.reload();
+}
+
 
 generateExcel(){
   this.employeeService.excelExport().subscribe((data:Blob)=>{
