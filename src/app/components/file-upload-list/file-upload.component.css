@@ -1,6 +1,4 @@
-.setsize{
-    margin-top:70px;
-}
+
 .data{
     margin-top: 10px;
     margin-left: 500px;
@@ -33,3 +31,27 @@ input{
     padding: 9px;
     margin-left: 210px;
   }
+
+  .edit{
+    margin-right: 13px;
+    /* background-color: #376eb9; */
+    
+    height: 31px;
+    padding-left: 18px;
+    padding-right: 18px;
+    border-radius: 6px;
+    font-size: 11px;
+    margin-top: 9px;
+    /* padding: 4px; */
+    border: none;
+    font-weight: bold;
+    
+    }
+
+    .main-heading {
+        font-family: revert-layer;
+        font-weight: bold;
+        font-size: 33px;
+        margin-bottom: 24px;
+        margin-top: 30px;
+    }

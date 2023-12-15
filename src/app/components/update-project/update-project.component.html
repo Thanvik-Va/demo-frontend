@@ -1,7 +1,7 @@
 <div class="page-border">
   <app-project-header></app-project-header>
   <div class="container mt-5" >
-      <h2 class="mb-4 text-center text-primary">{{ projectName ? 'Edit Project' : 'Create Project' }}</h2>
+      <h2 class="main-heading text-center ">{{ projectName ? 'Edit Project' : 'Create Project' }}</h2>
     
       <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" [ngClass]="{'was-validated': projectForm.invalid && projectForm.touched}" >
         <div class="row">

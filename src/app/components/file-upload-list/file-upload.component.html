@@ -1,6 +1,6 @@
    <div class="page-border">
-  <div class="container setsize bg-white">
-    <h2 class="justify-content-center d-flex font-bold">Manage Files</h2>
+  <div class="container  bg-white">
+    <h2 class="main-heading text-center">Manage Files</h2>
     <div>
     <div class="row p-4" >
       <div class="p-3">
@@ -12,7 +12,7 @@
               Invalid file type. Only XLS and XLSX files are allowed.
             </div>
           </div>
-          <button type="submit" [disabled]="!selectedFile || (selectedFile && !isValidFileType)" class="btn btn-primary">Upload</button>
+          <button type="submit" [disabled]="!selectedFile || (selectedFile && !isValidFileType)" class="edit btn btn-success">Upload</button>
         </form>
       </div><br>
 
@@ -26,7 +26,7 @@
       <div *ngIf="!loadFilesFailed">
         <table class="table" >
           <thead>
-            <tr>
+            <tr class="text-center" style="font-size: 15px;">
               <th scope="col">S.No</th>
               <th scope="col">File Name</th>
               <th scope="col">Date Of Upload</th>
@@ -35,12 +35,12 @@
           </thead>
           <tbody>
             <div *ngIf="files.length==0" class="data">No data found</div>
-            <tr *ngFor="let file of files;let x=index ">
+            <tr *ngFor="let file of files;let x=index " class="text-center" style="font-size: 13px;">
               <th scope="row">{{x+1}}</th>
               <td>{{ file.fileName }}</td>
               <td>{{file.date}}</td>
               <td>
-                <button class="btn btn-primary btn-sm" (click)="downloadFile(file.fileName)">Download</button>
+                <button class=" edit btn btn-primary btn-sm" (click)="downloadFile(file.fileName)">Download</button>
               </td>
             </tr>
           </tbody>

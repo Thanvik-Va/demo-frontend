@@ -24,11 +24,11 @@ export class EmployeeService {
   }
 
   createEmployee(employee: any): Observable<any>{
-    return this.httpclient.post<any>("http://localhost:8383/api/v1/post",employee,this.tokenData)
+    return this.httpclient.post<any>("http://localhost:8383/api/v1/createEmployee",employee,this.tokenData)
   }
 
    updateEmployees(employee:any):Observable<Employee>{
-    return this.httpclient.put<any>("http://localhost:8383/api/v1/put",employee,this.tokenData)
+    return this.httpclient.put<any>("http://localhost:8383/api/v1/updateEmployee",employee,this.tokenData)
    }
 
    DeleteEmployee(id:number){

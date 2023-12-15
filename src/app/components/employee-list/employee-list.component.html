@@ -2,16 +2,16 @@
   <div class="set-size"> 
 <div class="container">
       <div class="page-border">
-          <h2 class="justify-content-center d-flex font-bold"  style="color: DodgerBlue;"><u>Employee List</u></h2>
+          <h2 class="main-heading text-center">Employee List</h2>
     <div class=" mt-0">
      <div class="float-end m-1">
-      <button  class="rounded rounded-1   text-light btn btn-primary  m-1" (click)="resetForm()"   data-target="#edit" data-toggle="modal"><b> Add Employee</b> </button>
-      <button  class="rounded rounded-1   text-light m-1 btn btn-success"     (click)="generateExcel()"><b>Excel Export</b> </button>
+      <button  class="  text-light btn btn-primary  m-1 edit" (click)="resetForm()"   data-target="#edit" data-toggle="modal"><b> Add Employee</b> </button>
+      <button  class="  text-light m-1 btn btn-success edit"     (click)="generateExcel()"><b>Excel Export</b> </button>
      </div>
 
       <table class="table  mt-1" >
         <thead >
-          <tr>
+          <tr class="text-center" style="font-size: 15px;">
             <th>Emp Id</th>
             <th>Email Id</th>
             <th>Mobile No</th>
@@ -26,7 +26,7 @@
           </tr>
         </thead>
         <tbody >
-          <tr *ngFor="let employee of employees" >
+          <tr *ngFor="let employee of employees" class="text-center" style="font-size: 13px;">
             <td>{{ employee.emp_id }}</td>
             <td>{{ employee.email_id }}</td>
             <td>{{ employee.mobile_no }}</td>
@@ -36,8 +36,8 @@
             <td>{{ employee.emp_type }}</td>
             <td>{{ employee.bp }}</td>
             <td>{{ employee.address}}</td>
-            <td><i type="button" (click)="edit (employee)" class="bi bi-pencil-square mx-2" data-target="#edit" data-toggle="modal"></i></td>
-            <td><i type="button" (click)="Delete(employee.emp_id)"   class="bi bi-trash mx-3"></i></td>
+            <td><i type="button" (click)="edit (employee)" class=" edit btn btn-primary bi bi-pencil-square mx-2 " data-target="#edit" data-toggle="modal"></i></td>
+            <td><i type="button" (click)="Delete(employee.emp_id)"   class="edit btn btn-danger bi bi-trash mx-3"></i></td>
           </tr>
         </tbody>
       </table>
@@ -106,8 +106,8 @@
               <div *ngIf="frmEdit.controls.address.errors?.['required']">Address Required</div>
           </div>
           <div class="modal-footer float-end ">
-            <button class="btn btn-secondary m-1 text-light" data-dismiss="modal"  style="height: 30px;">Cancel</button>
-            <button  [disabled]="frmEdit.invalid" class="btn btn-primary m-1 text-light"style="height: 30px;"   (click)="submit()" data-dismiss="modal">Save</button>
+            <button class="btn btn-danger m-1 text-light edit" data-dismiss="modal"  style="height: 30px;">Cancel</button>
+            <button  [disabled]="frmEdit.invalid" class="btn btn-primary m-1 text-light edit"style="height: 30px;"   (click)="submit()" data-dismiss="modal">Save</button>
           </div>
          </div>    
         </form>

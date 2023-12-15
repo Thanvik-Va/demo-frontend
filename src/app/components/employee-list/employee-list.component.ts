@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
  import { EmployeeService } from 'src/app/services/employee.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import * as saveAs from 'file-saver';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-list',
@@ -35,7 +36,7 @@ EmpType : any[] = [
   
   employee: Employee = new Employee();
   
-  constructor( private employeeService:EmployeeService, private fb:FormBuilder ) { }
+  constructor( private employeeService:EmployeeService, private fb:FormBuilder,private toaster:ToastrService ) { }
 
 public frmEdit = this.fb.group({
   emp_id:this.fb.control(''),
@@ -72,16 +73,18 @@ submit(){
   this.employee = data;
   console.log(data);
   this.getEmployees();
+  this.toaster.success('Successful..!','Success');
   });
-  this.refreshPage();
+  // this.refreshPage();
 }
   
 Delete(id:number){
   this.employeeService.DeleteEmployee(id).subscribe((data:Employee)=>{
   this.employee = data;
-  });
+  this.toaster.success('Deleted Successfully..!','Success');
   this.getEmployees();
-  this.refreshPage();
+  });
+  // this.refreshPage();
 }
 
 save(){

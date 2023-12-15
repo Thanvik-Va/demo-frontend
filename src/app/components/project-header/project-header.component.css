@@ -44,12 +44,10 @@
     white-space: nowrap; /* Prevents button text wrapping */
     overflow: hidden; /* Prevents text overflow */
     text-overflow: ellipsis; /* Show ellipsis for overflow text */
+    font-weight:bold;
   }
   
- .bt.highlight {
-  background-color: crimson;
-  /* Additional highlighted styles */
-}
+
   .page-border {
     margin-top: 92px;
     width: 84%;
@@ -57,5 +55,15 @@
     border-radius: 26px;
     padding: 20px; /* Adjust the padding as needed */
     margin-left: 208px;
+  }
+
+  .bt.highlight {
+    padding-bottom: 18px;
+    background-color: crimson;
+    border: none;
+    padding-top: 18px;
+    padding-right: 31px;
+    padding-left: 31px;
+    font-size: 13px;
   }
         

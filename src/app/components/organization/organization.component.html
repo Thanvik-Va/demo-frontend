@@ -83,7 +83,7 @@
             <br />
             <!-- <button class="btn btn-btn btn-temp" type="submit" [disabled]="orgRegister.invalid">Update</button> -->
             <!-- Rest of your form -->
-            <button class="btn btn-temp" type="submit" [disabled]="orgRegister.invalid"
+            <button class="btn btn-primary edit btn-temp text-white" type="submit" [disabled]="orgRegister.invalid"
                 [ngClass]="{ 'btn-valid': !orgRegister.invalid, 'btn-invalid':orgRegister.invalid }">
                 Update
             </button>
@@ -93,12 +93,12 @@
 
     <div class="container bp-container">
 
-        <button class="btn custom-btn" data-toggle="modal" data-target="#exampleModalCenter">Add Business</button>
-        <h1 class="main-heading">Business Place Details</h1>
+        <button class="btn btn-success edit custom-btn" data-toggle="modal" data-target="#exampleModalCenter">Add Business</button>
+        <h1 class="main-heading text-center">Business Place Details</h1>
 
         <table class="table ">
             <thead>
-                <tr>
+                <tr style="font-size: 15px;">
                     <th scope="col">S.no</th>
                     <th scope="col">Bp Name</th>
                     <th scope="col">Bp Location</th>
@@ -111,7 +111,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let businessPlace of organization.businessPlaces;let x = index">
+                <tr *ngFor="let businessPlace of organization.businessPlaces;let x = index" style="font-size: 13px;">
                     <th scope="row">{{ x + 1 }}</th>
                     <td>{{ businessPlace.businessPlaceLegalName }}</td>
                     <td>{{ businessPlace.businessPlaceLocation }}</td>
@@ -120,9 +120,9 @@
                     <td>{{ businessPlace.businessPlaceContact }}</td>
                     <td>{{ businessPlace.businessPlaceZipCode }}</td>
                     <td>
-                        <button (click)="editBusinessPlace(businessPlace)" class="btn btn-dark" data-toggle="modal"
+                        <button (click)="editBusinessPlace(businessPlace)" class=" edit btn btn-primary" data-toggle="modal"
                             data-target="#exampleModalCenter">Edit</button>&nbsp;
-                        <button (click)="deleteBusinessPlace(businessPlace)" class="btn btn-danger">Delete</button>
+                        <button (click)="deleteBusinessPlace(businessPlace)" class=" edit btn btn-danger">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -225,8 +225,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
-                        <button mat-raised-button type="submit" class="btn" [disabled]="bpRegister.invalid"
+                        <button  class=" edit btn btn-danger" data-dismiss="modal" (click)="close()">Close</button>
+                        <button  type="submit" class="edit btn btn-success" [disabled]="bpRegister.invalid"
                             color="warn">
                             {{ isEditMode ? 'Update' : 'Save' }}
                         </button>

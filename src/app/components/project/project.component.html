@@ -1,7 +1,7 @@
 <div class="page-border"> 
   <app-project-header></app-project-header>
   <div class="container" >
-    <h2 class="mb-4 text-center text-primary">Create Project</h2>
+    <h2 class="main-heading text-center ">Create Project</h2>
   
     <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" [ngClass]="{'was-validated': projectForm.invalid && projectForm.touched}" >
       <div class="row">
@@ -9,7 +9,7 @@
   
         <div class="col-md-4">
           <div class="form-group">
-            <label for="projectId">Parent Project:</label>
+            <label for="projectId" class="form-label ">Parent Project:</label>
             <select class="form-control" formControlName="projectId" id="parentProjectId" (change)="onSelectParentProject()">
               <option value='' >Select Project</option>
               <option *ngFor="let project of projectOptions" [value]="project.id">{{ project.name}}</option>
@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label for="lead">Lead:</label>
+            <label for="lead" class="form-label ">Lead:</label>
             <select id="lead" formControlName="assignee" class="form-control" [ngClass]="{'is-invalid': assignee?.invalid && (assignee?.dirty || assignee?.touched)}" required>
               <option [ngValue]="null">Select a Lead</option>
               <option *ngFor="let option of employee" [ngValue]="option.email_id">{{ option.email_id }}</option>
@@ -31,7 +31,7 @@
   
         <div class="col-md-4">
           <div class="form-group">
-            <label for="name">Name:</label>
+            <label for="name" class="form-label ">Name:</label>
             <input type="text" id="name" formControlName="name" class="form-control rounded-0" [ngClass]="{'is-invalid': name?.invalid && (name?.dirty || name?.touched)}" required />
             <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="invalid-feedback">
               Name is required.
@@ -43,7 +43,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
-            <label for="type">Type:</label>
+            <label for="type" class="form-label ">Type:</label>
             <input type="text" id="type" formControlName="type" class="form-control rounded-0" [ngClass]="{'is-invalid': type?.invalid && (type?.dirty || type?.touched)}" required />
             <div *ngIf="type?.invalid && (type?.dirty || type?.touched)" class="invalid-feedback">
               Type is required.
@@ -53,7 +53,7 @@
   
         <div class="col-md-4">
           <div class="form-group">
-            <label for="description">Description:</label>
+            <label for="description" class="form-label ">Description:</label>
             <textarea id="description" formControlName="description" class="form-control rounded-0" [ngClass]="{'is-invalid': description?.invalid && (description?.dirty || description?.touched)}" required></textarea>
             <div *ngIf="description?.invalid && (description?.dirty || description?.touched)" class="invalid-feedback">
               Description is required.
@@ -63,7 +63,7 @@
   
         <div class="col-md-4">
           <div class="form-group">
-            <label for="hours">Hours:</label>
+            <label for="hours" class="form-label ">Hours:</label>
             <input type="number" id="hours" formControlName="hours" class="form-control rounded-0" [ngClass]="{'is-invalid': hours?.invalid && (hours?.dirty || hours?.touched)}" required />
             <div *ngIf="hours?.invalid && (hours?.dirty || hours?.touched)" class="invalid-feedback">
               Hours is required.
@@ -75,7 +75,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
-            <label for="startDate">Start Date:</label>
+            <label for="startDate" class="form-label ">Start Date:</label>
             <input type="date" id="startDate" formControlName="startDate" class="form-control rounded-0" [ngClass]="{'is-invalid': startDate?.invalid && (startDate?.dirty || startDate?.touched)}" required />
             <div *ngIf="startDate?.invalid && (startDate?.dirty || startDate?.touched)" class="invalid-feedback">
               Start Date is required.
@@ -85,7 +85,7 @@
   
         <div class="col-md-4">
           <div class="form-group">
-            <label for="endDate">End Date:</label>
+            <label for="endDate" class="form-label ">End Date:</label>
             <input type="date" id="endDate" formControlName="endDate" class="form-control rounded-0" [ngClass]="{'is-invalid': endDate?.invalid && (endDate?.dirty || endDate?.touched)}" required />
             <div *ngIf="endDate?.invalid && (endDate?.dirty || endDate?.touched)" class="invalid-feedback">
               End Date is required.
@@ -95,7 +95,7 @@
   
         <div class="col-md-4">
           <div class="form-group">
-            <label for="status">Status:</label>
+            <label for="status" class="form-label ">Status:</label>
             <select id="status" formControlName="status" class="form-control" [ngClass]="{'is-invalid': status?.invalid && (status?.dirty || status?.touched)}" required>
               <option [ngValue]="null">Select a Status</option>
               <option *ngFor="let option of statusOptions" [ngValue]="option">{{ option }}</option>

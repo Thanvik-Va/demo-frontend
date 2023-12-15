@@ -3,11 +3,11 @@
   <!-- <div class="page-border">  -->
     <div class="container">
         <form [formGroup]="taskForm" (ngSubmit)="taskSubmit($event)">
-            <h2 class="h2 text-center text-primary">Create Task</h2>
+            <h2 class=" main-heading text-center">Create Task</h2>
             <div class="row m-2" >
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="taskName">Task Name</label>
+                  <label for="taskName" class="form-label ">Task Name</label>
                   <input type="text" id="taskName" class="form-control" formControlName="name">
                   <div *ngIf="name?.invalid && name?.touched ">
                     <div *ngIf="name?.errors?.['required']" class="text-danger">Task name required</div>
@@ -16,7 +16,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="taskType">Task Type</label>
+                  <label for="taskType" class="form-label ">Task Type</label>
                   <input type="text" id="taskType" class="form-control" formControlName="type">
                   <div *ngIf="type?.invalid &&type?.touched ">
                     <div *ngIf="type?.errors?.['required']" class="text-danger">Task type required</div>
@@ -25,7 +25,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="taskDescription">Task Description</label>
+                  <label for="taskDescription" class="form-label ">Task Description</label>
                   <input type="text" id="taskDesc" class="form-control" formControlName="description">
                   <div *ngIf="description?.invalid &&description?.touched ">
                     <div *ngIf="description?.errors?.['required']" class="text-danger">Task description required</div>
@@ -37,7 +37,7 @@
             <div class="row m-2">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="hours">Hours</label>
+                  <label for="hours" class="form-label ">Hours</label>
                   <input type="number" id="hours" class="form-control" formControlName="hours">
                   <div *ngIf="hours?.invalid &&hours?.touched ">
                     <div *ngIf="hours?.errors?.['required']" class="text-danger">Task hours required</div>
@@ -46,7 +46,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="status">Status</label>
+                  <label for="status" class="form-label ">Status</label>
                   <select id="status" class="form-control" formControlName="status">
                     <option value="" disabled>Select a Status</option>
                     <option *ngFor="let option of statusOptions" [ngValue]="option">{{ option }}</option>
@@ -58,7 +58,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="startDate">Start Date</label>
+                  <label for="startDate" class="form-label ">Start Date</label>
                   <input type="date" id="startDate" class="form-control" formControlName="startDate">
                   <div *ngIf="startDate?.invalid &&startDate?.touched ">
                     <div *ngIf="startDate?.errors?.['required']" class="text-danger">Task startDate required</div>
@@ -70,7 +70,7 @@
             <div class="row m-2">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="endDate">End Date</label>
+                  <label for="endDate" class="form-label ">End Date</label>
                   <input type="date" id="endDate" class="form-control" formControlName="endDate">
                   <div *ngIf="endDate?.invalid &&endDate?.touched ">
                     <div *ngIf="endDate?.errors?.['required']" class="text-danger">Task EndDate required</div>
@@ -79,7 +79,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="assignee">Assignee</label>
+                  <label for="assignee" class="form-label ">Assignee</label>
                   <select id="assignee" class="form-control" formControlName="assignee">
                     <option value="" disabled>Select an Assignee</option>
                     <option *ngFor="let option of employee" [ngValue]="option.email_id">{{ option.email_id }}</option>
@@ -92,7 +92,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="project">Project Name</label>
+                  <label for="project" class="form-label ">Project Name</label>
                   <select id="prjName" class="form-control" formControlName="projectId">
                     <option value="" disabled>Select a Project Name</option>
                     <option *ngFor="let option of prjNameOptions" [selected]="projectId == option.id" [value]="option.id">{{ option.name }}</option>
@@ -102,8 +102,8 @@
               </div>
             </div>
             <div class="form-group d-flex justify-content-center">
-            <button class="edit m-4 " (click)="clickToChild()" >Back</button>
-              <button type="submit" class="btn btn-success m-4 " [disabled]="this.taskForm.invalid">Save Task</button>
+            <button class="edit btn btn-primary" (click)="clickToChild()" >Back</button>
+              <button type="submit" class="edit btn btn-success m-4 " [disabled]="this.taskForm.invalid">Save Task</button>
             </div>
           </form>
         </div>

@@ -1,8 +1,9 @@
-.main-heading {
-  font-family: 'Roboto';
-  font-weight: bold;
-  font-size: 20px;
 
+.main-heading {
+    font-family: revert-layer;
+    font-weight: bold;
+    font-size: 33px;
+    margin-bottom: 24px;
 }
 
 .main-div {
@@ -56,11 +57,11 @@
   width: 130px;
   height: 45px;
   color: white;
-  background-color: rgba(16, 159, 16, 0.638);
+  /* background-color: rgba(16, 159, 16, 0.638); */
   border-width: 0px;
   border-radius: 8px;
   margin-right: 10px;
-  margin-left: 980px;
+  margin-left: 950px;
 
 }
 .content{
@@ -76,18 +77,19 @@
   border: 1px solid; /* Red border for invalid state */
 
   margin-left: 15px;
-  background-color: #d0b200;
+ 
 }
 
 .btn-valid {
   width: 110px;
   height: 45px;
   color: white;
-  background-color: #d0b200;
+  /* background-color: #d0b200; */
   border-width: 0px;
   border-radius: 8px;
   margin-right: 15px;
   color: black; /* Text color for valid state */
+  
 }
 .page-border {
   margin-top: 92px;
@@ -100,4 +102,27 @@
   margin-left: 208px;
 }
 
+
+.edit{
+  margin-right: 13px;
+  /* background-color: #376eb9; */
+  
+  height: 31px;
+  padding-left: 18px;
+  padding-right: 18px;
+  border-radius: 6px;
+  font-size: 11px;
+  margin-top: 9px;
+  /* padding: 4px; */
+  border: none;
+  font-weight: bold;
+  
+  }
+
+  .modal-footer .btn+.btn {
+    margin-bottom: 3px;
+    margin-left: 5px;
+}
+  
+ 
 
