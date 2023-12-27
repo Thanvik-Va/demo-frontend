@@ -132,8 +132,8 @@ export class TaskComponent implements OnInit {
           this.task.projectId=this.projectIdd;
           console.log(this.task);
           if(response.errorCode===0){
-          this.toast.success("Task saved Successfully","Info",{
-            positionClass:'toast-bottom-right',
+          this.toast.success("Task saved Successfully","",{
+            positionClass:'toast-top-right',
             progressBar:true,
             progressAnimation:'increasing',
             timeOut:3000,
@@ -142,8 +142,8 @@ export class TaskComponent implements OnInit {
           })
         }
         if(response.errorCode===1){
-          this.toast.error("Task with same name already exists","Info",{
-            positionClass:'toast-bottom-right',
+          this.toast.error("Task with same name already exists","",{
+            positionClass:'toast-top-right',
             progressBar:true,
             progressAnimation:'increasing',
             timeOut:3000,
@@ -162,8 +162,8 @@ export class TaskComponent implements OnInit {
             this.task = response.response.data
             console.log(this.task)
             if(response.errorCode===0){
-              this.toast.success("Task saved Successfully","Info",{
-                positionClass:'toast-bottom-right',
+              this.toast.success("Task saved Successfully","",{
+                positionClass:'toast-top-right',
                 progressBar:true,
                 progressAnimation:'increasing',
                 timeOut:3000,
@@ -172,8 +172,8 @@ export class TaskComponent implements OnInit {
               })
             }
             if(response.errorCode===1){
-              this.toast.error("Task with same name already exists","Info",{
-                positionClass:'toast-bottom-right',
+              this.toast.error("Task with same name already exists","",{
+                positionClass:'toast-top-right',
                 progressBar:true,
                 progressAnimation:'increasing',
                 timeOut:3000,

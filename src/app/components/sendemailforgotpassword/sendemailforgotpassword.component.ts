@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ForgotpasswordService } from 'src/app/services/forgotpassword.service';
 import { LoginServiceService } from 'src/app/services/login-service.service';
 
@@ -10,7 +11,7 @@ import { LoginServiceService } from 'src/app/services/login-service.service';
 })
 export class SendemailforgotpasswordComponent {
   constructor(private service: LoginServiceService,
-    private fb: FormBuilder,private passwordservice:ForgotpasswordService) {
+    private fb: FormBuilder,private passwordservice:ForgotpasswordService,private toaster:ToastrService) {
 
   }
 
@@ -42,7 +43,19 @@ export class SendemailforgotpasswordComponent {
   }
 
   message() {
-    alert("A password verification message has been sent to your email...")
+    this.toaster.success("Mail sent successfully","",{
+      positionClass:'toast-top-right',
+      progressBar:true,
+      progressAnimation:'increasing',
+      timeOut:2000,
+      easing:'ease-in',
+      easeTime:1000
+    });
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
+  }
   }
 
-}
+  
+

@@ -130,8 +130,8 @@ export class UpdateParentTaskComponent {
     // const na=this.router.snapshot.paramMap.get('name')
     if (this.taskName){
       this.dataService.updateParentTasks(d).subscribe(response=>{
-        this.toast.success("Task updated","Info",{
-          positionClass:'toast-bottom-right',
+        this.toast.success("Task updated","",{
+          positionClass:'toast-top-right',
           progressBar:true,
           progressAnimation:'increasing',
           timeOut:3000,

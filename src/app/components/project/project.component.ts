@@ -102,8 +102,8 @@ export class ProjectComponent implements OnInit{
         if (project) {
           this.tempId = project.id;
           this.router.navigate(['/layout/child', { projectId: this.tempId }]);
-          this.toast.success("Project saved successfully and navigated to create child project", "Info", {
-            positionClass: 'toast-bottom-top',
+          this.toast.success("Project saved successfully and navigated to create child project", "", {
+            positionClass: 'toast-top-right',
             progressBar: true,
             progressAnimation: 'increasing',
             timeOut: 2000,
@@ -112,8 +112,8 @@ export class ProjectComponent implements OnInit{
           });
         } else {
           console.error('Error: Unable to retrieve project details.');
-          this.toast.error("Error in navigating to sub project", "Info", {
-            positionClass: 'toast-bottom-top',
+          this.toast.error("Error in navigating to sub project", "", {
+            positionClass: 'toast-top-right',
             progressBar: true,
             progressAnimation: 'increasing',
             timeOut: 2000,
@@ -136,9 +136,9 @@ export class ProjectComponent implements OnInit{
           this.router.navigate(['/layout/task', { projectId: this.tempId }]);
           this.toast.success(
             "Project saved successfully and navigated to create task",
-            "Info",
+            "",
             {
-              positionClass: 'toast-bottom-right',
+              positionClass: 'toast-top-right',
               progressBar: true,
               progressAnimation: 'increasing',
               timeOut: 2000,

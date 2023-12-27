@@ -82,7 +82,7 @@ export class ListComponent {
   navigateToUpdateProject(name: string): void {
     this.router.navigate(['/layout/pro', name]);
     this.toaster.success("Naviagted to Update Project", "Info", {
-      positionClass: 'toast-bottom-left',
+      positionClass: 'toast-top-right',
       progressBar: true,
       progressAnimation: 'increasing',
       timeOut: 6000,
@@ -95,7 +95,7 @@ export class ListComponent {
     console.log(name)
     this.router.navigate(['/layout/update', name]);
     this.toaster.success("Naviagted to Update Task", "Info", {
-      positionClass: 'toast-bottom-left',
+      positionClass: 'toast-top-right',
       progressBar: true,
       progressAnimation: 'increasing',
       timeOut: 6000,
@@ -103,5 +103,20 @@ export class ListComponent {
       easeTime: 3000
     })
   }
+  deleteProject(id:any){
+    this.projectService.deleteProject(id).subscribe(response=>{
+      console.log(response);
+      window.location.reload();
+    })
+  }
+
+
+  deleteTask(id: any) {
+    this.projectService.deleteTask(id).subscribe(response=>{
+      console.log(response);
+      window.location.reload();
+      
+    })
+    }
 }
 

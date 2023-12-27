@@ -5,7 +5,7 @@ import { Employee } from '../components/classes/employee';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class EmployeeService  {
 
   // private baseURL= "http://localhost:8383/api/v1";
   tokenData={}
@@ -43,4 +43,6 @@ export class EmployeeService {
   });
 
  }
+
+ 
 }

@@ -83,7 +83,7 @@
             <br />
             <!-- <button class="btn btn-btn btn-temp" type="submit" [disabled]="orgRegister.invalid">Update</button> -->
             <!-- Rest of your form -->
-            <button class="btn btn-primary edit btn-temp text-white" type="submit" [disabled]="orgRegister.invalid"
+            <button class="btn btn-primary edit btn-temp text-white bi bi-pencil-square" type="submit" [disabled]="orgRegister.invalid"
                 [ngClass]="{ 'btn-valid': !orgRegister.invalid, 'btn-invalid':orgRegister.invalid }">
                 Update
             </button>
@@ -93,7 +93,7 @@
 
     <div class="container bp-container">
 
-        <button class="btn btn-success edit custom-btn" data-toggle="modal" data-target="#exampleModalCenter">Add Business</button>
+        <button class="btn btn-success edit custom-btn bi bi-plus-circle" data-toggle="modal" data-target="#exampleModalCenter"> Add Business</button>
         <h1 class="main-heading text-center">Business Place Details</h1>
 
         <table class="table ">
@@ -120,9 +120,9 @@
                     <td>{{ businessPlace.businessPlaceContact }}</td>
                     <td>{{ businessPlace.businessPlaceZipCode }}</td>
                     <td>
-                        <button (click)="editBusinessPlace(businessPlace)" class=" edit btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModalCenter">Edit</button>&nbsp;
-                        <button (click)="deleteBusinessPlace(businessPlace)" class=" edit btn btn-danger">Delete</button>
+                        <button (click)="editBusinessPlace(businessPlace)" class=" edit btn btn-primary bi bi-pencil-square" data-toggle="modal"
+                            data-target="#exampleModalCenter"> Edit</button>&nbsp;
+                        <button (click)="deleteBusinessPlace(businessPlace)" class=" edit btn btn-danger"><span class="bi bi-trash3-fill"></span></button>
                     </td>
                 </tr>
             </tbody>

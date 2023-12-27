@@ -12,7 +12,7 @@
               Invalid file type. Only XLS and XLSX files are allowed.
             </div>
           </div>
-          <button type="submit" [disabled]="!selectedFile || (selectedFile && !isValidFileType)" class="edit btn btn-success">Upload</button>
+          <button type="submit" [disabled]="!selectedFile || (selectedFile && !isValidFileType)" class="edit btn btn-success bi bi-file-earmark-arrow-up"> Upload</button>
         </form>
       </div><br>
 
@@ -40,7 +40,7 @@
               <td>{{ file.fileName }}</td>
               <td>{{file.date}}</td>
               <td>
-                <button class=" edit btn btn-primary btn-sm" (click)="downloadFile(file.fileName)">Download</button>
+                <button class=" edit btn btn-primary btn-sm bi bi-file-earmark-arrow-down" (click)="downloadFile(file.fileName)"> Download</button>
               </td>
             </tr>
           </tbody>

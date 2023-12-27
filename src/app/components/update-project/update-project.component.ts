@@ -104,8 +104,8 @@ export class UpdateProjectComponent {
     const projectData=this.projectForm.value;
     if (this.projectName) {
       this.dataService.updateProject(projectData).subscribe(response => {
-        this.toast.success("Project Updated successfully", "Info", {
-          positionClass: 'toast-bottom-top',
+        this.toast.success("Project Updated successfully", "", {
+          positionClass: 'toast-top-right',
           progressBar: true,
           progressAnimation: 'increasing',
           timeOut: 2000,

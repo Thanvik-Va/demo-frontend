@@ -94,8 +94,8 @@ export class ChildComponent implements OnInit{
           this.proj = response.response.data;
           this.tempId = this.proj.id;
   
-          this.toast.success("Project saved Successfully", "Info", {
-            positionClass: 'toast-bottom-right',
+          this.toast.success("Project saved Successfully", "", {
+            positionClass: 'toast-top-right',
             progressBar: true,
             progressAnimation: 'increasing',
             timeOut: 3000,
@@ -125,8 +125,8 @@ export class ChildComponent implements OnInit{
         this.route.navigate(['/layout/task', { projectId: this.tempId }])
           .then(
             () => {
-              this.toast.success("Navigated to task", "Info", {
-                positionClass: 'toast-bottom-right',
+              this.toast.success("Navigated to task", "", {
+                positionClass: 'toast-top-right',
                 progressBar: true,
                 progressAnimation: 'increasing',
                 timeOut: 3000,
@@ -137,7 +137,7 @@ export class ChildComponent implements OnInit{
             (error) => {
               console.error('Error navigating to task:', error);
               this.toast.error("Error navigating to task", "Error", {
-                positionClass: 'toast-bottom-right',
+                positionClass: 'toast-top-right',
                 progressBar: true,
                 progressAnimation: 'increasing',
                 timeOut: 3000,

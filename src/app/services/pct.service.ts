@@ -64,6 +64,14 @@ headers={
     return this.http.get<any>(`${this.baseUrl}`+"parent/"+`${name}`,this.tokenData)
   }
 
+  deleteProject(id:any):Observable<any>{
+    return this.http.delete<any>(`${this.baseUrl}`+"project/"+`${id}`);
+  }
+
+  deleteTask(id:any):Observable<any>{
+    return this.http.delete<any>(`${this.baseUrl}`+"task/"+`${id}`);
+  }
+
 
 
 

@@ -5,8 +5,8 @@
           <h2 class="main-heading text-center">Employee List</h2>
     <div class=" mt-0">
      <div class="float-end m-1">
-      <button  class="  text-light btn btn-primary  m-1 edit" (click)="resetForm()"   data-target="#edit" data-toggle="modal"><b> Add Employee</b> </button>
-      <button  class="  text-light m-1 btn btn-success edit"     (click)="generateExcel()"><b>Excel Export</b> </button>
+      <button  class="  text-light btn btn-primary  m-1 edit bi bi-plus-circle" (click)="resetForm()"   data-target="#edit" data-toggle="modal"><b> Add Employee</b> </button>
+      <button  class="  text-light m-1 btn btn-success edit bi bi-file-earmark-excel"     (click)="generateExcel()"><b> Excel Export</b> </button>
      </div>
 
       <table class="table  mt-1" >
@@ -36,7 +36,7 @@
             <td>{{ employee.emp_type }}</td>
             <td>{{ employee.bp }}</td>
             <td>{{ employee.address}}</td>
-            <td><i type="button" (click)="edit (employee)" class=" edit btn btn-primary bi bi-pencil-square mx-2 " data-target="#edit" data-toggle="modal"></i></td>
+            <td><button type="button" (click)="edit (employee)" class=" edit btn btn-primary bi bi-pencil-square mx-2 " data-target="#edit" data-toggle="modal"> Edit </button></td>
             <td><i type="button" (click)="Delete(employee.emp_id)"   class="edit btn btn-danger bi bi-trash mx-3"></i></td>
           </tr>
         </tbody>
@@ -76,24 +76,24 @@
               <div *ngIf="frmEdit.controls.department.errors?.['required']">Department Required</div>
           </div>
             <dt>Role</dt>
-            <select type="text" class="form-control dropdown" formControlName="role" placeholder="Role"  style="height: 30px;" [(ngModel)]="Role">
+            <select type="text" class="form-control dropdown" formControlName="role"  style="height: 30px;" [(ngModel)]="Role">
               <option [ngValue]="null" disabled selected>Role</option>
               <option *ngFor="let r of Roles " [value]="r.id">
                 {{r.roles}}
               </option>
             </select>               
             <dt>Organization Name</dt>
-            <select type="text" class="form-control dropdown"  formControlName="org_name" placeholder="Organization" style="height: 30px;" id="org_name" >
+            <select type="text" class="form-control dropdown"  formControlName="org_name"  style="height: 30px;" id="org_name" >
               <option [ngValue]="null" disabled selected>Organization</option>
               <option>Incresol</option>
             </select>         
             <dt>Employee Type</dt>
-            <select type="text" class="form-control dropdown" formControlName="emp_type" placeholder="Employee Type" id="emp_type" style="height: 30px;" [(ngModel)]="Emptype">
+            <select type="text" class="form-control dropdown" formControlName="emp_type"  id="emp_type" style="height: 30px;" [(ngModel)]="Emptype">
               <option [ngValue]="null" disabled selected>Employee_Place</option>
               <option *ngFor="let t of EmpType " [value]="t.id">{{t.type}}</option>
             </select>          
             <dt>B_Place</dt>
-            <select type="text" class="form-control dropdown" formControlName="bp" id="bp" placeholder="Business place" style="height: 30px;" >
+            <select type="text" class="form-control dropdown" formControlName="bp" id="bp" style="height: 30px;" >
               <option [ngValue]="null" disabled selected>Business_Place</option>
               <option >Hyderabad</option>
               <option >Banglor</option>
@@ -106,9 +106,8 @@
               <div *ngIf="frmEdit.controls.address.errors?.['required']">Address Required</div>
           </div>
           <div class="modal-footer float-end ">
-            <button class="btn btn-danger m-1 text-light edit" data-dismiss="modal"  style="height: 30px;">Cancel</button>
-            <button  [disabled]="frmEdit.invalid" class="btn btn-primary m-1 text-light edit"style="height: 30px;"   (click)="submit()" data-dismiss="modal">Save</button>
-          </div>
+  <button class="btn btn-danger m-1 text-light edit" data-dismiss="modal"  style="height: 30px;">Cancel</button>
+            <button  [disabled]="frmEdit.invalid" class="btn btn-primary m-1 text-light edit"style="height: 30px;"   (click)="submit()" data-dismiss="modal">Save</button>          </div>
          </div>    
         </form>
       </div>

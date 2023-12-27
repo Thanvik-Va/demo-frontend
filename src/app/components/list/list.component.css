@@ -15,9 +15,12 @@ background-image: url("../../assets/OIP.jpg");
 display: flex;
 display: block ;
 }
+.table{
+  border-width: 0px;
+}
 
 .b{
-background-color: #373c5c;
+/* background-color: #373c5c; */
 color: black;
 padding: 6px;
 width: 44%;
@@ -88,7 +91,8 @@ h3 {
 }
 .btn:not(:disabled):not(.disabled) {
   cursor: pointer;
-  margin-bottom: 9px;
+  margin-bottom: 0px;
+  margin-top: -3px;
 }
 
 
@@ -99,4 +103,8 @@ h3 {
   font-size: 33px;
   margin-bottom: 13px;
   margin-top: 13px;
+}
+
+table td {
+  border-bottom: none !important;
 }
