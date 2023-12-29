@@ -85,20 +85,18 @@
             <dt>Organization Name</dt>
             <select type="text" class="form-control dropdown"  formControlName="org_name"  style="height: 30px;" id="org_name" >
               <option [ngValue]="null" disabled selected>Organization</option>
-              <option>Incresol</option>
+              <option *ngFor="let org of organization" [ngValue]="org">{{org.organizationName}}</option>
             </select>         
             <dt>Employee Type</dt>
             <select type="text" class="form-control dropdown" formControlName="emp_type"  id="emp_type" style="height: 30px;" [(ngModel)]="Emptype">
-              <option [ngValue]="null" disabled selected>Employee_Place</option>
+              <option [ngValue]="null" disabled selected>Employee_Type</option>
               <option *ngFor="let t of EmpType " [value]="t.id">{{t.type}}</option>
             </select>          
             <dt>B_Place</dt>
             <select type="text" class="form-control dropdown" formControlName="bp" id="bp" style="height: 30px;" >
               <option [ngValue]="null" disabled selected>Business_Place</option>
-              <option >Hyderabad</option>
-              <option >Banglor</option>
-              <option >Mumbai</option>
-              <option >Jaipur</option>
+              <option *ngFor="let bp of bPlace" [ngValue]="bp">{{bp.businessPlaceLegalName}}</option>
+              
             </select>        
             <dt>Address</dt>
             <input type="text" class="form-control" formControlName="address" id="address" placeholder="Address" style="height: 30px;" >

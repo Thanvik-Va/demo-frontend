@@ -4,6 +4,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import * as saveAs from 'file-saver';
 import { ToastrService } from 'ngx-toastr';
+import { OrgServiceService } from 'src/app/services/services/org-service.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -16,6 +17,8 @@ export class EmployeeListComponent implements OnInit {
   employees: any = [];
 
   Role: number | null = null;
+  organization:any[]=[];
+  bPlace:any[]=[];
 
   Roles: any[] = [
     { id: 111, roles: 'Manager' },
@@ -36,7 +39,7 @@ export class EmployeeListComponent implements OnInit {
 
   employee: Employee = new Employee();
   
-  constructor( private employeeService:EmployeeService, private fb:FormBuilder,private toaster:ToastrService ) { }
+  constructor( private employeeService:EmployeeService, private fb:FormBuilder,private toaster:ToastrService,private org:OrgServiceService ) { }
 
   
   public frmEdit = this.fb.group({
@@ -61,6 +64,15 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmployees();
+    this.org.getAllOrganizations().subscribe(response=>{
+      this.organization=response.response.data;
+      console.log(this.organization);
+      
+    })
+    this.org.getBusinessPlace().subscribe(response=>{
+      this.bPlace=response.response.data;
+      console.log(this.bPlace);
+    })
   }
 
   private getEmployees() {
