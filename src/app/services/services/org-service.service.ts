@@ -66,4 +66,9 @@ export class OrgServiceService {
       this.tokenData
     );
   }
+
+  // Delete all business places
+  //  deleteAllBusinessPlaces(bp:any[]):{
+  //   //return this.http.delete<any>('http://localhost:8383/deleteAllBusinessPlaces',bp,this.tokenData)
+  //  }
 }

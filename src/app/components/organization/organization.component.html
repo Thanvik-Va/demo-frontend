@@ -1,4 +1,11 @@
+
+
+
+
 <div class="page-border">
+
+
+    
 
     <div class="text-center ">
         <h1 class="main-heading">Organization Details </h1>
@@ -96,10 +103,18 @@
         <button class="btn btn-success edit custom-btn bi bi-plus-circle" data-toggle="modal" data-target="#exampleModalCenter"> Add Business</button>
         <h1 class="main-heading text-center">Business Place Details</h1>
 
-        <table class="table ">
+         <button class="btn btn-danger" (click)="deleteAll()">Delete All</button>
+        <table class=" table  cell-border tbl-tbl table-bordered hover" id="mytbl">
             <thead>
                 <tr style="font-size: 15px;">
-                    <th scope="col">S.no</th>
+                    <!-- <th scope="col">
+                        <input type="checkbox"   (change)="onChangeCheck($event)" [value]="-1"  />
+                     </th> -->
+                     <th scope="col">
+                        <input type="checkbox" (change)="onChangeCheckStatus($event)" [(ngModel)]="ischeck" />
+                    </th>
+                     
+                    <th scope="col" class="sn-column">S.no</th>
                     <th scope="col">Bp Name</th>
                     <th scope="col">Bp Location</th>
                     <th scope="col">Bp Country</th>
@@ -111,8 +126,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let businessPlace of organization.businessPlaces;let x = index" style="font-size: 13px;">
-                    <th scope="row">{{ x + 1 }}</th>
+                <tr *ngFor="let businessPlace of bpList;let x = index" style="font-size: 13px;">
+                    <td>
+      
+                        <input type="checkbox" (change)="onChangeCheck($event,x)" [(ngModel)]="businessPlace.select" />
+                     </td>
+                     
+                    <th scope="row" class="sn-column" >{{ x + 1 }}</th>
                     <td>{{ businessPlace.businessPlaceLegalName }}</td>
                     <td>{{ businessPlace.businessPlaceLocation }}</td>
                     <td>{{ businessPlace.countryName }}</td>
@@ -121,13 +141,17 @@
                     <td>{{ businessPlace.businessPlaceZipCode }}</td>
                     <td>
                         <button (click)="editBusinessPlace(businessPlace)" class=" edit btn btn-primary bi bi-pencil-square" data-toggle="modal"
-                            data-target="#exampleModalCenter"> Edit</button>&nbsp;
+                            data-target="#exampleModalCenter"></button>
                         <button (click)="deleteBusinessPlace(businessPlace)" class=" edit btn btn-danger"><span class="bi bi-trash3-fill"></span></button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+
+
+    
     <!-- Modal -->
     <form action [formGroup]="bpRegister" (ngSubmit)="onSubmit()">
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -235,5 +259,18 @@
             </div>
         </div>
     </form>
+   
+  
 
-</div>
+
+
+</div
+>
+
+
+
+
+
+
+
+

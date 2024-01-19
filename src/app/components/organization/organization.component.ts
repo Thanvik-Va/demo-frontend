@@ -11,7 +11,10 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { ToastrService } from 'ngx-toastr';
+import DataTable from 'datatables.net-dt';
+import { NgPluralCase } from '@angular/common';
 
+declare var $:any;
 @Component({
   selector: 'app-organization',
   templateUrl: './organization.component.html',
@@ -37,8 +40,12 @@ export class OrganizationComponent {
   organization: any = {}; // Use the correct type or interface if available
   isEditMode: boolean = false;
   bpId:any;
- 
-
+  bpList:any[]=[];
+  selectedItems:any[] = [];
+  ischeck!:boolean;
+ischecked:boolean=false;
+  pageSize:any;
+  dataTable:any;
 
   constructor(
     private fb: FormBuilder,
@@ -75,6 +82,9 @@ export class OrganizationComponent {
   ngOnInit(): void {
     this.orgId = localStorage.getItem('orgid');
     this.getOrganization(this.orgId);
+   
+
+    
   }
 
   get OrganizationName(): FormControl {
@@ -131,8 +141,7 @@ export class OrganizationComponent {
       });
     }
   }
-
-  populateOrganizationForm() {
+populateOrganizationForm() {
     this.orgRegister.patchValue({
       organizationName: this.organization.organizationName,
       countryName: this.organization.countryName,
@@ -197,9 +206,88 @@ export class OrganizationComponent {
   getOrganization(id: any) {
     this.orgService.getOrganization(id).subscribe((response) => {
       this.organization = response.response.data;
+      console.log(this.organization)
+      this.bpList=this.organization.businessPlaces;
       this.populateOrganizationForm();
-    
+      setTimeout(() => {
+       this.dataTable= new DataTable('#mytbl',{
+          lengthMenu: [4,5,6],
+          scrollY: '200px',
+          ordering:false,
+          drawCallback: () => {
+            // Reset selected items when the table is redrawn (e.g., changing pages)
+            this.ischeck=false;
+            this.bpList.forEach(bp=>bp.select=false);
+            this.selectedItems = [];
+           
+          },
+        
+        })  
+       
+      }, 1000);
+      
+
     });
+  }
+   
+  index:any;
+ 
+  onChangeCheck(event:any,index:any){
+      this.index=index;
+      const select=event.target.checked;
+      this.selectedItems = this.bpList.filter(bp =>bp.select ==true);
+      console.log(this.selectedItems);
+     
+      
+  }
+
+  x:any;
+  onChangeCheckStatus(event:any){
+    
+    /*
+    In DataTables, the rows() function is part of the DataTables API and is used to select 
+    a set of rows in the table. It returns a DataTables API instance that allows you to perform
+     various operations on the selected rows.Here are some common use cases for the rows() function:
+    // */
+
+    // console.log(this.dataTable.rows().data().toArray())
+    
+    // this.selectedItems = this.bpList.filter(bp =>bp.select ==true);
+    // console.log(this.selectedItems)
+    const pageInfo = this.dataTable.page.info();
+    const currentPage = pageInfo.page + 1; // DataTables pages are 0-indexed
+    //console.log(currentPage);
+    const numberOfEntriesPerPage=this.dataTable.page.len();
+     const index=(currentPage*numberOfEntriesPerPage)-(numberOfEntriesPerPage);
+     const range=(currentPage*numberOfEntriesPerPage);
+
+    if(event.target.checked){
+      
+       for(let x=index;x<range;x++){
+         if( x<this.bpList.length){
+         this.bpList[x].select=true;
+         }
+       }
+       this.selectedItems=this.bpList.filter(bp=>bp.select==true);
+       console.log(this.selectedItems); 
+    }
+    else
+    {
+       for(let x=index;x<range;x++){
+         this.bpList[x].select=false;
+       }
+        this.selectedItems=this.bpList.filter(bp=>bp.select==false);
+        console.log(this.selectedItems);
+    
+    }
+
+
+  }
+  
+
+  deleteAll(){
+    
+    console.log(this.selectedItems);
   }
 
   handleResponse(response: any) {
@@ -227,5 +315,8 @@ export class OrganizationComponent {
     this.resetForms();
    this.isEditMode = false;
    this.getOrganization(this.orgId);
+  }
 
-  }}
+
+
+}

@@ -123,6 +123,15 @@
     margin-bottom: 3px;
     margin-left: 5px;
 }
+/*  Custom width to S.No*/
+  .sn-column {
+    width: 5px; /* Adjust the width as needed */
+    text-align: center; /* Center align the content in the S.No column */
+  }
+
+
   
+
+
  
 

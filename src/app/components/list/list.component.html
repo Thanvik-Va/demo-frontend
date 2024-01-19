@@ -1,13 +1,13 @@
 <div class="page-border"> 
   <app-project-header></app-project-header>
   
-  <div class="container-fluid ">
+ 
     
-    <table class="table">
+    <table class="table " >
       <thead><th> <h2 class="main-heading text-center">List of Projects</h2></th></thead>
      
       <tbody>
-        <tr *ngFor="let project of projects; let i = index">
+        <tr *ngFor="let project of projects ; let i = index">
           <!-- <td> -->
             <div class="input-group d-flex justify-content-center">
               <button (click)="closeOtherProjectsDetails(i); loadParentProjects(project, i)"
@@ -69,7 +69,7 @@
                       <h3  style="font-size: 23px ;  font-weight: bold;margin: 16px 8px 0px 1px;" class="text-primary">Task for {{project.name}}</h3><hr>
                       <div  id="elementRef" [ngClass]="{'visible': isParentTasksVisible[i]}">
                        
-                      <table class="table" border="0">
+                      <table class="table" border="0" id="parentTaskTable">
                           <thead class="text-center">
                             <tr style="font-size: 15px;">
                             <th>Name</th>
@@ -115,7 +115,7 @@
                       <h3 style="font-size: 23px ;  font-weight: bold;margin: 16px 8px 0px 1px;" class="text-primary">Sub Project for {{project.name}}</h3><hr>
                       <div >
                        
-                        <table class="table" border="0">
+                        <table class="table" border="0" id="childTable" >
                           <thead class="text-center">
                             <tr style="font-size: 15px;">
                             <th>Name</th>
@@ -159,7 +159,7 @@
                                     <h3 style="font-size: 23px ;  font-weight: bold;margin: 16px 8px 0px 1px;" class="text-primary">Task for {{childProject.name}}</h3><hr>
                                     <div >
                                      
-                                      <table class="table" border="0">
+                                      <table class="table" border="0" id="mytbl1">
                                         <thead class="text-center">
                                           <tr style="font-size: 15px;">
                                           <th>Name</th>
@@ -214,4 +214,6 @@
       </tbody>
     </table>
   </div>
-  </div>
+  
+
+  
