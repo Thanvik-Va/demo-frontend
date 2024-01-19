@@ -1,0 +1,28 @@
+
+.h1[_ngcontent-ng-c2439017920] {
+    color: #1bb1d7;
+    margin-top: 10px;
+    padding: 185px;
+    margin-left: 307px;
+    margin-right: 18px;
+    width: 84%;
+    height: 72%;
+    border-radius: 26px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+/* .pcollab{
+    margin-top: 86px;
+    color: #1bb1d7;
+    margin-left: 251px;
+    font-size: 26px;
+} */
+
+.page-border {
+    margin-top: 92px;
+    width: 84%;
+    border: 1px solid skyblue;
+    border-radius: 26px;
+    padding: 20px; /* Adjust the padding as needed */
+    margin-left: 208px;
+  }

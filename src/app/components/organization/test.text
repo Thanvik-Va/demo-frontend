@@ -1,0 +1,23 @@
+<input type="checkbox" [(ngModel)]="selectAll()" (change)="toggleSelectAll()"     />Select All
+
+
+
+
+<div *ng For itme of checkBoxes">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,276 @@
+
+
+
+
+<div class="page-border">
+
+
+    
+
+    <div class="text-center ">
+        <h1 class="main-heading">Organization Details </h1>
+    </div>
+
+    <div class="container mt-2">
+        <form [formGroup]="orgRegister" (ngSubmit)="collectForm()">
+            <div class="row row-check m-2">
+                <div class="form-col-12 col-md-3 mt-1">
+                    <label class="form-label">Organization Name*</label>
+                    <input type="text" class="form-control" id="inputOragnizationName"
+                        placeholder="Enter Organization Name" formControlName="organizationName" />
+                    <div *ngIf="OrganizationName.touched && OrganizationName.invalid" class="text-danger">
+                        <div *ngIf="OrganizationName.errors?.['required']">Please enter Organization Name </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <label class="form-label">Country*</label>
+                    <select id="inputCountry" class="form-control" formControlName="countryName">
+                        <!-- <option value>{{organization.countryName}}</option> -->
+                        <option *ngFor="let country of countries" [value]="country">{{ country }} </option>
+                    </select>
+                    <div *ngIf="Country.touched && Country.invalid" class="text-danger">
+                        <div *ngIf="Country.errors?.['required']"> Please Select Country</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <div>
+                        <label for="inputState" class="form-label">State*</label>
+                        <select id="inputState" class="form-control" formControlName="stateName">
+                            <!-- <option value>{{organization.stateName}}</option> -->
+                            <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                        </select>
+                        <div *ngIf="State.touched && State.invalid" class="text-danger">
+                            <div *ngIf="State.errors?.['required']"> Please select State
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="inputZip" class="form-label">Pincode*</label>
+                    <input type="text" class="form-control" id="inputZip" formControlName="zipCode" />
+                    <div *ngIf="Pincode.touched && Pincode.invalid" class="text-danger">
+                        <div *ngIf="Pincode.errors?.['required']">Please enter Pincode</div>
+                        <div *ngIf="Pincode.errors?.['minlength']">Please enter Valid Pincode </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-check m-3">
+                <div class="col-12 col-md-3">
+                    <label for="inputAddress" class="form-label">Address 1*</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+                        formControlName="addressLine1" />
+                    <div *ngIf="Address1.touched && Address1.invalid" class="text-danger">
+                        <div *ngIf="Address1.errors?.['required']">Please enter Permanent Address </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label for="inputAddress2" class="form-label">Address 2*</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"
+                        formControlName="addressLine2" />
+                    <div *ngIf="Address2.touched && Address2.invalid" class="text-danger">
+                        <div *ngIf="Address2.errors?.['required']">Please enter temporary Address
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label class="form-label">MobileNumber*</label>
+                    <input type="text" class="form-control" id="inputMobileNumber" placeholder="+910000000000"
+                        formControlName="contact" />
+                    <div *ngIf="MobileNumber.touched && MobileNumber.invalid" class="text-danger">
+                        <div *ngIf="MobileNumber.errors?.['required']">Please enter Mobile Number
+                        </div>
+                        <div *ngIf="MobileNumber.errors?.['minlength']">Please enter Valid Mobile Number</div>
+                        <div *ngIf="MobileNumber.errors?.['pattern']">Please enter Valid Mobile Number</div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <!-- <button class="btn btn-btn btn-temp" type="submit" [disabled]="orgRegister.invalid">Update</button> -->
+            <!-- Rest of your form -->
+            <button class="btn btn-primary edit btn-temp text-white bi bi-pencil-square" type="submit" [disabled]="orgRegister.invalid"
+                [ngClass]="{ 'btn-valid': !orgRegister.invalid, 'btn-invalid':orgRegister.invalid }">
+                Update
+            </button>
+
+        </form>
+    </div>
+
+    <div class="container bp-container">
+
+        <button class="btn btn-success edit custom-btn bi bi-plus-circle" data-toggle="modal" data-target="#exampleModalCenter"> Add Business</button>
+        <h1 class="main-heading text-center">Business Place Details</h1>
+
+         <button class="btn btn-danger" (click)="deleteAll()">Delete All</button>
+        <table class=" table  cell-border tbl-tbl table-bordered hover" id="mytbl">
+            <thead>
+                <tr style="font-size: 15px;">
+                    <!-- <th scope="col">
+                        <input type="checkbox"   (change)="onChangeCheck($event)" [value]="-1"  />
+                     </th> -->
+                     <th scope="col">
+                        <input type="checkbox" (change)="onChangeCheckStatus($event)" [(ngModel)]="ischeck" />
+                    </th>
+                     
+                    <th scope="col" class="sn-column">S.no</th>
+                    <th scope="col">Bp Name</th>
+                    <th scope="col">Bp Location</th>
+                    <th scope="col">Bp Country</th>
+                    <th scope="col">Bp State</th>
+                    <th scope="col">Bp Contact</th>
+                    <th scope="col">Bp Pincode</th>
+
+                    <th scope="col"> Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let businessPlace of bpList;let x = index" style="font-size: 13px;">
+                    <td>
+      
+                        <input type="checkbox" (change)="onChangeCheck($event,x)" [(ngModel)]="businessPlace.select" />
+                     </td>
+                     
+                    <th scope="row" class="sn-column" >{{ x + 1 }}</th>
+                    <td>{{ businessPlace.businessPlaceLegalName }}</td>
+                    <td>{{ businessPlace.businessPlaceLocation }}</td>
+                    <td>{{ businessPlace.countryName }}</td>
+                    <td>{{ businessPlace.stateName }}</td>
+                    <td>{{ businessPlace.businessPlaceContact }}</td>
+                    <td>{{ businessPlace.businessPlaceZipCode }}</td>
+                    <td>
+                        <button (click)="editBusinessPlace(businessPlace)" class=" edit btn btn-primary bi bi-pencil-square" data-toggle="modal"
+                            data-target="#exampleModalCenter"></button>
+                        <button (click)="deleteBusinessPlace(businessPlace)" class=" edit btn btn-danger"><span class="bi bi-trash3-fill"></span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    
+    <!-- Modal -->
+    <form action [formGroup]="bpRegister" (ngSubmit)="onSubmit()">
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLongTitle">
+                            {{ isEditMode ? 'Edit' : 'Add' }} Business Place
+                        </h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="form-label">Bp Legal Name</label>
+                                <input type="text" class="form-control" placeholder="Ex:Hyderabad"
+                                    formControlName="businessPlaceLegalName" />
+                                <div *ngIf=" businessPlaceLegalName.touched && businessPlaceLegalName.invalid"
+                                    class="text-danger">
+                                    <div *ngIf="businessPlaceLegalName.errors?.['required']" class="text-danger">
+                                        *Bp Legal Name required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-control" placeholder="Ex:-1234, Beside Jntuh"
+                                    formControlName="businessPlaceLocation" />
+                                <div *ngIf="businessPlaceLocation.touched &&businessPlaceLocation.invalid "
+                                    class="text-danger">
+                                    <div *ngIf="businessPlaceLocation.errors?.['required']" class="text-danger">
+                                        *Location required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="form-label">Mobile Number</label>
+                                <input type="tel" class="form-control" placeholder="Ex:- +919542458692"
+                                    formControlName="businessPlaceContact" />
+                                <div *ngIf="businessPlaceContact.touched &&businessPlaceContact.invalid"
+                                    class="text-danger">
+                                    <div *ngIf="businessPlaceContact.errors?.['required']">
+                                        *Mobile Number required
+                                    </div>
+                                    <div *ngIf="businessPlaceContact.errors?.['pattern']">
+                                        *Invalid mobile number
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="form-label">Pincode</label>
+                                <input type="number" class="form-control" placeholder="Ex:- 5000100"
+                                    formControlName="businessPlaceZipCode" />
+                                <div *ngIf="businessPlaceZipCode.touched &&businessPlaceZipCode.invalid"
+                                    class="text-danger">
+                                    <div *ngIf="businessPlaceZipCode.errors?.['required']" class="text-danger">
+                                        * PinCode required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="form-label">Country</label>
+                                <select id="inputCountry" class="form-control" formControlName="countryName">
+                                    <!-- <option value>{{organization.countryName}}</option> -->
+                                    <option value="" disabled selected>Select country</option>
+                                    <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+                                </select>
+                                <div *ngIf="countryName.touched && countryName.invalid" class="text-danger">
+                                    <div *ngIf="countryName.errors?.['required']" class="text-danger">
+                                        *Country required
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label>State</label>
+                                <select id="inputState" class="form-control" formControlName="stateName">
+                                    <option value="" disabled selected>Select state</option>
+
+                                    <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+                                </select>
+                                <div *ngIf="stateName.touched && stateName.invalid" class="text-danger">
+                                    <div *ngIf="stateName.errors?.['required']" class="text-danger">
+                                        *State required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button  class=" edit btn btn-danger" data-dismiss="modal" (click)="close()">Close</button>
+                        <button  type="submit" class="edit btn btn-success" [disabled]="bpRegister.invalid"
+                            color="warn">
+                            {{ isEditMode ? 'Update' : 'Save' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+   
+  
+
+
+
+</div
+>
+
+
+
+
+
+
+
+

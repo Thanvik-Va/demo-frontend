@@ -1,0 +1,17 @@
+ mat-drawer-container{
+    height: 600px;
+    width: 250px;
+ }
+ mat-drawer,mat-drawer-content{
+    padding: 16px;
+ }
+ mat-drawer{
+    background-color:hwb(335 0% 92%);
+    width: 180px;
+ }
+ .text-color{
+    background-color: turquoise;
+ }
+ h1{
+   text-align: center;
+ }

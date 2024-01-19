@@ -1,0 +1,15 @@
+<!-- <div class="page-border"> -->
+  <div class="b">
+    <div class="container-fluid set">
+      <header class="float-left d head ">
+        <button class="bt bi bi-list-columns-reverse" [ngClass]="{'highlight': isButtonActive('/layout/list'), 'fixedHighlight': isButtonActive('/layout/list')}" (click)="navigateTo('/layout/list')"> List of Projects</button>
+        <button class="bt bi bi-bag-plus-fill" [ngClass]="{'highlight': isButtonActive('/layout/project'), 'fixedHighlight': isButtonActive('/layout/project')}" (click)="navigateTo('/layout/project')"> Create Project</button>
+        <button class="bt bi bi-bag-plus-fill" [ngClass]="{'highlight': isButtonActive('/layout/task'), 'fixedHighlight': isButtonActive('/layout/task')}" (click)="navigateTo('/layout/task')"> Create Task</button>
+      </header>
+    </div>
+  </div>
+
+<!-- <app-project-header></app-project-header> -->
+  <!-- Your component content goes here -->
+  <!-- <app-list></app-list> -->
+ <!-- </div> -->

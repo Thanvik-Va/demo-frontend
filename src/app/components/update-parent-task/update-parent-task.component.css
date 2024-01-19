@@ -1,0 +1,38 @@
+.page-border {
+  margin-top: 92px;
+  width: 84%;
+  border: 1px solid skyblue;
+  border-radius: 26px;
+  padding: 20px; /* Adjust the padding as needed */
+  margin-left: 208px;
+}
+.form-control{
+  font-weight: bold;
+}
+.bt{
+  border-radius: 5px;
+  background-color: rgb(69 123 28);
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+
+
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+  padding: 5px;
+  border: none;
+  font-weight: bold;
+}
+select.form-control:not([size]):not([multiple]) {
+  height: 36px;
+}
+
+.main-heading {
+  font-family: revert-layer;
+  font-weight: bold;
+  font-size: 33px;
+  margin-bottom: 24px;
+  margin-top:27px
+}

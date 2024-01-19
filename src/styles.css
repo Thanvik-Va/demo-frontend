@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+ 
+.text-center{
+    text-align: center;
+}
+.mt{
+    margin-top: 20px;
+}
+mat-drawer-continer{
+    height: 100px;
+}
+mat-drawer, mat-drawer-content{
+    padding: 16px;
+}
+mat-drawer{
+    background-color: #141414;
+    width: 200px;
+}
+
+@import 'ngx-toastr/toastr';
+ 
+/*  */

@@ -1,0 +1,69 @@
+.set{
+  margin-top: 64px;
+  margin-left: -70px;
+  margin-top: -1px;} 
+
+
+.b {
+  background-color: hsl(240, 100%, 99%);
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+  
+  
+   
+.d {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden; /* Prevents contents from overflowing */
+  margin-left: 836px;
+
+}
+  /* .page-border{
+    margin-top: 102px;
+    width: 84%;
+    height: -moz-fit-content;
+    height: fit-content;
+    border: 1px solid #1bb1d7;
+    border-radius: 26px;
+    padding: 9px;
+    margin-left: 210px;
+  } */
+
+  
+  .bt {
+    background-color: #385499;
+    color: whitesmoke;
+    border-radius: 16px;
+    padding: 11px;
+    /* flex: 1;  */
+    margin: 0 5px; /* Adjust margin as needed */
+    white-space: nowrap; /* Prevents button text wrapping */
+    overflow: hidden; /* Prevents text overflow */
+    text-overflow: ellipsis; /* Show ellipsis for overflow text */
+    font-weight:bold;
+  }
+  
+
+  .page-border {
+    margin-top: 92px;
+    width: 84%;
+    border: 1px solid skyblue;
+    border-radius: 26px;
+    padding: 20px; /* Adjust the padding as needed */
+    margin-left: 208px;
+  }
+
+  .bt.highlight {
+    padding-bottom: 18px;
+    background-color: crimson;
+    border: none;
+    padding-top: 18px;
+    padding-right: 31px;
+    padding-left: 31px;
+    font-size: 13px;
+  }
+        

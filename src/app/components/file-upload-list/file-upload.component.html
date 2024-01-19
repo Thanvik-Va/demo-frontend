@@ -1,0 +1,51 @@
+   <div class="page-border">
+  <div class="container  bg-white">
+    <h2 class="main-heading text-center">Manage Files</h2>
+    <div>
+    <div class="row p-4" >
+      <div class="p-3">
+        <form (ngSubmit)="onSubmit()" #fileUploadForm="ngForm" >
+          <div class="form-group ">
+            <label  for="fileInput" style="color:rgb(7, 126, 245);font-weight:bold;font-size:16px;">Choose File(xls or xlsx):&nbsp;</label>
+            <input type="file" (change)="onFileSelect($event)" #fileInputRef name="file"  id="fileInput" class="form-control-file input" style="background-color: darkgrey; width: 190px;">
+            <div *ngIf="selectedFile && !isValidFileType " class="text-danger mt-2">
+              Invalid file type. Only XLS and XLSX files are allowed.
+            </div>
+          </div>
+          <button type="submit" [disabled]="!selectedFile || (selectedFile && !isValidFileType)" class="edit btn btn-success bi bi-file-earmark-arrow-up"> Upload</button>
+        </form>
+      </div><br>
+
+      </div></div><br><br>
+
+      <h2 style="margin-left:20px; font-weight: bold;"><b>File List</b></h2>
+      <div class="container" style="margin-left:10px;">
+        <div *ngIf="loadFilesFailed" class="unableToLoad">Unable to load data try again!</div>
+       
+        
+      <div *ngIf="!loadFilesFailed">
+        <table class="table" >
+          <thead>
+            <tr class="text-center" style="font-size: 15px;">
+              <th scope="col">S.No</th>
+              <th scope="col">File Name</th>
+              <th scope="col">Date Of Upload</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <div *ngIf="files.length==0" class="data">No data found</div>
+            <tr *ngFor="let file of files;let x=index " class="text-center" style="font-size: 13px;">
+              <th scope="row">{{x+1}}</th>
+              <td>{{ file.fileName }}</td>
+              <td>{{file.date}}</td>
+              <td>
+                <button class=" edit btn btn-primary btn-sm bi bi-file-earmark-arrow-down" (click)="downloadFile(file.fileName)"> Download</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+.full-width{
+    width: 500px;
+}
+.error-block{
+    color: red;
+    height: auto;
+    font-weight: bold;
+    
+    
+} 
+ .red-color-email{
+    color: red;
+    
+ }
+ .red-color-password{
+    color: red;
+ }
+ .text-height{
+    font-size: 15px;
+    margin-top: -20px;
+     
+    line-height: 32px;
+    font-weight: 400;
+ }
+
+ .register{
+   color: blue;
+   margin-left: 195px;
+   font-weight: bold;
+   font-size:15px;
+ }
+ .check{
+   position: relative;
+   bottom: 40px;
+   left: 60px;
+ }
+ .check-submit{
+   position: relative;
+   right: 60px;
+ }
