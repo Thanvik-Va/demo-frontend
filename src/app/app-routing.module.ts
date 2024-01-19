@@ -25,6 +25,8 @@ import { UpdateProjectComponent } from './components/update-project/update-proje
 import { ProjectHeaderComponent } from './components/project-header/project-header.component';
 import { SendemailforgotpasswordComponent } from './components/sendemailforgotpassword/sendemailforgotpassword.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { OrgSelectComponentComponent } from './components/org-select-component/org-select-component.component';
+import { UserComponent } from './components/user/user.component';
 
 
 const routes: Routes = [
@@ -34,12 +36,15 @@ const routes: Routes = [
   {path: 'login',component:LoginComponent,pathMatch:'full'},
   {path: 'forgot-password',component:ForgotPasswordComponent,pathMatch:'full'},
   {path: 'register',component:RegisterUserComponent,pathMatch:'full'},
+  
   {path:'send-email',component:SendemailforgotpasswordComponent},
+  {path:'org-select',component:OrgSelectComponentComponent,pathMatch:'full'},
   {
   path:"layout",
   component: LayoutComponent,
   children:[
-    
+  
+    {path:'user',component:UserComponent},
     {path:'dashboard',component:DashboardComponent},
     {path: 'aboutus',component:AboutusComponentComponent,pathMatch:'full'},
     {path: 'contact',component:ContactComponent,pathMatch:'full'},
@@ -62,6 +67,7 @@ const routes: Routes = [
     {path:'project-header',component:ProjectHeaderComponent},
     {path:'pro/:name',component:UpdateProjectComponent},
     {path:'update/:name',component:UpdateParentTaskComponent},
+   
    
   ],canActivate:[AuthGuard]
   },

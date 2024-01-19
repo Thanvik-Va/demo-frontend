@@ -20,7 +20,7 @@ export class EmployeeService  {
 
   getEmployeeList() : Observable<Employee[]>{
   
-    return this.httpclient.get<Employee[]>("http://localhost:8383/api/v1/getAll",this.tokenData);
+    return this.httpclient.get<Employee[]>("http://localhost:8383/api/v1//findAllEmp",this.tokenData);
   }
 
   createEmployee(employee: any): Observable<any>{

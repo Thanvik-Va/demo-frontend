@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import * as saveAs from 'file-saver';
 import { ToastrService } from 'ngx-toastr';
 import { OrgServiceService } from 'src/app/services/services/org-service.service';
+import DataTable from 'datatables.net-dt';
 
 @Component({
   selector: 'app-employee-list',
@@ -19,7 +20,7 @@ export class EmployeeListComponent implements OnInit {
   Role: number | null = null;
   organization:any[]=[];
   bPlace:any[]=[];
-
+  dataTable:any;
   Roles: any[] = [
     { id: 111, roles: 'Manager' },
     { id: 222, roles: 'Team Lead' },
@@ -38,6 +39,7 @@ export class EmployeeListComponent implements OnInit {
   ];
 
   employee: Employee = new Employee();
+  selectedRows: any;
   
   constructor( private employeeService:EmployeeService, private fb:FormBuilder,private toaster:ToastrService,private org:OrgServiceService ) { }
 
@@ -66,6 +68,16 @@ export class EmployeeListComponent implements OnInit {
     this.getEmployees();
     this.org.getAllOrganizations().subscribe(response=>{
       this.organization=response.response.data;
+      setTimeout(() => {
+        this.dataTable= new DataTable("#emp_tbl",{
+           lengthMenu: [4,5,6],
+           scrollY: '200px',
+           paging:true,
+           searching:true
+         
+         
+         })   
+       }, 1000);
       console.log(this.organization);
       
     })
@@ -84,6 +96,7 @@ export class EmployeeListComponent implements OnInit {
 submit(){
   this.employeeService.updateEmployees(this.frmEdit.value).subscribe((data: Employee)=>{
   this.employee = data;
+  
   console.log(data);
   this.getEmployees();
   this.toaster.success('Successful..!','Success',{
@@ -130,4 +143,23 @@ Delete(id:number){
       }
     );
   }
+  toggleAllCheckboxes(employee: any) {
+ 
+    if (employee.selected) {
+      this.selectedRows.push(employee);
+    } else {
+      this.selectedRows = this.selectedRows.filter((e:any) => e !== employee);
+    }
+  }
+  selectAllChecked:boolean=false;
+  
+  deleteSelectedRows() {
+    console.log('Selected Rows to delete:', this.selectedRows);
+  
+    this.employees = this.employees.filter((employee: { selected: any; }) => !employee.selected);
+  
+    this.selectedRows = [];
+    
+  }
+  
 }

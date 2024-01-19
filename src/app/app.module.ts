@@ -45,9 +45,12 @@ import { SendemailforgotpasswordComponent } from './components/sendemailforgotpa
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { UpdateParentTaskComponent } from './components/update-parent-task/update-parent-task.component';
 import { UpdateProjectComponent } from './components/update-project/update-project.component';
-  //import {FormControl} from '@angular/forms'
-
-
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { OrgSelectComponentComponent } from './components/org-select-component/org-select-component.component';
+import { NavBarForOrgListComponent } from './components/nav-bar-for-org-list/nav-bar-for-org-list.component';
+import { UserComponent } from './components/user/user.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+  //import {FormControl} from '@angular/forms
 
 @NgModule({
   declarations: [
@@ -78,7 +81,10 @@ import { UpdateProjectComponent } from './components/update-project/update-proje
     SendemailforgotpasswordComponent,
     UpdateParentTaskComponent,
     UpdateProjectComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    OrgSelectComponentComponent,
+    NavBarForOrgListComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +106,12 @@ import { UpdateProjectComponent } from './components/update-project/update-proje
     //  AddComponent,
     // EmployeeListComponent,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxUiLoaderModule,
+    NgMultiSelectDropDownModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground:true,
+    })
     // FormControl
 
   ], 

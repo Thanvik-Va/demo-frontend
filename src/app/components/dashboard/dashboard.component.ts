@@ -7,9 +7,30 @@ import { LoginServiceService } from 'src/app/services/login-service.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent  {
+export class DashboardComponent implements OnInit {
   //implements OnInit
 
+  param1!: any;
+  param2!: any;
+
+  constructor(private route:ActivatedRoute) { }
+
+  ngOnInit(): void {
+    // Get the parameters from the route snapshot
+    this.param1 = this.route.snapshot.paramMap.get('param1');
+    this.param2 = this.route.snapshot.paramMap.get('param2');
+
+    // Use the values as needed
+    console.log('Param1:', this.param1);
+    console.log('Param2:', this.param2);
+  }
+
+  
+  token:string|null=null;
+ 
+  userEmail !:string;
+
+ userDetails:any;
   
 
   sidebarOpened = false;
@@ -51,12 +72,6 @@ export class DashboardComponent  {
 
    //-------------------------second--------
 
-   constructor(private service:LoginServiceService, private route:ActivatedRoute){}
-   token:string|null=null;
- 
-   userEmail !:string;
-
-  userDetails:any;
  
   //  ngOnInit(){
   //    this.getUser();
@@ -74,6 +89,7 @@ export class DashboardComponent  {
   //    )
   //  }
  
+
   
 
 }

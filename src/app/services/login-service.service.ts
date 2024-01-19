@@ -56,7 +56,7 @@ export class LoginServiceService {
     const tokenFound = localStorage.getItem('token');
     const httpoptions = {
       headers: new HttpHeaders({
-        'Authorization': 'Bearer ' + tokenFound
+        'Authorization': 'Bearer ' + tokenFound   
       })
     }
     return this.http.get<User>(this.httpgetapi, httpoptions);
